@@ -1,0 +1,180 @@
+
+
+<!-- Page level plugin CSS-->
+<div *ngIf="info.token; else loggedOut">
+<div class="card-default">
+  <div class="mat-card-header">
+    <i class="mdi mdi-message-bulleted"></i>
+    <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
+    Agent</div>
+  <div class="card-body">
+    <div class="">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+            <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </th>
+            <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="dateModification">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Modification </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateModification |date:"dd/MM/yyyy"}} </td>
+          </ng-container>
+
+          <!-- Progress Column -->
+          <ng-container matColumnDef="dateAjout">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date ajout </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"dd/MM/yyyy"}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef > actions </th>
+            <td mat-cell *matCellDef="let row"><button mat-mini-fab (click)="deleteAgent(row.id)" color="warn" aria-label="Delete"><mat-icon class="mdi mdi-delete mdi-24px" ></mat-icon></button>
+              <button mat-mini-fab (click)="openVerticallyCenteredEdit(contentEdit,row.id)" color="primary"  ><mat-icon class="fa fa-pencil-square-o fa-2x" ></mat-icon></button>
+            </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- add Modal-->
+<div class="col-md-12">
+  <ng-template #content let-c="close" let-d="dismiss">
+
+    <div class="modal-body">
+      <div class="card card-outline-inverse">
+        <div class="card-header">
+          <h4 class="m-b-0 text-white">Ajouter Agent</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" >
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="agent.nom" name="nom">
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>Prenom</mat-label>
+                <input matInput [(ngModel)]="agent.prenom" name="prenom">
+              </mat-form-field>
+              <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date d'ajout</mat-label>
+              <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification" >
+            </mat-form-field>
+
+              <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>Date d'ajout</mat-label>
+                <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout" >
+              </mat-form-field>
+              <br>
+
+            <button type="submit" (click)="addAgent()" class="btn btn-primary">Enregistrer</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Edit Modal-->
+<div class="col-md-12">
+  <ng-template #contentEdit let-c="close" let-d="dismiss">
+
+    <div class="modal-body">
+      <div class="card card-outline-inverse">
+        <div class="card-header">
+          <h4 class="m-b-0 text-white">Modifier Agent</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" >
+
+            <mat-form-field class="example-full-width">
+              <mat-label>Nom</mat-label>
+              <input matInput [(ngModel)]="agent.nom" name="nom">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>prenom</mat-label>
+              <input matInput [(ngModel)]="agent.prenom" name="prenom">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date de modification</mat-label>
+              <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date d'ajout</mat-label>
+              <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout">
+            </mat-form-field>
+            <br>
+
+            <button type="submit" (click)="editAgent()" class="btn btn-primary">Enregistrer</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+    </div>
+  </ng-template>
+</div>
+</div>
