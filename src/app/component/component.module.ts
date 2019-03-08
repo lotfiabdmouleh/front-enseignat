@@ -31,8 +31,11 @@ import { PmComponent } from './pm/pm.component';
 
 import { UserComponent } from './user/user.component';
 import {httpInterceptorProviders} from '../auth/auth-interceptor';
-import {HttpClientModule} from '@angular/common/http';
-
+// import ngx-translate and the http loader
+import {TranslateModule, TranslateLoader, TranslateCompiler} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateMessageFormatCompiler} from "ngx-translate-messageformat-compiler";
 
 
 
@@ -57,8 +60,18 @@ import {HttpClientModule} from '@angular/common/http';
     MatNativeDateModule,
     FormsModule,
     HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      }
 
-
+    })
 
   ],
   declarations: [
@@ -77,3 +90,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 })
 export class ComponentsModule {}
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json');
+}

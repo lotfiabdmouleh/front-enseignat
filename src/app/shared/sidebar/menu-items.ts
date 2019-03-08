@@ -4,7 +4,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: '/full/component/home',
-    title: 'home',
+    title: 'agent.titre',
     icon: 'mdi mdi-gauge',
     class: '',
     label: '',
@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
 
   {
     path: '/full/component/Agent',
-    title: 'Agent',
+    title: 'agent.agent',
     icon: 'mdi mdi-equal',
     class: '',
     label: '',

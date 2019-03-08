@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { TranslateService } from '@ngx-translate/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 @Component({
@@ -18,7 +18,8 @@ export class FullComponent implements OnInit {
 
   public config: PerfectScrollbarConfigInterface = {};
 
-  constructor(public router: Router) {}
+  constructor(public router: Router,private translate:TranslateService,) {
+    translate.setDefaultLang('fr');}
 
   ngOnInit() {
     if (this.router.url === '/') {
@@ -31,7 +32,12 @@ export class FullComponent implements OnInit {
   onResize(event) {
     this.handleLayout();
   }
+  useLanguage(language: string) {
+    localStorage.setItem("lang", language);
+    this.translate.use(language);
 
+
+  }
   toggleSidebar() {
     this.showMinisidebar = !this.showMinisidebar;
   }

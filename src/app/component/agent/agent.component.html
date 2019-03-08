@@ -18,38 +18,38 @@
 
           <!-- ID Column -->
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.id' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.id}} </td>
           </ng-container>
 
           <!-- Progress Column -->
           <ng-container matColumnDef="nom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.nom' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
           </ng-container>
 
           <!-- Progress Column -->
           <ng-container matColumnDef="prenom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.prenom'| translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
           </ng-container>
 
           <!-- Progress Column -->
           <ng-container matColumnDef="dateModification">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Modification </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.datem' | translate }}  </th>
             <td mat-cell *matCellDef="let row"> {{row.dateModification |date:"dd/MM/yyyy"}} </td>
           </ng-container>
 
           <!-- Progress Column -->
           <ng-container matColumnDef="dateAjout">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date ajout </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.dateaj' | translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"dd/MM/yyyy"}} </td>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef > actions </th>
-            <td mat-cell *matCellDef="let row"><button mat-mini-fab (click)="deleteAgent(row.id)" color="warn" aria-label="Delete"><mat-icon class="mdi mdi-delete mdi-24px" ></mat-icon></button>
+            <th mat-header-cell *matHeaderCellDef colspan="3">  </th>
+            <td  mat-cell *matCellDef="let row"><button mat-mini-fab (click)="deleteAgent(row.id)" color="warn" aria-label="Delete"><mat-icon class="mdi mdi-delete mdi-24px" ></mat-icon></button>
               <button mat-mini-fab (click)="openVerticallyCenteredEdit(contentEdit,row.id)" color="primary"  ><mat-icon class="fa fa-pencil-square-o fa-2x" ></mat-icon></button>
             </td>
           </ng-container>
@@ -88,7 +88,7 @@
     <div class="modal-body">
       <div class="card card-outline-inverse">
         <div class="card-header">
-          <h4 class="m-b-0 text-white">Ajouter Agent</h4>
+          <h4 class="m-b-0 text-white">{{'agent.aj'| translate }}</h4>
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -97,28 +97,28 @@
           <form #f="ngForm" >
 
               <mat-form-field class="example-full-width">
-                <mat-label>Nom</mat-label>
+                <mat-label>{{'agent.nom'| translate }}</mat-label>
                 <input matInput [(ngModel)]="agent.nom" name="nom">
               </mat-form-field>
               <br>
               <mat-form-field class="example-full-width">
-                <mat-label>Prenom</mat-label>
+                <mat-label>{{'agent.prenom'| translate }}</mat-label>
                 <input matInput [(ngModel)]="agent.prenom" name="prenom">
               </mat-form-field>
               <br>
             <mat-form-field class="example-full-width">
-              <mat-label>Date d'ajout</mat-label>
+              <mat-label>{{'agent.datem' | translate }}</mat-label>
               <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification" >
             </mat-form-field>
 
               <br>
             <mat-form-field class="example-full-width">
-                <mat-label>Date d'ajout</mat-label>
+                <mat-label>{{'agent.dateaj' | translate }}</mat-label>
                 <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout" >
               </mat-form-field>
               <br>
 
-            <button type="submit" (click)="addAgent()" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" (click)="addAgent()" class="btn btn-primary">{{'agent.button' | translate }}</button>
           </form>
         </div>
       </div>
@@ -137,7 +137,7 @@
     <div class="modal-body">
       <div class="card card-outline-inverse">
         <div class="card-header">
-          <h4 class="m-b-0 text-white">Modifier Agent</h4>
+          <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -146,34 +146,34 @@
           <form #f="ngForm" >
 
             <mat-form-field class="example-full-width">
-              <mat-label>Nom</mat-label>
+              <mat-label>{{'agent.nom' | translate }}</mat-label>
               <input matInput [(ngModel)]="agent.nom" name="nom">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-              <mat-label>prenom</mat-label>
+              <mat-label>{{'agent.prenom' | translate }}</mat-label>
               <input matInput [(ngModel)]="agent.prenom" name="prenom">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-              <mat-label>Date de modification</mat-label>
+              <mat-label>{{'agent.datem' | translate }}</mat-label>
               <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-              <mat-label>Date d'ajout</mat-label>
+              <mat-label>{{'agent.dateaj' | translate }}</mat-label>
               <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout">
             </mat-form-field>
             <br>
 
-            <button type="submit" (click)="editAgent()" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" (click)="editAgent()" class="btn btn-primary">{{'agent.button' | translate }}</button>
           </form>
         </div>
       </div>
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
     </div>
   </ng-template>
 </div>
