@@ -1,0 +1,18 @@
+{
+  "agent": {
+    "nom": "Nom",
+    "prenom":"Prenom",
+    "datem":"Date de modification",
+    "dateaj":"Date d 'ajout",
+    "actions":"Actions",
+    "button":"Enregistre",
+    "id":"ID",
+    "agent":"Agent",
+    "groupe":"Groupe",
+    "aj":"Ajouter un agent",
+    "bt":"fermé",
+    "titre": "Acceuil",
+    "modifier": "Modifier"
+
+  }
+}
