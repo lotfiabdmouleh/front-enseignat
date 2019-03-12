@@ -2,10 +2,10 @@
   Logged in as {{roles}}.
 </div>
 
-<ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+<ng-template #loggedOut  >
+  <div  style="max-width:500px;margin: 200px  auto">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
+      <div  class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
                required />
@@ -30,7 +30,11 @@
       </div>
     </form>
     <hr />
-    <p>Don't have an account?</p>
-    <a href="signup" class="btn btn-success">Sign Up</a>
+
+    <label>Don't have an account?</label>
+
+      <a href="signup" class="btn btn-success">Sign Up</a>
+
   </div>
 </ng-template>
+
