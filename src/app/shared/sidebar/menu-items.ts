@@ -23,5 +23,14 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-
+  {
+    path: '/full/component/role',
+    title: 'Role',
+    icon: 'mdi mdi-equal',
+    class: '',
+    label: '',
+    labelClass: '',
+    extralink: false,
+    submenu: []
+  },
 ];

@@ -36,6 +36,8 @@ import {TranslateModule, TranslateLoader, TranslateCompiler} from '@ngx-translat
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateMessageFormatCompiler} from "ngx-translate-messageformat-compiler";
+import {RoleService} from "../services/role.service";
+import {RoleComponent} from "./role/role.component";
 
 
 
@@ -80,10 +82,11 @@ import {TranslateMessageFormatCompiler} from "ngx-translate-messageformat-compil
     HomeComponent,
     PmComponent,
     UserComponent,
+    RoleComponent
 
   ],
   providers: [
-    AgentService,httpInterceptorProviders
+    AgentService,RoleService,httpInterceptorProviders
 
 
   ]

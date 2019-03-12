@@ -4,6 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {UserComponent} from './user/user.component';
 import {PmComponent} from './pm/pm.component';
 import {AdminComponent} from './admin/admin.component';
+import {RoleComponent} from "./role/role.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -27,6 +28,10 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'role',
+    component: RoleComponent
   },
 
 ];

@@ -3,32 +3,30 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {Agent} from '../../models/agent';
-import {AgentService} from '../../services/agent.service';
-import {FormControl} from '@angular/forms';
-import {TokenStorageService} from '../../auth/token-storage.service';
-
+import {RoleService} from "../../services/role.service";
+import {TokenStorageService} from "../../auth/token-storage.service";
+import {Role} from "../../models/role";
 @Component({
-  selector: 'app-agent',
-  templateUrl: './agent.component.html',
-  styleUrls: ['./agent.component.css'],
+  selector: 'app-role',
+  templateUrl: './role.component.html',
+  styleUrls: ['./role.component.css'],
   encapsulation: ViewEncapsulation.None,
 
 })
-export class AgentComponent implements OnInit {
+export class RoleComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nom','prenom','dateModification','dateAjout','actions'];
-  dataSource: MatTableDataSource<Agent>;
+  displayedColumns: string[] = ['id', 'name','actions'];
+  dataSource: MatTableDataSource<Role>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  listAgent:Agent[];
-  agent:Agent=new Agent();
+  listRole:Role[];
+  role:Role=new Role();
   info:any;
 
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private agentService: AgentService,private modalService: NgbModal) {
-    this.getAllAgents();
+              private roleService: RoleService,private modalService: NgbModal) {
+    this.getAllRole();
   }
   ngOnInit() {
     this.info = {
@@ -37,7 +35,7 @@ export class AgentComponent implements OnInit {
       authorities: this.token.getAuthorities()
     };
     if(this.info.token!=null){
-      this.getAllAgents();
+      this.getAllRole();
     }else {
       this.route.navigate(['login'])
     }
@@ -49,10 +47,10 @@ export class AgentComponent implements OnInit {
 
 
   }
-  addAgent() {
-    this.agentService.addAgent(this.agent);
+  addRole() {
+    this.roleService.addRole(this.role);
     this.ngOnInit();
-    this.modalService.dismissAll(this.agent);
+    this.modalService.dismissAll(this.role);
     this.ngOnInit();
   }
   openVerticallyCentered(content) {
@@ -63,21 +61,21 @@ export class AgentComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-      this.agentService.getAgent(id).subscribe(res =>{this.agent=res as Agent;console.log(this.agent);});
+    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role;console.log(this.role);});
 
     this.modalService.open(content, { centered: true });
 
   }
-  editAgent(){
+  editRole(){
 
-    this.agentService.updateAgent(this.agent).subscribe(res=>{this.ngOnInit()});
+    this.roleService.updateRole(this.role).subscribe(res=>{this.ngOnInit()});
   }
-  getAllAgents(){
+  getAllRole(){
 
-    this.agentService.getAllAgents()
+    this.roleService.getAllRole()
       .subscribe(res => {
-        this.listAgent = res as Agent[];
-        this.dataSource = new MatTableDataSource(this.listAgent);
+        this.listRole= res as Role[];
+        this.dataSource = new MatTableDataSource(this.listRole);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
@@ -85,8 +83,8 @@ export class AgentComponent implements OnInit {
       });
 
   }
-  deleteAgent(id) {
-    this.agentService.deleteAgent(id).subscribe(res => {console.log('deleted'), this.ngOnInit(); });
+  deleteRole(id) {
+    this.roleService.deleteRole(id).subscribe(res => {console.log('deleted'), this.ngOnInit(); });
   }
 
 
@@ -99,8 +97,6 @@ export class AgentComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  Imprimer(){
-    this.agentService.impression().subscribe(res=>{this.ngOnInit()});
-  }
 
 }
+

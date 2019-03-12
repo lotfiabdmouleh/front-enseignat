@@ -19,7 +19,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Approutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
-import {MatDatepickerModule, MatInputModule} from '@angular/material';
+import {MatDatepickerModule, MatInputModule, MatTableModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -27,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
+import {RoleComponent} from "./component/role/role.component";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -47,6 +48,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RegisterComponent,
 
 
+
   ],
   imports: [
     CommonModule,
@@ -59,6 +61,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatInputModule,
     MatDatepickerModule,
     HttpClientModule,
+    MatTableModule,
+    MatIconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
