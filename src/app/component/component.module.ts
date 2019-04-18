@@ -38,6 +38,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateMessageFormatCompiler} from "ngx-translate-messageformat-compiler";
 import {RoleService} from "../services/role.service";
 import {RoleComponent} from "./role/role.component";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
 
 
 
@@ -61,6 +62,7 @@ import {RoleComponent} from "./role/role.component";
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
+    AngularFontAwesomeModule,
     HttpClientModule,
     TranslateModule.forChild({
       loader: {

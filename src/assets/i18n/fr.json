@@ -12,7 +12,8 @@
     "aj":"Ajouter un agent",
     "bt":"fermé",
     "titre": "Acceuil",
-    "modifier": "Modifier"
+    "modifier": "Modifier",
+    "role": "Ajouter role"
 
   }
 }

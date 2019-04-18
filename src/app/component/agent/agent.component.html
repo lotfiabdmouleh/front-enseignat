@@ -1,7 +1,7 @@
 
 
 <!-- Page level plugin CSS-->
-<div *ngIf="info.token; else loggedOut">
+<div *ngIf="info.token; else loggedOut" xmlns="http://www.w3.org/1999/html">
 <div class="card-default">
   <div class="mat-card-header">
     <i class="mdi mdi-message-bulleted"></i>
@@ -33,26 +33,41 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.prenom'| translate }} </th>
             <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
           </ng-container>
-
-          <!-- Progress Column -->
-          <ng-container matColumnDef="dateModification">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.datem' | translate }}  </th>
-            <td mat-cell *matCellDef="let row"> {{row.dateModification |date:"dd/MM/yyyy"}} </td>
-          </ng-container>
-
-          <!-- Progress Column -->
           <ng-container matColumnDef="dateAjout">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.dateaj' | translate }} </th>
-            <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"dd/MM/yyyy"}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:s"}} </td>
+          </ng-container>
+          <!-- Progress Column-->
+          <ng-container matColumnDef="dateModification">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.datem' | translate }}  </th>
+            <td mat-cell *matCellDef="let row"> {{row.dateModification |date:"MMM dd yyyy H:s"}} </td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="createdBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Agent de création  </th>
+            <td mat-cell *matCellDef="let row"> {{row.createdBy }} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="lastModifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Agent de modification </th>
+            <td mat-cell *matCellDef="let row"> {{row.lastModifiedBy}} </td>
           </ng-container>
 
           <!-- Name Column -->
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef colspan="3">  </th>
-            <td  mat-cell *matCellDef="let row"><button mat-mini-fab (click)="deleteAgent(row.id)" color="warn" aria-label="Delete"><mat-icon class="mdi mdi-delete mdi-24px" ></mat-icon></button>
-              <button mat-mini-fab (click)="openVerticallyCenteredEdit(contentEdit,row.id)" color="primary"  ><mat-icon class="fa fa-pencil-square-o fa-2x" ></mat-icon></button>
+          <ng-container matColumnDef="actions" >
+            <th mat-header-cell *matHeaderCellDef >actions  </th>
+
+            <td  mat-cell *matCellDef="let row">
+              <button class=" btn btn-danger btn-sm" (click)="deleteAgent(row.id)">  <mat-icon class="fa fa-trash-o fa-2x"    aria-label="Delete"></mat-icon><span class="d-none d-md-inline">Delete</span> </button>
+              <button class="btn btn-primary btn-sm" (click)="openVerticallyCenteredEdit(contentEdit,row.id)"> <mat-icon class="fa fa-pencil-square-o fa-2x"  ></mat-icon><span class="d-none d-md-inline">Edit</span> </button>
+             <button class=" btn btn-info btn-sm" (click)="openVerticallyCenteredRole(contentRole,row.id)"> <mat-icon class="fa fa-eye fa-2x"  ></mat-icon> <span class="d-none d-md-inline">View</span> </button>
             </td>
-          </ng-container>
+
+            </ng-container>
+
 
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -109,7 +124,7 @@
                 <input matInput [(ngModel)]="agent.prenom" name="prenom">
               </mat-form-field>
               <br>
-            <mat-form-field class="example-full-width">
+           <!-- <mat-form-field class="example-full-width">
               <mat-label>{{'agent.datem' | translate }}</mat-label>
               <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification" >
             </mat-form-field>
@@ -118,7 +133,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label>{{'agent.dateaj' | translate }}</mat-label>
                 <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout" >
-              </mat-form-field>
+              </mat-form-field> -->
               <br>
 
             <button type="submit" (click)="addAgent()" class="btn btn-primary">{{'agent.button' | translate }}</button>
@@ -158,16 +173,7 @@
               <input matInput [(ngModel)]="agent.prenom" name="prenom">
             </mat-form-field>
             <br>
-            <mat-form-field class="example-full-width">
-              <mat-label>{{'agent.datem' | translate }}</mat-label>
-              <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification">
-            </mat-form-field>
-            <br>
-            <mat-form-field class="example-full-width">
-              <mat-label>{{'agent.dateaj' | translate }}</mat-label>
-              <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout">
-            </mat-form-field>
-            <br>
+
 
             <button type="submit" (click)="editAgent()" class="btn btn-primary">{{'agent.button' | translate }}</button>
           </form>
@@ -180,4 +186,39 @@
     </div>
   </ng-template>
 </div>
+
+
+  <!-- modal affecter role-->
+  <div class="col-md-12">
+    <ng-template #contentRole let-c="close" let-d="dismiss">
+
+      <div class="modal-body">
+        <div class="card card-outline-inverse">
+          <div class="card-header">
+            <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <form #f="ngForm" >
+              <mat-form-field>
+                <mat-label> selectioner un role</mat-label>
+              <mat-select [(value)]="selected">
+
+                <mat-option *ngFor="let a of listRole" value="{{a.id}}">{{a.name}}</mat-option>
+              </mat-select>
+              </mat-form-field>
+
+              <button type="submit" (click)="affecterRole()" class="btn btn-primary">{{'agent.button' | translate }}</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
+      </div>
+    </ng-template>
+  </div>
 </div>

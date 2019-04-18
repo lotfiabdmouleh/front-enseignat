@@ -30,10 +30,12 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef colspan="3">  </th>
-              <td  mat-cell *matCellDef="let row"><button mat-mini-fab (click)="deleteRole(row.id)" color="warn" aria-label="Delete"><mat-icon class="mdi mdi-delete mdi-24px" ></mat-icon></button>
-                <button mat-mini-fab (click)="openVerticallyCenteredEdit(contentEdit,row.id)" color="primary"  ><mat-icon class="fa fa-pencil-square-o fa-2x" ></mat-icon></button>
-              </td>
+              <th mat-header-cell *matHeaderCellDef > actions </th>
+              <td  mat-cell *matCellDef="let row">
+                <button class=" btn btn-danger btn-sm" (click)="deleteRole(row.id)">  <mat-icon class="fa fa-trash-o fa-2x"    aria-label="Delete"></mat-icon><span class="d-none d-md-inline">Delete</span> </button>
+                <button class="btn btn-primary btn-sm" (click)="openVerticallyCenteredEdit(contentEdit,row.id)"> <mat-icon class="fa fa-pencil-square-o fa-2x"  ></mat-icon><span class="d-none d-md-inline">Edit</span> </button>
+               </td>
+
             </ng-container>
 
 
@@ -59,7 +61,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 text-white">{{'agent.aj'| translate }}</h4>
+            <h4 class="m-b-0 text-white">{{'agent.role'| translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>

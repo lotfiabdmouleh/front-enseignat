@@ -7,6 +7,8 @@ import {Agent} from '../../models/agent';
 import {AgentService} from '../../services/agent.service';
 import {FormControl} from '@angular/forms';
 import {TokenStorageService} from '../../auth/token-storage.service';
+import {RoleService} from "../../services/role.service";
+import {Role} from "../../models/role";
 
 @Component({
   selector: 'app-agent',
@@ -17,7 +19,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 })
 export class AgentComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nom','prenom','dateModification','dateAjout','actions'];
+  displayedColumns: string[] = ['id', 'nom','prenom','dateAjout','dateModification','createdBy','lastModifiedBy','actions'];
   dataSource: MatTableDataSource<Agent>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,9 +27,10 @@ export class AgentComponent implements OnInit {
   listAgent:Agent[];
   agent:Agent=new Agent();
   info:any;
-
+  listRole:any;
+  selected:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private agentService: AgentService,private modalService: NgbModal) {
+              private agentService: AgentService,private modalService: NgbModal,private roleService:RoleService) {
     this.getAllAgents();
   }
   ngOnInit() {
@@ -68,6 +71,10 @@ export class AgentComponent implements OnInit {
     this.modalService.open(content, { centered: true });
 
   }
+  openVerticallyCenteredRole(content,id){
+    this.roleService.getAllRole().subscribe(res =>{this.listRole=res as Role[];console.log(("listRole"))})
+    this.modalService.open(content, { centered: true });
+  }
   editAgent(){
 
     this.agentService.updateAgent(this.agent).subscribe(res=>{this.ngOnInit()});
@@ -102,5 +109,7 @@ export class AgentComponent implements OnInit {
   Imprimer(){
     this.agentService.impression().subscribe(res=>{this.ngOnInit()});
   }
-
+  affecterRole(){
+    console.log(this.selected);
+  }
 }

@@ -28,6 +28,7 @@ import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translat
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
 import {RoleComponent} from "./component/role/role.component";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -63,6 +64,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     MatTableModule,
     MatIconModule,
+    AngularFontAwesomeModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
