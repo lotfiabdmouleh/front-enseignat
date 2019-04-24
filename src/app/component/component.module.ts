@@ -39,6 +39,7 @@ import {TranslateMessageFormatCompiler} from "ngx-translate-messageformat-compil
 import {RoleService} from "../services/role.service";
 import {RoleComponent} from "./role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {UserService} from "../services/user.service";
 
 
 
@@ -49,7 +50,7 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
     FormsModule,
     ReactiveFormsModule,
     JsonpModule,
-    NgbModule,
+    NgbModule.forRoot(),
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
@@ -84,11 +85,11 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
     HomeComponent,
     PmComponent,
     UserComponent,
-    RoleComponent
+    RoleComponent,
 
   ],
   providers: [
-    AgentService,RoleService,httpInterceptorProviders
+    AgentService,RoleService,httpInterceptorProviders,UserService
 
 
   ]

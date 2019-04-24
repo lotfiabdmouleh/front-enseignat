@@ -30,9 +30,11 @@
     "angular-calendar": "^0.26.6",
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
+    "bootswatch": "^4.3.1",
     "chart.js": "^2.7.3",
     "chartist": "^0.11.0",
     "core-js": "^2.6.5",
+    "detect-adblock": "0.0.2",
     "font-awesome": "^4.7.0",
     "jasmine": "^3.3.1",
     "jquery": "^3.2.1",
@@ -53,8 +55,8 @@
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.1",
-    "@angular/cli": "^7.3.1",
+    "@angular-devkit/build-angular": "^0.13.8",
+    "@angular/cli": "^7.3.8",
     "@angular/compiler-cli": "^7.2.12",
     "@angular/language-service": "^7.2.5",
     "@biesbjerg/ngx-translate-extract": "^2.3.4",

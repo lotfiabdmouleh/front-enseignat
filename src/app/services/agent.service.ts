@@ -21,6 +21,9 @@ export class AgentService {
   getAllAgents() {
     return this.http.get('http://127.0.0.1:8080/agent');
   }
+  getAllUsers() {
+    return this.http.get('http://127.0.0.1:8080/User');
+  }
 
   deleteAgent(id) {
     const url = 'http://127.0.0.1:8080/agent/' + id;
@@ -36,7 +39,8 @@ export class AgentService {
   }
 
   impression(){
-   return this.http.get('http://127.0.0.1:8080/ListeAgent',{responseType:'blob' })
+
+   return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
         console.log('report is downloaded');
 var file=new Blob([blob],{type:'application/pdf'});

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,33 @@ export class UserService {
   private adminUrl = 'http://localhost:8080/api/test/admin';
 
   constructor(private http: HttpClient) { }
+
+  getAllUsers() {
+    return this.http.get('http://127.0.0.1:8080/users');
+  }
+affecterRole(id, users:User[]){
+  const url = 'http://127.0.0.1:8080/users/' + id;
+ return  this.http.put(url,users);
+}
+
+  impression(){
+
+    return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
+      .map((blob:Blob)=>{
+        console.log('report is downloaded');
+        var file=new Blob([blob],{type:'application/pdf'});
+        var fileUrl=URL.createObjectURL(file);
+        window.open(fileUrl);
+
+
+      });
+  }
+
+  getUser(id) {
+    const url = 'http://127.0.0.1:8080/users/' + id;
+    return this.http.get(url);
+  }
+
 
   getUserBoard(): Observable<string> {
     return this.http.get(this.userUrl, { responseType: 'text' });
