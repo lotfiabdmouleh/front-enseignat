@@ -30,6 +30,7 @@ export class AgentComponent implements OnInit {
   info:any;
   listRole:any;
   selected:any;
+  data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private agentService: AgentService,private modalService: NgbModal,private roleService:RoleService,
               private changed:ChangeDetectorRef) {
@@ -45,6 +46,7 @@ export class AgentComponent implements OnInit {
     };
     if(this.info.token!=null){
       this.getAllAgents();
+      this.agentService.getHistory().subscribe(res=>{this.data=res,console.log(this.data)});
     }else {
       this.route.navigate(['login'])
     }}
