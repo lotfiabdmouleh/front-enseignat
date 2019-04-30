@@ -50,5 +50,9 @@ window.open(fileUrl);
 
       });
   }
+  getHistory(){
+    return this.http.get('http://127.0.0.1:8080/agent/history');
+
+  }
 
 }
