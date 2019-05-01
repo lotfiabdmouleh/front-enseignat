@@ -11,6 +11,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RoleService} from "../../services/role.service";
 import {AgentService} from "../../services/agent.service";
 import {SelectionModel} from "@angular/cdk/collections";
+import {SignUpInfo} from "../../auth/signup-info";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-user',
@@ -19,14 +21,19 @@ import {SelectionModel} from "@angular/cdk/collections";
   encapsulation: ViewEncapsulation.None,
 })
 export class UserComponent implements OnInit {
-  displayedColumns: string[] = ['select','username'];
+  displayedColumns: string[] = ['select','username','role','actions'];
   dataSource: MatTableDataSource<User>;
   selection = new SelectionModel<User>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
-  listAgent:Agent[];
+
+  form: any = {};
+  signupInfo: SignUpInfo;
+  isSignedUp = false;
+  isSignUpFailed = false;
+  errorMessage = '';
   user:User;
   listUser:User[];
   agent:Agent=new Agent();
@@ -36,7 +43,7 @@ export class UserComponent implements OnInit {
   selected:any;
   constructor(private route:Router,private http: HttpClient,private userService: UserService,private token: TokenStorageService,
               private agentService: AgentService,private modalService: NgbModal,private roleService:RoleService,
-              private changed:ChangeDetectorRef) {
+              private changed:ChangeDetectorRef,private authService: AuthService) {
     this.getAllUser();
 
   }
@@ -97,8 +104,55 @@ export class UserComponent implements OnInit {
 
   affecterRole(){
     console.log(this.selected);
-this.userService.affecterRole(this.selected,this.selection.selected).subscribe(res=>{console.log('aa') });
-  this.modalService.dismissAll(this.selected);
+    this.userService.affecterRole(this.selected,this.selection.selected).subscribe(res=>{console.log('') });
+  this.modalService.dismissAll();
     this.selection.clear();
+    this.getAllUser();
+  }
+
+  openVerticallyCentered(content){
+    this.modalService.open(content, { centered: true });
+  }
+  onSubmit() {
+    console.log(this.form);
+
+    this.signupInfo = new SignUpInfo(
+      this.form.name,
+      this.form.username,
+      this.form.email,
+      this.form.password);
+
+    this.authService.signUp(this.signupInfo).subscribe(
+      data => {
+        console.log(data);
+        this.isSignedUp = true;
+        this.isSignUpFailed = false;
+        this.modalService.dismissAll(this.signupInfo);
+        this.selection.clear();
+        this.getAllUser();
+      },
+      error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
+  c(){
+    this.selection.clear();
+    this.modalService.dismissAll();
+  }
+
+  deleteUser(){
+    this.userService.deleteUser(this.user).subscribe(res => {console.log('deleted') });
+    this.modalService.dismissAll(this.user);
+    this.selection.clear();
+    this.getAllUser();
+
+
+  }
+  openVerticallydelete(contentdelete,id){
+    this.userService.getUser(id).subscribe(res =>{this.user=res as User;console.log(this.user);});
+    this.modalService.open(contentdelete);
   }
 }
