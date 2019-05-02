@@ -1,4 +1,5 @@
 import { RouteInfo } from './sidebar.metadata';
+import {HistoriqueComponent} from "../../component/historique/historique.component";
 
 export const ROUTES: RouteInfo[] = [
 
@@ -39,6 +40,16 @@ export const ROUTES: RouteInfo[] = [
     icon: 'mdi mdi-equal',
     class: '',
     label: '',
+    labelClass: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/full/component/historique',
+    title: '',
+    icon: 'mdi mdi-equal',
+    class: '',
+    label: 'Historiques',
     labelClass: '',
     extralink: false,
     submenu: []

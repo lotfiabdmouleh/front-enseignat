@@ -40,6 +40,8 @@ import {RoleService} from "../services/role.service";
 import {RoleComponent} from "./role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {UserService} from "../services/user.service";
+import { HistoriqueComponent } from './historique/historique.component';
+import {HistoriqueService} from "../services/historique.service";
 
 
 
@@ -86,13 +88,11 @@ import {UserService} from "../services/user.service";
     PmComponent,
     UserComponent,
     RoleComponent,
+    HistoriqueComponent,
 
   ],
   providers: [
-    AgentService,RoleService,httpInterceptorProviders,UserService
-
-
-  ]
+    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService]
 
 })
 export class ComponentsModule {}

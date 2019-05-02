@@ -50,7 +50,9 @@ export class AgentComponent implements OnInit {
     }else {
       this.route.navigate(['login'])
     }}
-
+  histo(){
+    this.route.navigate(['/full/component/historique']);
+  }
   addAgent() {
     this.agentService.addAgent(this.agent);
 
@@ -83,7 +85,9 @@ export class AgentComponent implements OnInit {
   getAllAgents(){
     this.agentService.getAllAgents()
       .subscribe(res => {
+        this.data=res,console.log(this.data);
         this.listAgent = res as Agent[];
+
         this.dataSource = new MatTableDataSource(this.listAgent);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
