@@ -37,16 +37,18 @@
             <div class="navbar-collapse">
                 <app-navigation class="w-100" (toggleSidebar)="toggleSidebar()"></app-navigation>
             </div>
-          <div> <button class="btn btn-outline-info" (click)="useLanguage('ar')"> AR</button></div>
-          <div> <button class="btn btn-outline-info"(click)="useLanguage('fr')">FR</button></div>
+
+          <div  class="nav-small-cap" (click)="useLanguage('ar')"> AR</div>
+          <div class="nav-small-cap"(click)="useLanguage('fr')">FR</div>
+
         </nav>
     </header>
     <!-- ============================================================== -->
     <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
+    <!-- ============================================================== style="background-color: #f4f6f9" -->
     <aside class="left-sidebar">
     <!-- Sidebar scroll-->
-        <div class="scroll-sidebar" [perfectScrollbar]="config">
+        <div class="scroll-sidebar" [perfectScrollbar]="config" >
             <app-sidebar></app-sidebar>
         </div>
         <!-- End Sidebar scroll-->
@@ -83,7 +85,7 @@
     <!-- footer -->
     <!-- ============================================================== -->
     <footer class="footer">
-        © 2018 Admin Pro Angular by wrappixel.com
+        © 2019 Admin Pro Angular by wrappixel.com
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->

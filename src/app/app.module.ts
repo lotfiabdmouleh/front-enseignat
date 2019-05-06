@@ -29,6 +29,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
 import {RoleComponent} from "./component/role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
+import {CalendarModule} from "angular-calendar";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -73,7 +74,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         provide: TranslateCompiler,
         useClass: TranslateMessageFormatCompiler
       }
-    })
+    }),
+    CalendarModule
 
 
   ],
