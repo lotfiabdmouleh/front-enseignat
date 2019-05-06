@@ -34,19 +34,23 @@
             </ng-container>
 
             <ng-container matColumnDef="username">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>login </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header >Login </th>
               <td mat-cell *matCellDef="let row"> {{row.username}} </td>
 
             </ng-container>
             <ng-container matColumnDef="role">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>login </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Role </th>
               <td mat-cell *matCellDef="let row"> {{row.roles[0].name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Action </th>
               <td  mat-cell *matCellDef="let row">
-                <button class="btn" >  <mat-icon class="fa fa-trash-o fa-2x" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete"></mat-icon><span class="d-none d-md-inline"></span> </button>
+               <i class="fa fa-trash-o fa-2x" style="color: lightgrey; " (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
+
+                </i>
+
+
               </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -174,26 +178,22 @@
   </div>
   <!-- modal delte-->
   <div class="col-md-12">
-    <ng-template #contentdelete let-d="dismiss" class="modal">
+    <ng-template #contentdelete let-d="dismiss" class="modal-dialog modal-sm">
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
-          <div class="card-header">
-            <h4 class="m-b-0 text-white">Supprimer Utilisateur</h4>
-            <button type="button" class="close" aria-label="Close" data-dismiss="modal" (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="card-body">
-            <form name="form" #f="ngForm">
-              <button type="submit" (click)="deleteUser()" class="btn btn-danger">Supprimer</button>
-            </form>
+          <div >
+            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+
           </div>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="c()">Close</button>
+        <form name="form" #f="ngForm">
+          <button type="submit" (click)="deleteUser()" class="btn btn-danger">Supprimer</button>
+        </form>
+        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
       </div>
     </ng-template>
   </div>

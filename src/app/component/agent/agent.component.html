@@ -61,9 +61,9 @@
             <th mat-header-cell *matHeaderCellDef >actions  </th>
 
             <td  mat-cell *matCellDef="let row">
-              <button class=" btn btn-danger btn-sm" (click)="deleteAgent(row.id)">  <mat-icon class="fa fa-trash-o fa-2x"    aria-label="Delete"></mat-icon><span class="d-none d-md-inline">Delete</span> </button>
-              <button class="btn btn-primary btn-sm" (click)="openVerticallyCenteredEdit(contentEdit,row.id)"> <mat-icon class="fa fa-pencil-square-o fa-2x"  ></mat-icon><span class="d-none d-md-inline">Edit</span> </button>
-             <button class=" btn btn-info btn-sm" (click)="openVerticallyCenteredRole(contentRole,row.id)"> <mat-icon class="fa fa-eye fa-2x"  ></mat-icon> <span class="d-none d-md-inline">View</span> </button>
+              <mat-icon class="fa fa-trash-o fa-2x supp"   (click)="deleteAgent(row.id)"></mat-icon>
+             <mat-icon class="fa fa-pencil-square-o fa-2x edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" ></mat-icon>
+            <mat-icon class="fa fa-eye fa-2x view"  (click)="openVerticallyCenteredRole(contentRole,row.id)" ></mat-icon>
             </td>
 
             </ng-container>
@@ -104,14 +104,14 @@
   <ng-template #content let-c="close" let-d="dismiss">
 
     <div class="modal-body">
-      <div class="card card-outline-inverse">
+      <div class="card card-outline-inverse no-pad-bot">
         <div class="card-header">
-          <h4 class="m-b-0 text-white">{{'agent.aj'| translate }}</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+         <i class="fa fa-user-circle titre"></i>
+
+          <h4 class="m-b-0 titre">{{'agent.aj'| translate }}</h4>
+
         </div>
-        <div class="card-body">
+        <div class="card-body no-pad-bot">
           <form #f="ngForm" (ngSubmit)="f.form.valid && addAgent()" >
 
               <mat-form-field class="example-full-width">
@@ -123,28 +123,16 @@
                 <mat-label>{{'agent.prenom'| translate }}</mat-label>
                 <input matInput [(ngModel)]="agent.prenom" name="prenom" required>
               </mat-form-field>
-              <br>
-           <!-- <mat-form-field class="example-full-width">
-              <mat-label>{{'agent.datem' | translate }}</mat-label>
-              <input type="date" matInput [(ngModel)]="agent.dateModification" name="dateModification" >
-            </mat-form-field>
 
-              <br>
-            <mat-form-field class="example-full-width">
-                <mat-label>{{'agent.dateaj' | translate }}</mat-label>
-                <input type="date" matInput [(ngModel)]="agent.dateAjout" name="dateAjout" >
-              </mat-form-field> -->
-              <br>
 
-            <button type="submit"  class="btn btn-primary" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
+            <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
+            <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
           </form>
         </div>
       </div>
 
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
-    </div>
+
   </ng-template>
 </div>
 
@@ -156,9 +144,7 @@
       <div class="card card-outline-inverse">
         <div class="card-header">
           <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
-          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+
         </div>
         <div class="card-body">
           <form #f="ngForm" >

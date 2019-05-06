@@ -32,9 +32,9 @@ File: scss
 .page-wrapper {
   background: $bodycolor;
   padding-bottom: 60px;
-  height: calc(100vh - 64px); 
+  height: calc(100vh - 64px);
   position: relative;
-    overflow: auto;
+  overflow: auto;
 }
 
 .container-fluid {
@@ -197,31 +197,31 @@ File: scss
 *******************/
 
 .page-titles {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+  padding: 0px;
+  h3 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .breadcrumb {
     padding: 0px;
-    h3 {
-        margin-bottom: 0px;
-        margin-top: 0px;
+    margin-bottom:0px;
+    background: transparent;
+    font-size: 14px;
+    li {
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
-    .breadcrumb {
-        padding: 0px;
-        margin-bottom:0px;
-        background: transparent;
-        font-size: 14px;
-        li {
-            margin-top: 0px;
-            margin-bottom: 0px;
-        }
-        .breadcrumb-item+.breadcrumb-item::before {
-            content: "\e649";
-            font-family: themify;
-            color: $light-text;
-            font-size: 11px;
-        }
-        .breadcrumb-item.active {
-            color: $muted;
-        }
+    .breadcrumb-item+.breadcrumb-item::before {
+      content: "\e649";
+      font-family: themify;
+      color: $light-text;
+      font-size: 11px;
     }
+    .breadcrumb-item.active {
+      color: $muted;
+    }
+  }
 }
 
 
@@ -233,7 +233,7 @@ File: scss
 
 .right-side-toggle {
   position: relative;
-     
+
 }
 .btn-circle.right-side-toggle{
   position:fixed;
@@ -249,7 +249,7 @@ File: scss
   -moz-transition-duration: 1s;
   transition-property: transform;
   transition-duration: 1s;
-  
+
   position: absolute;
   top: 16px;
   left: 16px;
@@ -287,7 +287,7 @@ File: scss
     height:100%;
     position: absolute;
     width: 100%;
-    padding-bottom: 40px;  
+    padding-bottom: 40px;
     ul {
       margin: 0px;
       padding: 0px 20px;
@@ -345,40 +345,40 @@ File: scss
   color: rgba(255, 255, 255, .65);
 }
 html body .card{
-&.card-success {
-  background: $success;
-  border-color: $success;
-}
+  &.card-success {
+    background: $success;
+    border-color: $success;
+  }
 
-&.card-danger {
-  background: $danger;
-  border-color: $danger;
-}
+  &.card-danger {
+    background: $danger;
+    border-color: $danger;
+  }
 
-&.card-warning {
-  background: $warning;
-  border-color: $warning;
-}
+  &.card-warning {
+    background: $warning;
+    border-color: $warning;
+  }
 
-&.card-info {
-  background: $info;
-  border-color: $info;
-}
+  &.card-info {
+    background: $info;
+    border-color: $info;
+  }
 
-&.card-primary {
-  background: $primary;
-  border-color: $primary;
-}
+  &.card-primary {
+    background: $primary;
+    border-color: $primary;
+  }
 
-&.card-dark {
-  background: $inverse;
-  border-color: $inverse;
-}
+  &.card-dark {
+    background: $inverse;
+    border-color: $inverse;
+  }
 
-&.card-megna {
-  background: $megna;
-  border-color: $megna;
-}
+  &.card-megna {
+    background: $megna;
+    border-color: $megna;
+  }
 }
 /*============================================================== 
  Cards page
@@ -430,8 +430,23 @@ html body .card{
   .card-header {
     background: $inverse;
     border-color: $inverse;
+    background: transparent;
+    text-align: left;
+    border-color:#67757c !important;
+
+    text-transform: uppercase;
+    color: #000;
+    padding-bottom: 0px;
+    padding-left: 0px;
+
   }
+
 }
+
+
+
+
+
 
 .card-outline-warning {
   border-color: $warning;
@@ -1402,20 +1417,20 @@ Pricing Page
 Smart table
 ******************/
 .smart-table tr td, .smart-table tr th{
-    padding:15px!important;
+  padding:15px!important;
 }
 .ng2-smart-action-add-add{
-   color:$white!important;
-   background: $themecolor;
-   padding: 8px 15px;    
-   border-radius: $radius;    
+  color:$white!important;
+  background: $themecolor;
+  padding: 8px 15px;
+  border-radius: $radius;
 }
 .ng2-smart-pagination-nav{
-    margin-left: auto;
+  margin-left: auto;
 }
 .ng2-smart-pagination-nav .pagination > li > a {
-    line-height: 1rem;
-} 
+  line-height: 1rem;
+}
 
 /*******************
 NGX Data table
@@ -1423,20 +1438,20 @@ NGX Data table
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 .ngx-datatable.material {
- box-shadow:none!important;
-    border:1px solid $border;
+  box-shadow:none!important;
+  border:1px solid $border;
 }
 
 /*******************
 Chartistt chart css
 ******************/
 .barchrt{
-    .ct-series-a .ct-bar{
-        stroke:$success;
-    }
-    .ct-series-b .ct-bar{
-        stroke:$info;
-    }
+  .ct-series-a .ct-bar{
+    stroke:$success;
+  }
+  .ct-series-b .ct-bar{
+    stroke:$info;
+  }
 }
 
 .linearea {
@@ -1475,21 +1490,21 @@ Chartistt chart css
   }
 }
 .piechart{
-    .ct-series-a .ct-slice-donut{
-        stroke:$info
-    }
-    .ct-series-b .ct-slice-donut{
-        stroke:$success
-    }
-    .ct-series-c .ct-slice-donut{
-        stroke:$inverse
-    }
-    .ct-series-d .ct-slice-donut{
-        stroke:$danger
-    }
-    .ct-series-e .ct-slice-donut{
-        stroke:$warning
-    }
+  .ct-series-a .ct-slice-donut{
+    stroke:$info
+  }
+  .ct-series-b .ct-slice-donut{
+    stroke:$success
+  }
+  .ct-series-c .ct-slice-donut{
+    stroke:$inverse
+  }
+  .ct-series-d .ct-slice-donut{
+    stroke:$danger
+  }
+  .ct-series-e .ct-slice-donut{
+    stroke:$warning
+  }
 }
 
 /*******************
@@ -1592,36 +1607,36 @@ Taskboard scss
 /*******************/
 
 .activity-box{
-    .date-devider{
-        border-top:2px solid $border;
+  .date-devider{
+    border-top:2px solid $border;
+    position:relative;
+    span{
+      background:$light;
+      padding:5px 15px;
+      border-radius:60px;
+      font-size:14px;
+      top:-15px;
+      position:relative;
+      margin-left:20px;
+    }
+  }
+  .activity-item{
+    display:flex;
+    margin-bottom:30px;
+    .image-list{
+      > a{
+        margin-left:-15px;
         position:relative;
-        span{
-            background:$light;
-            padding:5px 15px;
-            border-radius:60px;
-            font-size:14px;
-            top:-15px;
-            position:relative;
-            margin-left:20px;
+        vertical-align:middle;
+
+        &:first-child, &:last-child{
+          margin-left:0px;
         }
-    }
-    .activity-item{
-        display:flex;
-        margin-bottom:30px;
-        .image-list{
-            > a{
-                margin-left:-15px;
-                position:relative;
-                vertical-align:middle;
-                
-                &:first-child, &:last-child{
-                    margin-left:0px;
-                }
-                &:hover{
-                    z-index:10;
-                    img{box-shadow:0 2px 15px rgba(0, 0, 0, 0.2);}
-                }
-            }
+        &:hover{
+          z-index:10;
+          img{box-shadow:0 2px 15px rgba(0, 0, 0, 0.2);}
         }
+      }
     }
+  }
 }

@@ -17,8 +17,11 @@ table {
   width: 100%;
 }
 
-td, th {
+td{
   width: 25%;
+}
+th{
+  font-weight: bold !important;
 }
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 99999 !important;
