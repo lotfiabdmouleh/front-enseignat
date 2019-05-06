@@ -47,9 +47,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
-
-
-
   ],
   imports: [
     CommonModule,
