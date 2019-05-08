@@ -6,6 +6,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {RoleService} from "../../services/role.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {Role} from "../../models/role";
+import {Departement} from "../../models/departement";
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -83,12 +84,6 @@ export class RoleComponent implements OnInit {
       });
 
   }
-  deleteRole(id) {
-    this.roleService.deleteRole(id).subscribe(res => {console.log('deleted'), this.ngOnInit(); });
-  }
-
-
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -96,6 +91,23 @@ export class RoleComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  c(){
+
+    this.modalService.dismissAll();
+  }
+
+  deleteDepartement(){
+    this.roleService.deleteRole(this.role.id).subscribe(res => {console.log('deleted') });
+    this.modalService.dismissAll(this.role);
+
+    this.getAllRole();
+
+
+  }
+  openVerticallydelete(contentdelete,id){
+    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role;console.log(this.role);});
+    this.modalService.open(contentdelete);
   }
 
 }

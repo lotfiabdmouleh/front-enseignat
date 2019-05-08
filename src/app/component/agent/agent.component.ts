@@ -9,6 +9,7 @@ import {FormControl} from '@angular/forms';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {RoleService} from "../../services/role.service";
 import {Role} from "../../models/role";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-agent',
@@ -96,9 +97,7 @@ export class AgentComponent implements OnInit {
       });
 
   }
-  deleteAgent(id) {
-    this.agentService.deleteAgent(id).subscribe(res => {console.log('deleted'), this.ngOnInit(); });
-  }
+
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -113,6 +112,22 @@ export class AgentComponent implements OnInit {
   affecterRole(){
     console.log(this.selected);
   }
+  c(){
 
+    this.modalService.dismissAll();
+  }
+
+  deleteAgent(){
+    this.agentService.deleteAgent(this.agent.id).subscribe(res => {console.log('deleted') });
+    this.modalService.dismissAll(this.agent);
+
+    this.getAllAgents();
+
+
+  }
+  openVerticallydelete(contentdelete,id){
+    this.agentService.getAgent(id).subscribe(res =>{this.agent=res as Agent;console.log(this.agent);});
+    this.modalService.open(contentdelete);
+  }
 
 }

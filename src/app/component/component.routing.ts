@@ -6,6 +6,8 @@ import {PmComponent} from './pm/pm.component';
 import {AdminComponent} from './admin/admin.component';
 import {RoleComponent} from "./role/role.component";
 import {HistoriqueComponent} from "./historique/historique.component";
+import {DepartementComponent} from "./departement/departement.component";
+import {MatiereComponent} from "./matiere/matiere.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -13,6 +15,14 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'Agent',
     component: AgentComponent
+  },
+  {
+    path: 'matiere',
+    component: MatiereComponent
+  },
+  {
+    path: 'departement',
+    component: DepartementComponent
   },
   {
     path: 'historique',

@@ -46,12 +46,34 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '/full/component/historique',
-    title: '',
+    title: 'Historiques',
     icon: 'mdi mdi-equal',
     class: '',
-    label: 'Historiques',
+    label: '',
+    labelClass: '',
+    extralink: false,
+    submenu: [  ]
+  },
+  {
+    path: '/full/component/departement',
+    title: 'Departement',
+    icon: 'mdi mdi-equal',
+    class: '',
+    label: '',
     labelClass: '',
     extralink: false,
     submenu: []
   },
+
+
+  {
+    path: '/full/component/matiere',
+    title: 'Matiere',
+    icon: 'mdi mdi-equal',
+    class: '',
+    label: '',
+    labelClass: '',
+    extralink: false,
+    submenu: [],
+  }
 ];

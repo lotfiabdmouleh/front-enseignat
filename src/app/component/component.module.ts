@@ -42,6 +42,10 @@ import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {UserService} from "../services/user.service";
 import { HistoriqueComponent } from './historique/historique.component';
 import {HistoriqueService} from "../services/historique.service";
+import { DepartementComponent } from './departement/departement.component';
+import {DepartementService} from "../services/departement.service";
+import { MatiereComponent } from './matiere/matiere.component';
+import {MatiereService} from "../services/matiere.service";
 
 
 
@@ -89,10 +93,12 @@ import {HistoriqueService} from "../services/historique.service";
     UserComponent,
     RoleComponent,
     HistoriqueComponent,
+    DepartementComponent,
+    MatiereComponent,
 
   ],
   providers: [
-    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService]
+    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService]
 
 })
 export class ComponentsModule {}
