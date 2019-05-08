@@ -1,7 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ROUTES } from './menu-items';
-import { RouteInfo } from './sidebar.metadata';
 import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 @Component({
@@ -9,19 +7,61 @@ declare var $: any;
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
-  showMenu = '';
-  showSubMenu = '';
-  public sidebarnavItems: any[];
-  // this is for the open close
-  addExpandClass(element: any) {
-    if (element === this.showMenu) {
-      this.showMenu = '0';
+  config = {
+    paddingAtStart: true,
+    classname: 'my-custom-class',
+    listBackgroundColor: '',
+    fontColor: '#473f3f' ,
+    backgroundColor: '',
+    selectedListFontColor: 'blue',
+  };
 
-    } else {
-      this.showMenu = element;
+  appitems = [
+    {
+      label: 'accueil',
+      link: '/full/component/home',
+      icon: 'home'
+    },
+    {
+      label: 'Agent',
+      link: '/full/component/Agent',
+      icon: 'menu'
+    },
+    {
+      label: 'Role',
+      link: '/full/component/role',
+      icon: 'menu'
+    },
+    {
+      label: 'Users',
+      link: '/full/component/user',
+      icon: 'menu'
+    },
+    {
+      label: 'Departement',
+      link: '/full/component/departement',
+      icon: 'menu'
+    },
+{
+      label: 'Matiere',
+      link: '/full/component/matiere',
+      icon: 'menu'
+    },
 
-    }
-  }
+    {
+      label: 'Historique',
+      icon: 'history',
+      items: [
+        {
+          label: 'Agent',
+          link: '/full/component/historique',
+          icon: 'history'
+        }
+      ]
+    },
+
+  ];
+
   
   constructor(
     private modalService: NgbModal,
@@ -30,6 +70,8 @@ export class SidebarComponent implements OnInit {
   ) {}
   // End open close
   ngOnInit() {
-    this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
+  }
+  selectedItem($event){
+    this.router.navigate([$event.link]);
   }
 }

@@ -20,28 +20,34 @@
                     <!-- Logo icon --><b>
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
-                        <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                        <img src="assets/images/header_logo.png" alt="homepage" class="dark-logo" />
                         <!-- Light Logo icon -->
-                        <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+
                     </b>
                     <!--End Logo icon -->
-                    <!-- Logo text --><span>
-                     <!-- dark Logo text -->
-                     <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                     <!-- Light Logo text -->    
-                     <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                    <!-- Logo text --> </a>
             </div>
             <!-- ============================================================== -->
             <!-- End Logo -->
             <!-- ============================================================== -->
+
+
             <div class="navbar-collapse">
+
+
                 <app-navigation class="w-100" (toggleSidebar)="toggleSidebar()"></app-navigation>
             </div>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-info" style="width: 47px; height: 37px;" id="dropdownBasic1" ngbDropdownToggle><mat-icon>g_translate</mat-icon></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" (click)="useLanguage('ar')">Arabe    <img src="assets/images/icon/tn.png"/></button>
+              <button class="dropdown-item"  (click)="useLanguage('fr')">Français <img src="assets/images/icon/fr.png" /></button>
 
-          <div  class="nav-small-cap" (click)="useLanguage('ar')"> AR</div>
-          <div class="nav-small-cap"(click)="useLanguage('fr')">FR</div>
 
+            </div>
+          </div>
         </nav>
+
     </header>
     <!-- ============================================================== -->
     <!-- Left Sidebar - style you can find in sidebar.scss  -->
@@ -85,7 +91,7 @@
     <!-- footer -->
     <!-- ============================================================== -->
     <footer class="footer">
-        © 2019 Admin Pro Angular by wrappixel.com
+      © ISET Sfax, 2019
     </footer>
     <!-- ============================================================== -->
     <!-- End footer -->

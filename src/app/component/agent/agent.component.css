@@ -30,6 +30,7 @@ td:last-child {
 }
 
 .edit {
+  cursor: pointer;
   color: grey;
   background: transparent;
   padding: 0 0;
@@ -77,6 +78,7 @@ td:last-child {
 }
 
 .supp {
+  cursor: pointer;
   color: grey;
   background: transparent;
   padding: 0 0;
@@ -100,6 +102,7 @@ td:last-child {
 
 }
 .view {
+  cursor: pointer;
   color: grey;
   background: transparent;
   padding: 0 0;

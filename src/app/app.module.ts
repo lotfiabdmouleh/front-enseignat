@@ -30,6 +30,7 @@ import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compil
 import {RoleComponent} from "./component/role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {CalendarModule} from "angular-calendar";
+import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -63,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTableModule,
     MatIconModule,
     AngularFontAwesomeModule,
+    NgMaterialMultilevelMenuModule,
 
     TranslateModule.forRoot({
       loader: {
