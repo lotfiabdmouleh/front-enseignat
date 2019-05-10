@@ -4,9 +4,9 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon >person</mat-icon>
-      <span style="float: right" > <button (click)="openVerticallyCentered(content)" class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      User</div>
+      <mat-icon>local_library</mat-icon>
+      <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
+      Enseignant</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
@@ -16,60 +16,67 @@
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>
 
-            <ng-container matColumnDef="select">
-              <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
-                              [checked]="selection.hasValue() && isAllSelected()"
-                              [indeterminate]="selection.hasValue() && !isAllSelected()"
-                >
-                </mat-checkbox>
-              </th>
-              <td mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()"
-                              (change)="$event ? selection.toggle(row) : null"
-                              [checked]="selection.isSelected(row)"
-                >
-                </mat-checkbox>
-              </td>
+            <!-- Nom Column -->
+            <ng-container matColumnDef="nom">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
-
-            <ng-container matColumnDef="username">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header >Login </th>
+            <!-- ID Column -->
+            <ng-container matColumnDef="login">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Login </th>
               <td mat-cell *matCellDef="let row"> {{row.username}} </td>
-
             </ng-container>
-            <ng-container matColumnDef="role">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Role </th>
-              <td mat-cell *matCellDef="let row"> {{row.roles[0].name}} </td>
+            <!-- ID Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let row"> {{row.email}} </td>
             </ng-container>
+            <!-- ID Column -->
+            <ng-container matColumnDef="telephone">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Télèphone </th>
+              <td mat-cell *matCellDef="let row"> {{row.tel}} </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="actions" >
+              <th mat-header-cell *matHeaderCellDef >actions  </th>
 
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Action </th>
               <td  mat-cell *matCellDef="let row">
-               <mat-icon class="supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
-                 delete_forever
-                </mat-icon>
-
-
+                <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
+                  delete_forever </mat-icon>
+                <mat-icon class=" edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
               </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                (click)="selection.toggle(row)">
 
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
           <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
           <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
-          <mat-icon class=" hist" (click)="openVerticallyCenteredRole(contentRole)"> group </mat-icon>
+
+
 
         </div>
 
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,7 +132,15 @@
                   <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
                 </div>
               </div>
-
+              <div class="form-group">
+                <label for="telephone">Telephone</label>
+                <input type="text" class="form-control" name="tel" [(ngModel)]="form.tel" #tel="ngModel"
+                       required minlength="6" />
+                <div *ngIf="f.submitted && tel.invalid">
+                  <div *ngIf="tel.errors.required">teleohone is required</div>
+                  <div *ngIf="tel.errors.minlength">telephone must be at least 8 characters</div>
+                </div>
+              </div>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" >{{'agent.button' | translate }}</button>
               <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
                 Signup failed!<br/>{{errorMessage}}
@@ -139,34 +154,41 @@
 
     </ng-template>
   </div>
-
-
-  <!-- modal affecter role-->
+  <!-- Edit Modal-->
   <div class="col-md-12">
-    <ng-template #contentRole let-c="close" let-d="dismiss">
+    <ng-template #contentEdit let-c="close" let-d="dismiss">
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">{{'agent.modifier' | translate }}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h4 class="m-b-0 titre">Modifier un Enseignant</h4>
+
           </div>
           <div class="card-body">
             <form #f="ngForm" >
-              <mat-form-field>
-                <mat-label> selectioner un role</mat-label>
-                <mat-select [(value)]="selected"  >
 
-                  <mat-option *ngFor="let a of listRole"  value="{{a.id}}">{{a.name}}</mat-option>
-                </mat-select>
+              <mat-form-field class="example-full-width">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="enseignant.name" name="nom" >
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Login</mat-label>
+                <input matInput [(ngModel)]="enseignant.username" name="username" >
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="enseignant.email" name="mail" >
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Télèphone</mat-label>
+                <input matInput [(ngModel)]="enseignant.tel" name="tel" >
               </mat-form-field>
               <br>
-              <button type="submit" style="float:right;"(click)="affecterRole()" class="btn btn-primary">{{'agent.button' | translate }}</button>
 
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
 
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editEnseignant()" >Modifier</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
             </form>
           </div>
         </div>
@@ -174,7 +196,8 @@
       </div>
     </ng-template>
   </div>
-  <!-- modal delte-->
+
+  <!-- delete-->
   <div class="col-md-12">
     <ng-template #contentdelete let-d="dismiss" class="modal-dialog modal-sm">
 
@@ -189,7 +212,7 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteUser()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteEnseignant()" class="btn btn-danger">Supprimer</button>
         </form>
         <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
       </div>

@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { JsonpModule } from '@angular/http';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ComponentsRoutes } from './component.routing';
@@ -12,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatCheckboxModule, MatDatepickerModule,
   MatIconModule, MatNativeDateModule,
   MatPaginatorModule,
@@ -46,6 +45,8 @@ import { DepartementComponent } from './departement/departement.component';
 import {DepartementService} from "../services/departement.service";
 import { MatiereComponent } from './matiere/matiere.component';
 import {MatiereService} from "../services/matiere.service";
+import { EnseignantComponent } from './enseignant/enseignant.component';
+import {EnseignantService} from "../services/enseignant.service";
 
 
 
@@ -67,6 +68,7 @@ import {MatiereService} from "../services/matiere.service";
     MatSelectModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatCardModule,
     MatNativeDateModule,
     FormsModule,
     AngularFontAwesomeModule,
@@ -95,10 +97,11 @@ import {MatiereService} from "../services/matiere.service";
     HistoriqueComponent,
     DepartementComponent,
     MatiereComponent,
+    EnseignantComponent,
 
   ],
   providers: [
-    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService]
+    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService,EnseignantService]
 
 })
 export class ComponentsModule {}

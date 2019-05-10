@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut">
   <div class="card-default">
     <div class="mat-card-header">
-      <i class="mdi mdi-message-bulleted"></i>
+      <mat-icon>compare_arrows</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
       Role</div>
     <div class="card-body">
@@ -32,9 +32,10 @@
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef > actions </th>
               <td  mat-cell *matCellDef="let row">
-                <mat-icon class="fa fa-trash-o fa-2x supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
+                <mat-icon class="supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
+                  delete_forever
                 </mat-icon>
-                <mat-icon class="fa fa-pencil-square-o fa-2x edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" ></mat-icon>
+                <mat-icon class="edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
               </td>
 
             </ng-container>

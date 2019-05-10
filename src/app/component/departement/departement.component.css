@@ -45,6 +45,34 @@ td:last-child {
   width: 30% !important;
 
 }
+.print{
+  float: right;
+  margin-right: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+}
+.print:hover{
+  color: #8f1ed8;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+.hist{
+  float: left;
+  margin-left: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+}
+.hist:hover{
+  color: #00acc1;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
 
 .titre{
   display: block;

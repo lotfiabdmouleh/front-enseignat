@@ -25,27 +25,33 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Agent',
       link: '/full/component/Agent',
-      icon: 'menu'
+      icon: 'person'
     },
     {
       label: 'Role',
       link: '/full/component/role',
-      icon: 'menu'
+      icon: 'compare_arrows'
     },
     {
       label: 'Users',
       link: '/full/component/user',
-      icon: 'menu'
+      icon: 'group'
+    },
+    {
+      label: 'Enseignant',
+      link: '/full/component/enseignant',
+      icon: 'local_library'
     },
     {
       label: 'Departement',
       link: '/full/component/departement',
-      icon: 'menu'
+      icon: 'school'
     },
-{
+
+    {
       label: 'Matiere',
       link: '/full/component/matiere',
-      icon: 'menu'
+      icon: 'book'
     },
 
     {
@@ -55,7 +61,7 @@ export class SidebarComponent implements OnInit {
         {
           label: 'Agent',
           link: '/full/component/historique',
-          icon: 'history'
+          icon: 'person'
         }
       ]
     },

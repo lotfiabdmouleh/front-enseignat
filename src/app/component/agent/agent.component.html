@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
 <div class="card-default">
   <div class="mat-card-header">
-    <i class="mdi mdi-message-bulleted"></i>
+    <mat-icon >person</mat-icon>
     <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
     Agent</div>
   <div class="card-body">
@@ -73,11 +73,15 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;">
           </tr>
+
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-        <button type="submit" (click)="Imprimer()" class="btn btn-primary">Imprimer</button>
-        <button type="submit" (click)="histo()" class="btn btn-primary">Historique</button>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
+        <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+          <mat-icon (click)="histo()" class="hist">history</mat-icon>
+
+
 
 
       </div>

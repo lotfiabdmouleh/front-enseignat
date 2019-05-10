@@ -8,6 +8,7 @@ import {RoleComponent} from "./role/role.component";
 import {HistoriqueComponent} from "./historique/historique.component";
 import {DepartementComponent} from "./departement/departement.component";
 import {MatiereComponent} from "./matiere/matiere.component";
+import {EnseignantComponent} from "./enseignant/enseignant.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -19,6 +20,9 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'matiere',
     component: MatiereComponent
+  },{
+    path: 'enseignant',
+    component: EnseignantComponent
   },
   {
     path: 'departement',

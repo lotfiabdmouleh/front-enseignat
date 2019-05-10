@@ -3,6 +3,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
+      <mat-icon >history</mat-icon>
      Historique</div>
     <div class="card-body">
       <div class="">
@@ -37,6 +38,8 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          <button style="visibility: hidden"><mat-icon class="print"  >print</mat-icon></button>
+          <mat-icon class="print" >print</mat-icon>
           </div>
 
       </div>

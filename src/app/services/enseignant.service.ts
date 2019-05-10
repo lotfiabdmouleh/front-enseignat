@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import {Enseignant} from "../models/enseignant";
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {SignUpInfo} from "../auth/signup-info";
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +17,8 @@ export class EnseignantService {
 
   constructor(private http: HttpClient) {
   }
+
+  private signupUrl = 'http://localhost:8080/api/auth/signup';
 
   public addenseignant(enseignant: Enseignant) {
     const uri = 'http://127.0.0.1:8080/enseignant';
@@ -27,11 +36,11 @@ export class EnseignantService {
     const url = 'http://127.0.0.1:8080/enseignant/' + id;
     return this.http.delete(url);
   }
-  updatedivers(enseignant: Enseignant) {
-    const url = 'http://127.0.0.1:8080/divers/' + enseignant.id;
+  updateEnseignant(enseignant: Enseignant) {
+    const url = 'http://127.0.0.1:8080/enseignant/' + enseignant.id;
     return this.http.put(url , enseignant);
   }
-  getdivers(id) {
+  getEnseignant(id) {
     const url = 'http://127.0.0.1:8080/enseignant/' + id;
     return this.http.get(url);
   }
@@ -52,5 +61,9 @@ export class EnseignantService {
     return this.http.get('http://127.0.0.1:8080/enseignant/history');
 
   }
+  signUp(info: SignUpInfo): Observable<string> {
+    const uri = 'http://127.0.0.1:8080/enseignant';
 
+    return this.http.post<string>(uri, info, httpOptions);
+  }
 }
