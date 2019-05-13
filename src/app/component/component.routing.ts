@@ -9,6 +9,12 @@ import {HistoriqueComponent} from "./historique/historique.component";
 import {DepartementComponent} from "./departement/departement.component";
 import {MatiereComponent} from "./matiere/matiere.component";
 import {EnseignantComponent} from "./enseignant/enseignant.component";
+import {AgenttirageComponent} from "./agenttirage/agenttirage.component";
+import {GroupeComponent} from "./groupe/groupe.component";
+import {PapierComponent} from "./papier/papier.component";
+import {PhotocopieurComponent} from "./photocopieur/photocopieur.component";
+import {RechargeComponent} from "./recharge/recharge.component";
+import {AncreComponent} from "./ancre/ancre.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -27,10 +33,28 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'departement',
     component: DepartementComponent
+  },{
+    path: 'ancre',
+    component: AncreComponent
+  },{
+    path: 'photocopieur',
+    component: PhotocopieurComponent
+  },{
+    path: 'recharge',
+    component: RechargeComponent
   },
   {
     path: 'historique',
     component: HistoriqueComponent
+  },{
+    path: 'agenttirage',
+    component: AgenttirageComponent
+  },{
+    path: 'groupe',
+    component: GroupeComponent
+  },{
+    path: 'papier',
+    component: PapierComponent
   },
   {
     path: 'home',

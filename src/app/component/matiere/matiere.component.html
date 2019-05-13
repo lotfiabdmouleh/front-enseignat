@@ -71,14 +71,16 @@
     <ng-template #content let-c="close" let-d="dismiss">
 
       <div class="modal-body">
-        <div class="card card-outline-inverse no-pad-bot">
+        <div class="card card-outline-inverse  ">
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
             <h4 class="m-b-0 titre">Ajouter une Matiere</h4>
-
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="card-body no-pad-bot">
+          <div class="card-body ">
             <form #f="ngForm" (ngSubmit)="f.form.valid && addMatiere()" >
 
               <mat-form-field>
@@ -105,7 +107,9 @@
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">Modifier une Matiere</h4>
-
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="card-body">
             <form #f="ngForm" >
@@ -135,7 +139,9 @@
         <div class="card card-outline-inverse">
           <div >
             <h4 >Etes vous sûr de vouloir supprimer?</h4>
-
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
 

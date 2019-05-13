@@ -11,8 +11,8 @@ export class RechargeService {
   constructor(private http: HttpClient) {
   }
 
-  public addrecharge(recharge: Recharge) {
-    const uri = 'http://127.0.0.1:8080/recharge';
+  public addrecharge(recharge: Recharge,ph:any,an:any) {
+    const uri = 'http://127.0.0.1:8080/recharge/'+ph+'/'+an;
 
 
     this.http.post(uri, recharge).subscribe(res => console.log('done'));
@@ -27,8 +27,8 @@ export class RechargeService {
     const url = 'http://127.0.0.1:8080/recharge/' + id;
     return this.http.delete(url);
   }
-  updaterecharge(recharge: Recharge) {
-    const url = 'http://127.0.0.1:8080/recharge/' + recharge.id;
+  updaterecharge(recharge: Recharge,ph:any,an:any) {
+    const url = 'http://127.0.0.1:8080/recharge/' + recharge.id+'/'+ph+'/'+an;
     return this.http.put(url , recharge);
   }
   getrecharge(id) {

@@ -52,6 +52,9 @@ affecterRole(id, users:User[]){
   getAdminBoard(): Observable<string> {
     return this.http.get(this.adminUrl, { responseType: 'text' });
   }
+  getAgnetBoard(): Observable<string> {
+    return this.http.get('http://localhost:8080/api/test/agent', { responseType: 'text' });
+  }
   deleteUser(user) {
     const url = 'http://127.0.0.1:8080/users/' + user.id;
     return this.http.delete(url);

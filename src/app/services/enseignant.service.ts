@@ -18,14 +18,6 @@ export class EnseignantService {
   constructor(private http: HttpClient) {
   }
 
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
-
-  public addenseignant(enseignant: Enseignant) {
-    const uri = 'http://127.0.0.1:8080/enseignant';
-
-
-    this.http.post(uri, enseignant).subscribe(res => console.log('done'));
-  }
 
   getAllenseignants() {
     return this.http.get('http://127.0.0.1:8080/enseignant');

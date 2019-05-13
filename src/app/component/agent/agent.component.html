@@ -114,7 +114,9 @@
          <i class="fa fa-user-circle titre"></i>
 
           <h4 class="m-b-0 titre">{{'agent.aj'| translate }}</h4>
-
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="card-body no-pad-bot">
           <form #f="ngForm" (ngSubmit)="f.form.valid && addAgent()" >
@@ -149,7 +151,9 @@
       <div class="card card-outline-inverse">
         <div class="card-header">
           <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
-
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="card-body">
           <form #f="ngForm" >
@@ -221,7 +225,9 @@
         <div class="card card-outline-inverse">
           <div >
             <h4 >Etes vous sûr de vouloir supprimer?</h4>
-
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
 

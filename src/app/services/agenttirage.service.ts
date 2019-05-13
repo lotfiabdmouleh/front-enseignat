@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AgentTirage} from "../models/agentTirage";
-
+import {SignUpInfo} from "../auth/signup-info";
+import {Observable} from "rxjs";
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
@@ -10,12 +14,6 @@ export class AgenttirageService {
   constructor(private http: HttpClient) {
   }
 
-  public addAgentTirage(agent: AgentTirage) {
-    const uri = 'http://127.0.0.1:8080/agentTirage';
-
-
-    this.http.post(uri, agent).subscribe(res => console.log('done'));
-  }
 
   getAllAgentTirage() {
     return this.http.get('http://127.0.0.1:8080/agentTirage');
@@ -50,5 +48,11 @@ export class AgenttirageService {
   getHistory(){
     return this.http.get('http://127.0.0.1:8080/agentTirage/history');
 
+  }
+
+  signUp(info: SignUpInfo): Observable<string> {
+    const uri = 'http://127.0.0.1:8080/agentTirage';
+
+    return this.http.post<string>(uri, info, httpOptions);
   }
 }

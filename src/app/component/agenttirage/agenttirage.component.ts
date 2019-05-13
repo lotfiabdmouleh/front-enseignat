@@ -1,23 +1,24 @@
-import {ChangeDetectorRef, Component, ElementRef,  OnInit,  ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {TokenStorageService} from "../../auth/token-storage.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {EnseignantService} from "../../services/enseignant.service";
-import {Enseignant} from "../../models/enseignant";
+import {AgentTirage} from "../../models/agentTirage";
 import {SignUpInfo} from "../../auth/signup-info";
+import {Router} from "@angular/router";
+import {TokenStorageService} from "../../auth/token-storage.service";
+import {HttpClient} from "@angular/common/http";
+import {EnseignantService} from "../../services/enseignant.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {AgenttirageService} from "../../services/agenttirage.service";
 
 @Component({
-  selector: 'app-enseignant',
-  templateUrl: './enseignant.component.html',
-  styleUrls: ['./enseignant.component.css']
+  selector: 'app-agenttirage',
+  templateUrl: './agenttirage.component.html',
+  styleUrls: ['./agenttirage.component.css']
 })
-export class EnseignantComponent implements OnInit {
+export class AgenttirageComponent implements OnInit {
 
-
+  agentTirage:AgentTirage=new AgentTirage();
   displayedColumns: string[] = ['nom','login','email','telephone','actions'];
-  dataSource: MatTableDataSource<Enseignant>;
+  dataSource: MatTableDataSource<AgentTirage>;
   form: any = {};
   signupInfo: SignUpInfo;
   isSignedUp = false;
@@ -28,16 +29,15 @@ export class EnseignantComponent implements OnInit {
   @ViewChild(MatTable) table:MatTable<any>;
   @ViewChild('fileInput')
   fileInput: ElementRef;
-  listEnseignant:Enseignant[];
-  enseignant:Enseignant=new Enseignant();
+  listAgentTirage:AgentTirage[];
 
   info:any;
 
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private enseignantService:EnseignantService,private modalService: NgbModal,
+              private agentTirageService:AgenttirageService,private modalService: NgbModal,
               private changed:ChangeDetectorRef) {
-    this.getAllEnseignants();
+    this.getAllAgentTirages();
 
   }
 
@@ -48,7 +48,7 @@ export class EnseignantComponent implements OnInit {
       authorities: this.token.getAuthorities()
     };
     if(this.info.token!=null){
-      this.getAllEnseignants();
+      this.getAllAgentTirages();
     }else {
       this.route.navigate(['login'])
     }
@@ -64,23 +64,23 @@ export class EnseignantComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;console.log(this.enseignant);});
+    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage;console.log(this.agentTirage);});
 
     this.modalService.open(content, { centered: true });
   }
 
-  editEnseignant(){
-    this.enseignantService.updateEnseignant(this.enseignant).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.enseignant);
+  editAgentTirage(){
+    this.agentTirageService.updateAgentTirage(this.agentTirage).subscribe(res=>{this.ngOnInit()});
+    this.modalService.dismissAll(this.agentTirage);
   }
 
-  getAllEnseignants(){
-    this.enseignantService.getAllenseignants()
+  getAllAgentTirages(){
+    this.agentTirageService.getAllAgentTirage()
       .subscribe(res => {
         this.data=res,console.log(this.data);
-        this.listEnseignant = res as Enseignant[];
+        this.listAgentTirage = res as AgentTirage[];
 
-        this.dataSource = new MatTableDataSource(this.listEnseignant);
+        this.dataSource = new MatTableDataSource(this.listAgentTirage);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
@@ -98,7 +98,7 @@ export class EnseignantComponent implements OnInit {
     }}
 
   Imprimer(){
-    this.enseignantService.impression().subscribe(res=>{this.ngOnInit()});
+    this.agentTirageService.impression().subscribe(res=>{this.ngOnInit()});
   }
 
   c(){
@@ -106,15 +106,15 @@ export class EnseignantComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  deleteEnseignant(){
-    this.enseignantService.deleteenseignant(this.enseignant.id).subscribe(res => {console.log('deleted') });
-    this.modalService.dismissAll(this.enseignant);
-    this.getAllEnseignants();
+  deleteAgentTirage(){
+    this.agentTirageService.deleteAgentTirage(this.agentTirage.id).subscribe(res => {console.log('deleted') });
+    this.modalService.dismissAll(this.agentTirage);
+    this.getAllAgentTirages();
 
 
   }
   openVerticallydelete(contentdelete,id){
-    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;console.log(this.enseignant);});
+    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage;console.log(this.agentTirage);});
     this.modalService.open(contentdelete);
   }
   onSubmit() {
@@ -127,14 +127,14 @@ export class EnseignantComponent implements OnInit {
       this.form.password,
       this.form.tel,);
 
-    this.enseignantService.signUp(this.signupInfo).subscribe(
+    this.agentTirageService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.modalService.dismissAll(this.signupInfo);
 
-        this.getAllEnseignants();
+        this.getAllAgentTirages();
       },
       error => {
         console.log(error);
@@ -143,4 +143,5 @@ export class EnseignantComponent implements OnInit {
       }
     );
   }
+
 }

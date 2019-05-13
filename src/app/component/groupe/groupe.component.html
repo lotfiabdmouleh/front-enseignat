@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-<mat-icon>school</mat-icon>
+      <mat-icon>school</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
       Departement</div>
     <div class="card-body">
@@ -17,9 +17,21 @@
           <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
-            <ng-container matColumnDef="departement">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Departement </th>
-              <td mat-cell *matCellDef="let row"> {{row.nom_dep}} </td>
+            <ng-container matColumnDef="groupe">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Groupe </th>
+              <td mat-cell *matCellDef="let row"> {{row.nom_grp}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nbetd">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre d'étudiants </th>
+              <td mat-cell *matCellDef="let row"> {{row.nb_etd}} </td>
+            </ng-container>
+            <ng-container matColumnDef="niveau">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Niveau </th>
+              <td mat-cell *matCellDef="let row"> {{row.niveau}} </td>
+            </ng-container>
+            <ng-container matColumnDef="filiere">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Filière </th>
+              <td mat-cell *matCellDef="let row"> {{row.filiere}} </td>
             </ng-container>
 
             <!-- Name Column -->
@@ -72,21 +84,33 @@
     <ng-template #content let-c="close" let-d="dismiss">
 
       <div class="modal-body">
-        <div class="card card-outline-inverse no-pad-bot">
+        <div class="card card-outline-inverse ">
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter une département</h4>
+            <h4 class="m-b-0 titre">Ajouter un groupe</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="card-body no-pad-bot">
-            <form #f="ngForm" (ngSubmit)="f.form.valid && addDepartement()" >
+          <div class="card-body ">
+            <form #f="ngForm" (ngSubmit)="f.form.valid && addGroupe()" >
 
               <mat-form-field>
-                <mat-label>{{'agent.nom'| translate }}</mat-label>
-                <input matInput [(ngModel)]="departement.nom_dep" name="nom_dep" required>
+                <mat-label>Nom du groupe</mat-label>
+                <input matInput [(ngModel)]="groupe.nom_grp" name="nom_grp" required>
+              </mat-form-field>
+              <br><mat-form-field>
+                <mat-label>Nombre d'étudiants</mat-label>
+                <input matInput [(ngModel)]="groupe.nb_etd" name="nbetd" required>
+              </mat-form-field>
+              <br><mat-form-field>
+                <mat-label>Niveau</mat-label>
+                <input matInput [(ngModel)]="groupe.niveau" name="niv" required>
+              </mat-form-field>
+              <br><mat-form-field>
+                <mat-label>Filière</mat-label>
+                <input matInput [(ngModel)]="groupe.filiere" name="fil" required>
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
@@ -107,7 +131,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier une département</h4>
+            <h4 class="m-b-0 titre">Modifier un groupe</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -115,14 +139,25 @@
           <div class="card-body">
             <form #f="ngForm" >
 
-              <mat-form-field class="example-full-width">
-                <mat-label>{{'agent.nom' | translate }}</mat-label>
-                <input matInput [(ngModel)]="departement.nom_dep" name="nom">
+              <mat-form-field>
+                <mat-label>Nom du groupe</mat-label>
+                <input matInput [(ngModel)]="groupe.nom_grp" name="nom_grp" required>
               </mat-form-field>
-              <br>
+              <br><mat-form-field>
+              <mat-label>Nombre d'étudiants</mat-label>
+              <input matInput [(ngModel)]="groupe.nb_etd" name="nbetd" required>
+            </mat-form-field>
+              <br><mat-form-field>
+              <mat-label>Niveau</mat-label>
+              <input matInput [(ngModel)]="groupe.niveau" name="niv" required>
+            </mat-form-field>
+              <br><mat-form-field>
+              <mat-label>Filière</mat-label>
+              <input matInput [(ngModel)]="groupe.filiere" name="fil" required>
+            </mat-form-field>
 
 
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDepartement()" >Modifier</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editGroupe()" >Modifier</button>
               <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
             </form>
           </div>
@@ -140,16 +175,14 @@
         <div class="card card-outline-inverse">
           <div >
             <h4 >Etes vous sûr de vouloir supprimer?</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
+
           </div>
         </div>
 
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteDepartement()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteGroupe()" class="btn btn-danger">Supprimer</button>
         </form>
         <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
       </div>

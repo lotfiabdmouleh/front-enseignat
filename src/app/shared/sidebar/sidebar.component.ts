@@ -41,6 +41,10 @@ export class SidebarComponent implements OnInit {
       label: 'Enseignant',
       link: '/full/component/enseignant',
       icon: 'local_library'
+    }, {
+      label: 'Agent Tirage',
+      link: '/full/component/agenttirage',
+      icon: 'person'
     },
     {
       label: 'Departement',
@@ -52,6 +56,26 @@ export class SidebarComponent implements OnInit {
       label: 'Matiere',
       link: '/full/component/matiere',
       icon: 'book'
+    },{
+      label: 'Groupe',
+      link: '/full/component/groupe',
+      icon: 'group'
+    },{
+      label: 'Papier',
+      link: '/full/component/papier',
+      icon: 'filter_2'
+    },{
+      label: 'Ancre',
+      link: '/full/component/ancre',
+      icon: 'filter_2'
+    },{
+      label: 'Photocopieur',
+      link: '/full/component/photocopieur',
+      icon: 'filter_2'
+    },{
+      label: 'Recharge',
+      link: '/full/component/recharge',
+      icon: 'filter_2'
     },
 
     {

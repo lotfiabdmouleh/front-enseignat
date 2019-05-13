@@ -7,6 +7,7 @@ import {RoleService} from "../../services/role.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {Role} from "../../models/role";
 import {Departement} from "../../models/departement";
+import {UserService} from "../../services/user.service";
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -24,12 +25,15 @@ export class RoleComponent implements OnInit {
   listRole:Role[];
   role:Role=new Role();
   info:any;
-
+  board:any;
+  errorMessage:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private roleService: RoleService,private modalService: NgbModal) {
+              private roleService: RoleService,private modalService: NgbModal,private userService:UserService) {
+
     this.getAllRole();
   }
   ngOnInit() {
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),

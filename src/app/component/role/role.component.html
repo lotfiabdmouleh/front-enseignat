@@ -71,9 +71,9 @@
           <div class="card-body">
             <form #f="ngForm" >
 
-              <mat-form-field class="example-full-width">
+              <mat-form-field>
                 <mat-label>Role</mat-label>
-                <input matInput [(ngModel)]="role.name" name="name">
+                <input matInput [(ngModel)]="role.name" name="name" required>
               </mat-form-field>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" (click)="addRole()">{{'agent.button' | translate }}</button>
               <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>

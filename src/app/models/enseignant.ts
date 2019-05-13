@@ -5,7 +5,7 @@ export class Enseignant {
   public name: string;
   public email: string;
   public tel: number;
-  public image: string;
+
   constructor(
   ) { }
 }

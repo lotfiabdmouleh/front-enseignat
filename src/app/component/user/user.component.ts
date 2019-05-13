@@ -49,6 +49,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -72,7 +73,7 @@ export class UserComponent implements OnInit {
 
 
   openVerticallyCenteredRole(content){
-    this.roleService.getAllRole().subscribe(res =>{this.listRole=res as Role[];console.log(("listRole"))})
+    this.roleService.getAllRole().subscribe(res =>{this.listRole=res as Role[];console.log(("listRole"+res))})
     if(this.selection.selected.length!=0)
     this.modalService.open(content, { centered: true });
   }
@@ -120,7 +121,8 @@ export class UserComponent implements OnInit {
       this.form.name,
       this.form.username,
       this.form.email,
-      this.form.password);
+      this.form.password,
+      this.form.tel,);
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {

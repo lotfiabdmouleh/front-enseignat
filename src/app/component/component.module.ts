@@ -47,6 +47,18 @@ import { MatiereComponent } from './matiere/matiere.component';
 import {MatiereService} from "../services/matiere.service";
 import { EnseignantComponent } from './enseignant/enseignant.component';
 import {EnseignantService} from "../services/enseignant.service";
+import { AgenttirageComponent } from './agenttirage/agenttirage.component';
+import {AgenttirageService} from "../services/agenttirage.service";
+import { GroupeComponent } from './groupe/groupe.component';
+import {GroupeService} from "../services/groupe.service";
+import { PapierComponent } from './papier/papier.component';
+import {PapierService} from "../services/papier.service";
+import { RechargeComponent } from './recharge/recharge.component';
+import { PhotocopieurComponent } from './photocopieur/photocopieur.component';
+import {PhotocopieurService} from "../services/photocopieur.service";
+import {AncreService} from "../services/ancre.service";
+import {RechargeService} from "../services/recharge.service";
+import { AncreComponent } from './ancre/ancre.component';
 
 
 
@@ -98,10 +110,18 @@ import {EnseignantService} from "../services/enseignant.service";
     DepartementComponent,
     MatiereComponent,
     EnseignantComponent,
+    AgenttirageComponent,
+    GroupeComponent,
+    PapierComponent,
+    RechargeComponent,
+    PhotocopieurComponent,
+    AncreComponent,
 
   ],
   providers: [
-    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService,EnseignantService]
+    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,
+    DepartementService,MatiereService,EnseignantService,AgenttirageService, GroupeService,
+  PapierService,PhotocopieurService,AncreService,RechargeService]
 
 })
 export class ComponentsModule {}
