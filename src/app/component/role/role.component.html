@@ -58,13 +58,13 @@
 
   <!-- add Modal-->
   <div class="col-md-12">
-    <ng-template #content let-c="close" let-d="dismiss">
+    <ng-template #content >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">{{'agent.role'| translate }}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -76,7 +76,7 @@
                 <input matInput [(ngModel)]="role.name" name="name" required>
               </mat-form-field>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" (click)="addRole()">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>
@@ -88,13 +88,13 @@
 
   <!-- Edit Modal-->
   <div class="col-md-12">
-    <ng-template #contentEdit let-c="close" let-d="dismiss">
+    <ng-template #contentEdit >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">{{'agent.modifier' | translate }}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -107,7 +107,7 @@
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editRole()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>
@@ -132,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteDepartement()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteRole()" class="btn btn-danger">Supprimer</button>
         </form>
         <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
       </div>

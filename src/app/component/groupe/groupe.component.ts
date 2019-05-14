@@ -49,8 +49,7 @@ export class GroupeComponent implements OnInit {
 
   addGroupe() {
     this.groupeService.addgroupe(this.groupe);
-
-    this.modalService.dismissAll(this.groupe);
+    this.c();
     this.getAllGroupes();
   }
   openVerticallyCentered(content) {
@@ -69,8 +68,7 @@ export class GroupeComponent implements OnInit {
 
   editGroupe(){
     this.groupeService.updategroupe(this.groupe).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.groupe);
-  }
+    this.c();  }
 
   getAllGroupes(){
     this.groupeService.getAllgroupe()
@@ -100,6 +98,7 @@ export class GroupeComponent implements OnInit {
   }
 
   c(){
+    this.groupe.filiere='';this.groupe.niveau=null;this.groupe.nb_etd=null;this.groupe.nom_grp='';
 
     this.modalService.dismissAll();
   }

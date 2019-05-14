@@ -11,7 +11,7 @@ export class AppComponent {
   private roles: string[];
   private authority: string;
 
-  constructor(private tokenStorage: TokenStorageService,private translate: TranslateService) {
+  constructor( private tokenStorage: TokenStorageService,private translate: TranslateService) {
     translate.setDefaultLang('fr');
 
   }

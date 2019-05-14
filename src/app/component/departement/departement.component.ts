@@ -52,7 +52,7 @@ export class DepartementComponent implements OnInit  {
   addDepartement() {
     this.departementService.adddepartement(this.departement);
 
-    this.modalService.dismissAll(this.departement);
+    this.c();
     this.getAllDepartements();
   }
   openVerticallyCentered(content) {
@@ -71,7 +71,7 @@ export class DepartementComponent implements OnInit  {
 
   editDepartement(){
     this.departementService.updatedepartement(this.departement).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.departement);
+    this.c();
   }
 
   getAllDepartements(){
@@ -102,7 +102,7 @@ export class DepartementComponent implements OnInit  {
   }
 
   c(){
-
+    this.departement.nom_dep='';
     this.modalService.dismissAll();
   }
 

@@ -15,6 +15,9 @@ import {PapierComponent} from "./papier/papier.component";
 import {PhotocopieurComponent} from "./photocopieur/photocopieur.component";
 import {RechargeComponent} from "./recharge/recharge.component";
 import {AncreComponent} from "./ancre/ancre.component";
+import {DiversService} from "../services/divers.service";
+import {DiversComponent} from "./divers/divers.component";
+import {EnseignementComponent} from "./enseignement/enseignement.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -36,6 +39,12 @@ export const ComponentsRoutes: Routes = [
   },{
     path: 'ancre',
     component: AncreComponent
+  },{
+    path: 'divers',
+    component: DiversComponent
+  },{
+    path: 'enseignement',
+    component: EnseignementComponent
   },{
     path: 'photocopieur',
     component: PhotocopieurComponent

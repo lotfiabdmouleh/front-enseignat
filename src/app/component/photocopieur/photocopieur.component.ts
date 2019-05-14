@@ -8,6 +8,8 @@ import {PapierService} from "../../services/papier.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Photocopieur} from "../../models/photocopieur";
 import {PhotocopieurService} from "../../services/photocopieur.service";
+import {Ancre} from "../../models/ancre";
+import {Recharge} from "../../models/recharge";
 
 @Component({
   selector: 'app-photocopieur',
@@ -18,14 +20,15 @@ export class PhotocopieurComponent implements OnInit {
 
   displayedColumns: string[] = ['reference','des','actions'];
   dataSource: MatTableDataSource<Photocopieur>;
-
+  displayedColumnsaff: string[] = ['date','photocopieur'];
+  dataSourceaff : MatTableDataSource<Recharge>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
   listPhotocopieur:Photocopieur[];
   photocopieur:Photocopieur=new Photocopieur();
   info:any;
-
+  listrech:Recharge[];
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
@@ -49,8 +52,9 @@ export class PhotocopieurComponent implements OnInit {
 
   addPhotocopieur() {
     this.photocopieurService.addphotocopieur(this.photocopieur);
-
-    this.modalService.dismissAll(this.photocopieur);
+this.photocopieur.reference ='';
+this.photocopieur.des='';
+this.modalService.dismissAll();
     this.getAllPhotocopieurs();
   }
   openVerticallyCentered(content) {
@@ -69,7 +73,9 @@ export class PhotocopieurComponent implements OnInit {
 
   editPhotocopieur(){
     this.photocopieurService.updatephotocopieur(this.photocopieur).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.photocopieur);
+    this.photocopieur.reference ='';
+    this.photocopieur.des='';
+    this.modalService.dismissAll();
   }
 
   getAllPhotocopieurs(){
@@ -98,15 +104,24 @@ export class PhotocopieurComponent implements OnInit {
   Imprimer(){
     this.photocopieurService.impression().subscribe(res=>{this.ngOnInit()});
   }
-
+  openVertically(content,id){
+    this.photocopieurService.getphotocopieur(id).subscribe(res =>{this.photocopieur=res as Photocopieur;console.log(this.photocopieur);});
+    this.listrech=this.photocopieur.recharges as Recharge[];
+    this.dataSourceaff = new MatTableDataSource(this.listrech);
+    this.dataSourceaff.paginator = this.paginator;
+    this.dataSourceaff.sort = this.sort;
+    this.modalService.open(content, { centered: true });
+  }
   c(){
-
+    this.photocopieur.reference ='';
+    this.photocopieur.des='';
     this.modalService.dismissAll();
   }
 
   deletePhotocopieur(){
     this.photocopieurService.deletephotocopieur(this.photocopieur.id).subscribe(res => {console.log('deleted') });
-    this.modalService.dismissAll(this.photocopieur);
+
+    this.modalService.dismissAll();
 
     this.getAllPhotocopieurs();
 

@@ -59,6 +59,10 @@ import {PhotocopieurService} from "../services/photocopieur.service";
 import {AncreService} from "../services/ancre.service";
 import {RechargeService} from "../services/recharge.service";
 import { AncreComponent } from './ancre/ancre.component';
+import { DiversComponent } from './divers/divers.component';
+import {DiversService} from "../services/divers.service";
+import { EnseignementComponent } from './enseignement/enseignement.component';
+import {EnseignementService} from "../services/enseignement.service";
 
 
 
@@ -116,12 +120,14 @@ import { AncreComponent } from './ancre/ancre.component';
     RechargeComponent,
     PhotocopieurComponent,
     AncreComponent,
+    DiversComponent,
+    EnseignementComponent,
 
   ],
   providers: [
     AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,
     DepartementService,MatiereService,EnseignantService,AgenttirageService, GroupeService,
-  PapierService,PhotocopieurService,AncreService,RechargeService]
+  PapierService,PhotocopieurService,AncreService,RechargeService,DiversService,EnseignementService]
 
 })
 export class ComponentsModule {}

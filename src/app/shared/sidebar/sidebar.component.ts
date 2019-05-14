@@ -38,6 +38,21 @@ export class SidebarComponent implements OnInit {
       icon: 'group'
     },
     {
+      label: 'Consommable',
+      icon: 'attach_money',
+      items: [
+        {
+          label: 'Ancre',
+          link: '/full/component/ancre',
+          icon: 'format_color_fill'
+        } ,{
+          label: 'Divers',
+          link: '/full/component/divers',
+          icon: 'attach_file'
+        }
+      ]
+    },
+    {
       label: 'Enseignant',
       link: '/full/component/enseignant',
       icon: 'local_library'
@@ -49,7 +64,12 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Departement',
       link: '/full/component/departement',
-      icon: 'school'
+      icon: 'account_balance'
+    },
+{
+      label: 'Enseignement',
+      link: '/full/component/enseignement',
+      icon: 'account_balance'
     },
 
     {
@@ -65,17 +85,13 @@ export class SidebarComponent implements OnInit {
       link: '/full/component/papier',
       icon: 'filter_2'
     },{
-      label: 'Ancre',
-      link: '/full/component/ancre',
-      icon: 'filter_2'
-    },{
       label: 'Photocopieur',
       link: '/full/component/photocopieur',
-      icon: 'filter_2'
+      icon: 'print'
     },{
       label: 'Recharge',
       link: '/full/component/recharge',
-      icon: 'filter_2'
+      icon: 'filter_frames'
     },
 
     {
@@ -89,6 +105,7 @@ export class SidebarComponent implements OnInit {
         }
       ]
     },
+
 
   ];
 

@@ -80,7 +80,7 @@
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">Ajouter un utilisateur</h4>
-            <button type="button" class="close" aria-label="Close" >
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -151,13 +151,13 @@
 
   <!-- modal affecter role-->
   <div class="col-md-12">
-    <ng-template #contentRole let-c="close" let-d="dismiss">
+    <ng-template #contentRole >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">{{'agent.modifier' | translate }}</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -173,7 +173,7 @@
               <br>
               <button type="submit" style="float:right;"(click)="affecterRole()" class="btn btn-primary">{{'agent.button' | translate }}</button>
 
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'agent.bt' | translate }}</button>
 
             </form>
           </div>

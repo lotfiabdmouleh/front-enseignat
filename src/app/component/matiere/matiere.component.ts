@@ -49,8 +49,7 @@ export class MatiereComponent implements OnInit {
 
   addMatiere() {
     this.matiereService.addmatiere(this.matiere);
-
-    this.modalService.dismissAll(this.matiere);
+    this.c();
     this.getAllMatieres();
   }
   openVerticallyCentered(content) {
@@ -69,8 +68,7 @@ export class MatiereComponent implements OnInit {
 
   editMatiere(){
     this.matiereService.updatematiere(this.matiere).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.matiere);
-  }
+    this.c();  }
 
   getAllMatieres(){
     this.matiereService.getAllmatiere()
@@ -100,6 +98,7 @@ export class MatiereComponent implements OnInit {
   }
 
   c(){
+  this.matiere.nom_mat='';
 
     this.modalService.dismissAll();
   }

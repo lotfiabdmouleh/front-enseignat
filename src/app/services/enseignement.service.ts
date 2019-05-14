@@ -12,8 +12,8 @@ export class EnseignementService {
   constructor(private http: HttpClient) {
   }
 
-  public addenseignemant(enseignemant: Enseignemant) {
-    const uri = 'http://127.0.0.1:8080/enseignemant';
+  public addenseignemant(enseignemant: Enseignemant,dep:any,ens:any,grp:any,mat:any) {
+    const uri = 'http://127.0.0.1:8080/enseignemant/'+dep+'/'+ens+'/'+grp+'/'+mat;
 
 
     this.http.post(uri, enseignemant).subscribe(res => console.log('done'));
@@ -28,8 +28,8 @@ export class EnseignementService {
     const url = 'http://127.0.0.1:8080/enseignemant/' + id;
     return this.http.delete(url);
   }
-  updateenseignemant(enseignemant: Enseignemant) {
-    const url = 'http://127.0.0.1:8080/divers/' + enseignemant.id;
+  updateenseignemant(enseignemant: Enseignemant,dep:any,ens:any,grp:any,mat:any) {
+    const url = 'http://127.0.0.1:8080/enseignemant/' + enseignemant.id+'/'+dep+'/'+ens+'/'+grp+'/'+mat;
     return this.http.put(url , enseignemant);
   }
   getdenseignemant(id) {

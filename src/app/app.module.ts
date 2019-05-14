@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -31,6 +31,9 @@ import {RoleComponent} from "./component/role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {CalendarModule} from "angular-calendar";
 import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
+import {DiversService} from "./services/divers.service";
+import {httpFactory} from "@angular/http/src/http_module";
+import {RoleService} from "./services/role.service";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -49,6 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
+
   ],
   imports: [
     CommonModule,
@@ -85,11 +89,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },RoleService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http,);
 }

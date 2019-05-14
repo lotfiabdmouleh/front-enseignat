@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import {Component, AfterViewInit, EventEmitter, Output, OnInit} from '@angular/core';
 import {
   NgbModal,
   ModalDismissReasons,
@@ -8,16 +8,21 @@ import {
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {Router} from '@angular/router';
+
+import {DiversService} from "../../services/divers.service";
+import {RoleService} from "../../services/role.service";
 declare var $: any;
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html'
 })
-export class NavigationComponent implements AfterViewInit {
+export class NavigationComponent implements OnInit, AfterViewInit {
   @Output() toggleSidebar = new EventEmitter<void>();
   info: any;
+  data:any;
   public config: PerfectScrollbarConfigInterface = {};
-  constructor(private modalService: NgbModal,private token: TokenStorageService,private Router:Router) {}
+  constructor(private modalService: NgbModal,private token: TokenStorageService,private Router:Router,
+              private role:RoleService) {}
 
   public showSearch = false;
 
@@ -95,6 +100,12 @@ export class NavigationComponent implements AfterViewInit {
   logout() {
     this.token.signOut();
     this.Router.navigate(['login']);
+
+  }
+
+  ngOnInit(){
+
+
 
   }
 }

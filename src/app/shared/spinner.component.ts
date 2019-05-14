@@ -13,6 +13,7 @@ import {
   NavigationError
 } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
+import {RoleService} from "../services/role.service";
 
 @Component({
   selector: 'app-spinner',
@@ -49,6 +50,7 @@ export class SpinnerComponent implements OnDestroy {
         this.isSpinnerVisible = false;
       }
     );
+
   }
 
   ngOnDestroy(): void {

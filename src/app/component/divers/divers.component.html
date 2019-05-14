@@ -4,9 +4,9 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon >book</mat-icon>
-      <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Matiere</div>
+      <mat-icon>attach_file</mat-icon>
+      <span style="float: right" > <button ngbAutofocus (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
+      Divers</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
@@ -17,10 +17,17 @@
           <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
-            <ng-container matColumnDef="Matiere">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Matiere </th>
-              <td mat-cell *matCellDef="let row"> {{row.nom_mat}} </td>
+            <ng-container matColumnDef="des">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Désignation </th>
+              <td mat-cell *matCellDef="let row"> {{row.des}} </td>
             </ng-container>
+            <ng-container matColumnDef="qte">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantité en stock </th>
+              <td mat-cell *matCellDef="let row"> {{row.qte_stck}} </td>
+            </ng-container>  <ng-container matColumnDef="seuil">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Seuil maximal </th>
+            <td mat-cell *matCellDef="let row"> {{row.seuil_max}} </td>
+          </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
@@ -28,8 +35,7 @@
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
-                  delete_forever
-                </mat-icon>
+                  delete_forever </mat-icon>
                 <mat-icon class=" edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
               </td>
 
@@ -45,6 +51,8 @@
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
           <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
           <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
+
 
         </div>
 
@@ -71,21 +79,30 @@
     <ng-template #content >
 
       <div class="modal-body">
-        <div class="card card-outline-inverse  ">
+        <div class="card card-outline-inverse">
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter une Matiere</h4>
+            <h4 class="m-b-0 titre">Ajouter divers</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="card-body ">
-            <form #f="ngForm" (ngSubmit)="f.form.valid && addMatiere()" >
+            <form #f="ngForm" (ngSubmit)="f.form.valid && addDivers()" >
 
+              <mat-form-field >
+                <mat-label>Désignation</mat-label>
+                <input matInput [(ngModel)]="divers.des" name="des" required>
+              </mat-form-field>
+              <br><mat-form-field>
+              <mat-label>Quantité en stock</mat-label>
+              <input matInput [(ngModel)]="divers.qte_stck" name="qte" required>
+            </mat-form-field>
+              <br>
               <mat-form-field>
-                <mat-label>{{'agent.nom'| translate }}</mat-label>
-                <input matInput [(ngModel)]="matiere.nom_mat" name="nom_mat" required>
+                <mat-label>Seuil maximal</mat-label>
+                <input matInput [(ngModel)]="divers.seuil_max" name="seuil" required>
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
@@ -106,22 +123,28 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier une Matiere</h4>
+            <h4 class="m-b-0 titre">Modifier divers</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="card-body">
             <form #f="ngForm" >
-
-              <mat-form-field class="example-full-width">
-                <mat-label>{{'agent.nom' | translate }}</mat-label>
-                <input matInput [(ngModel)]="matiere.nom_mat" name="nom_mat">
+              <mat-form-field>
+                <mat-label>Désignation</mat-label>
+                <input matInput [(ngModel)]="divers.des" name="des" required>
+              </mat-form-field>
+              <br><mat-form-field>
+              <mat-label>Quantité en stock</mat-label>
+              <input matInput [(ngModel)]="divers.qte_stck" name="qte" required>
+            </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Seuil maximal</mat-label>
+                <input matInput [(ngModel)]="divers.seuil_max" name="seuil" required>
               </mat-form-field>
               <br>
-
-
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editMatiere()" >Modifier</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDivers()" >Modifier</button>
               <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
@@ -133,13 +156,13 @@
 
   <!-- delete-->
   <div class="col-md-12">
-    <ng-template #contentdelete  class="modal-dialog modal-sm">
+    <ng-template #contentdelete let-d="dismiss" class="modal-dialog modal-sm">
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
             <h4 >Etes vous sûr de vouloir supprimer?</h4>
-            <button type="button" class="close" aria-label="Close" (click)="c()">
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -148,7 +171,7 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteMatiere()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteDivers()" class="btn btn-danger">Supprimer</button>
         </form>
         <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
       </div>

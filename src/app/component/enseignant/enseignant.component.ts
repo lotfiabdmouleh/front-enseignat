@@ -71,8 +71,7 @@ export class EnseignantComponent implements OnInit {
 
   editEnseignant(){
     this.enseignantService.updateEnseignant(this.enseignant).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.enseignant);
-  }
+    this.c();  }
 
   getAllEnseignants(){
     this.enseignantService.getAllenseignants()
@@ -102,7 +101,11 @@ export class EnseignantComponent implements OnInit {
   }
 
   c(){
-
+    this.form.name='';
+      this.form.username='';
+      this.form.email='';
+      this.form.password='';
+      this.form.tel='';
     this.modalService.dismissAll();
   }
 
@@ -132,7 +135,8 @@ export class EnseignantComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
-        this.modalService.dismissAll(this.signupInfo);
+
+        this.c();
 
         this.getAllEnseignants();
       },

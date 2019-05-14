@@ -129,6 +129,11 @@ export class UserComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.form.name.reset();
+          this.form.username.reset();
+          this.form.email.reset();
+          this.form.password.reset();
+          this.form.tel.reset();
         this.modalService.dismissAll(this.signupInfo);
         this.selection.clear();
         this.getAllUser();

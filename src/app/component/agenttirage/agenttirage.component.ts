@@ -71,7 +71,7 @@ export class AgenttirageComponent implements OnInit {
 
   editAgentTirage(){
     this.agentTirageService.updateAgentTirage(this.agentTirage).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.agentTirage);
+    this.c();
   }
 
   getAllAgentTirages(){
@@ -102,7 +102,11 @@ export class AgenttirageComponent implements OnInit {
   }
 
   c(){
-
+    this.form.name='';
+    this.form.username='';
+    this.form.email='';
+    this.form.password='';
+    this.form.tel='';
     this.modalService.dismissAll();
   }
 
@@ -132,7 +136,7 @@ export class AgenttirageComponent implements OnInit {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
-        this.modalService.dismissAll(this.signupInfo);
+        this.c();
 
         this.getAllAgentTirages();
       },

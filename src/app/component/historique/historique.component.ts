@@ -15,7 +15,7 @@ import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/mate
   styleUrls: ['./historique.component.css']
 })
 export class HistoriqueComponent implements OnInit {
-  displayedColumns: string[] = ['user', 'action', 'date'];
+  displayedColumns: string[] = ['id','user', 'action', 'date'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

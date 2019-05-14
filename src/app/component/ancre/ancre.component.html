@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon>filter_2</mat-icon>
+      <mat-icon>format_color_fill</mat-icon>
       <span style="float: right" > <button ngbAutofocus (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
       Ancre</div>
     <div class="card-body">
@@ -37,6 +37,7 @@
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
                   delete_forever </mat-icon>
                 <mat-icon class=" edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
+                <mat-icon class=" edit" (click)="openVertically(contentAff,row.id)" >menu</mat-icon>
               </td>
 
             </ng-container>
@@ -71,12 +72,58 @@
 
 
 
+  <!-- affichage Modal-->
+  <div class="col-md-12">
+    <ng-template #contentAff >
+
+      <div class="modal-body">
+        <div class="card card-outline-inverse">
+          <div class="card-header">
+            <i class="fa fa-user-circle titre"></i>
+
+            <h4 class="m-b-0 titre">Les recharges d'ancre</h4>
+            <button type="button" class="close" aria-label="Close" (click)="c()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body ">
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSourceaff" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Recharge </th>
+                  <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}}  </td>
+                </ng-container>
+                <ng-container matColumnDef="photocopieur">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Photocopieur recharger </th>
+                  <td mat-cell *matCellDef="let row"> {{row.photocopieur.reference}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsaff"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsaff;">
+                </tr>
+              </table>
+
+              <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
+              <mat-icon class="print"(click)="Imprimer()">print</mat-icon>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-template>
+  </div>
 
 
 
   <!-- add Modal-->
   <div class="col-md-12">
-    <ng-template #content let-c="close" let-d="dismiss">
+    <ng-template #content >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
@@ -84,7 +131,7 @@
             <i class="fa fa-user-circle titre"></i>
 
             <h4 class="m-b-0 titre">Ajouter Ancre</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -106,7 +153,7 @@
             </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>
@@ -118,13 +165,15 @@
 
   <!-- Edit Modal-->
   <div class="col-md-12">
-    <ng-template #contentEdit let-c="close" let-d="dismiss">
+    <ng-template #contentEdit >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier Photocopieur</h4>
-
+            <h4 class="m-b-0 titre">Modifier Ancre</h4>
+            <button type="button" class="close" aria-label="Close" (click)="c()">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="card-body">
             <form #f="ngForm" >
@@ -143,7 +192,7 @@
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editAncre()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>
@@ -160,7 +209,9 @@
         <div class="card card-outline-inverse">
           <div >
             <h4 >Etes vous sûr de vouloir supprimer?</h4>
-
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
 

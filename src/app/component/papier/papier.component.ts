@@ -48,7 +48,7 @@ export class PapierComponent implements OnInit {
   addPapier() {
     this.papierService.addpapier(this.papier);
 
-    this.modalService.dismissAll(this.papier);
+    this.c();
     this.getAllPapiers();
   }
   openVerticallyCentered(content) {
@@ -67,7 +67,7 @@ export class PapierComponent implements OnInit {
 
   editPapier(){
     this.papierService.updatepapier(this.papier).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.papier);
+    this.c();
   }
 
   getAllPapiers(){

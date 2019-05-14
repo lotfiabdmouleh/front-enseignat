@@ -75,8 +75,8 @@ export class RechargeComponent implements OnInit {
   addRecharge() {
 
       this.rechargeservice.addrecharge(this.recharge,this.selectedph,this.selectedan);
-        this.modalService.dismissAll(this.recharge);
-    this.getAllRecharges();
+this.c();
+this.getAllRecharges();
   }
   openVerticallyCentered(content) {
 
@@ -94,7 +94,7 @@ export class RechargeComponent implements OnInit {
 
   editRecharge(){
     this.rechargeservice.updaterecharge(this.recharge,this.selectedph,this.selectedan).subscribe(res=>{this.ngOnInit()});
-    this.modalService.dismissAll(this.recharge);
+    this.c();
   }
 
   getAllRecharges(){
@@ -131,8 +131,7 @@ export class RechargeComponent implements OnInit {
 
   deleteRecharge(){
     this.rechargeservice.deleterecharge(this.recharge.id).subscribe(res => {console.log('deleted') });
-    this.modalService.dismissAll(this.recharge);
-
+    this.c();
     this.getAllRecharges();
 
 

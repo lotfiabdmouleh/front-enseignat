@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-<mat-icon>school</mat-icon>
+<mat-icon>account_balance</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
       Departement</div>
     <div class="card-body">
@@ -69,7 +69,7 @@
 
   <!-- add Modal-->
   <div class="col-md-12">
-    <ng-template #content let-c="close" let-d="dismiss">
+    <ng-template #content >
 
       <div class="modal-body">
         <div class="card card-outline-inverse no-pad-bot">
@@ -77,7 +77,7 @@
             <i class="fa fa-user-circle titre"></i>
 
             <h4 class="m-b-0 titre">Ajouter une département</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -90,7 +90,7 @@
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>
@@ -102,13 +102,13 @@
 
   <!-- Edit Modal-->
   <div class="col-md-12">
-    <ng-template #contentEdit let-c="close" let-d="dismiss">
+    <ng-template #contentEdit >
 
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
             <h4 class="m-b-0 titre">Modifier une département</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -123,7 +123,7 @@
 
 
               <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDepartement()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c('Close click')">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
             </form>
           </div>
         </div>

@@ -46,16 +46,11 @@ export class RoleComponent implements OnInit {
     }
 
 
-    // console.log(this.dataSource.data);
-
-
-
-
   }
   addRole() {
     this.roleService.addRole(this.role);
     this.ngOnInit();
-    this.modalService.dismissAll(this.role);
+  this.c();
     this.ngOnInit();
   }
   openVerticallyCentered(content) {
@@ -97,11 +92,11 @@ export class RoleComponent implements OnInit {
     }
   }
   c(){
-
+  this.role.name='';
     this.modalService.dismissAll();
   }
 
-  deleteDepartement(){
+  deleteRole(){
     this.roleService.deleteRole(this.role.id).subscribe(res => {console.log('deleted') });
     this.modalService.dismissAll(this.role);
 

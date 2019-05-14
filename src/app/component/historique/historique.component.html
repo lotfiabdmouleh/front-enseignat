@@ -13,23 +13,27 @@
 
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>
-
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateur </th>
+              <td mat-cell *matCellDef="let row"> {{row[0]}} </td>
+            </ng-container>
             <!-- ID Column -->
             <ng-container matColumnDef="user">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Utilisateur </th>
-              <td mat-cell *matCellDef="let row"> {{row[1]}} </td>
+              <td mat-cell *matCellDef="let row"> {{row[2]}} </td>
             </ng-container>
 
             <!-- Progress Column -->
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-              <td mat-cell *matCellDef="let row"> {{row[2]}} </td>
+              <td mat-cell *matCellDef="let row"> {{row[3]}} </td>
             </ng-container>
 
             <!-- Progress Column-->
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'action  </th>
-              <td mat-cell *matCellDef="let row"> {{row[0] |date:"MMM dd yyyy H:m:s"}} </td>
+              <td mat-cell *matCellDef="let row"> {{row[1] |date:"MMM dd yyyy H:m:s"}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
