@@ -36,4 +36,7 @@ export const Approutes: Routes = [
     component: RegisterComponent
   },
 
+
+
+
 ];

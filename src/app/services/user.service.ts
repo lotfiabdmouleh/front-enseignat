@@ -59,5 +59,17 @@ affecterRole(id, users:User[]){
     const url = 'http://127.0.0.1:8080/users/' + user.id;
     return this.http.delete(url);
   }
+getUserByName(name:any){
+  const url = 'http://127.0.0.1:8080/users/byname/' + name;
+  return this.http.get(url);
+}
+update(user:User){
+  const url = 'http://127.0.0.1:8080/users/put/'+user.id;
+  return  this.http.put(url,user);
 
+}
+updatepassword(user:User,password:any){
+  const url = 'http://127.0.0.1:8080/users/password/'+user.id+'/'+user.password;
+  return  this.http.put(url,password);
+}
 }

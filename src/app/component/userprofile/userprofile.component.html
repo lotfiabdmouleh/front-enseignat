@@ -1,0 +1,126 @@
+
+
+<!-- Page level plugin CSS-->
+<div xmlns="http://www.w3.org/1999/html">
+  <div class="card-default">
+    <div class="mat-card-header">
+      <i class="mdi mdi-message-bulleted"></i>
+      Profil
+
+
+    </div>
+    <div class="card-body">
+      <form name="form" (ngSubmit)="f.form.valid "  #f="ngForm" novalidate>
+        <div *ngIf="f.submitted && f.valid"  >
+          <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+          </div>
+        </div>
+        <div class="row">
+<div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required />
+          <div *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel"
+                 required />
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Username is required</div>
+          </div>
+        </div>
+</div>
+        <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required email />
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel"
+                 required minlength="6" />
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        </div>
+          <div *ngIf="currentFileUpload" class="progress">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                 aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+              {{progress.percentage}}%</div>
+          </div>
+
+          <label class="btn btn-default">
+            <input type="file"  (change)="selectFile($event)" >
+          </label>
+
+          <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button><br>
+
+
+
+        </div>
+        <button type="submit" (click)="update()" class="btn btn-primary"  [disabled]="f.form.pristine || f.form.invalid" >{{'agent.button' | translate }}</button>
+
+
+                <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+          Signup failed!<br/>{{errorMessage}}
+        </div>
+
+      </form>
+
+
+
+
+    </div>
+  </div>
+  <div class="col-md-12">
+    <ng-template #content let-c="close" let-d="dismiss">
+
+      <div class="modal-body">
+        <div class="card card-outline-inverse">
+          <div class="card-header">
+            <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
+
+          </div>
+          <div class="card-body">
+            <form #f="ngForm" >
+
+              <mat-form-field class="example-full-width">
+                <mat-label>ancien mot de passe</mat-label>
+                <input matInput [(ngModel)]="pass" name="pass">
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>nouveau mot de passe</mat-label>
+                <input matInput [(ngModel)]="newpassword" name="newpassword">
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>confirmmer mot de passe</mat-label>
+                <input matInput [(ngModel)]="confpassword" name="confpassword">
+              </mat-form-field>
+
+
+              <button type="submit" (click)="changepasse()" class="btn btn-primary">{{'agent.button' | translate }}</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
+      </div>
+    </ng-template>
+  </div>
+
+</div>

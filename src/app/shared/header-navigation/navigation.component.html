@@ -37,26 +37,65 @@
   <!-- Profile -->
   <!-- ============================================================== -->
   <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
-    <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
-    <div class="dropdown-menu animated slideInDown" ngbDropdownMenu>
+    <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img [src]="file" class="profile-pic"/></a>
+    <div class="dropdown-menu animated slideInDown" ngbDropdownMenu >
       <ul class="dropdown-user">
         <li>
           <div class="dw-user-box">
-            <div class="u-img"><img src="assets/images/users/1.jpg" alt="user"></div>
-            <div class="u-text">
-              <h4>Steave Jobs</h4>
-              <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+            <div class="u-img"><img [src]="file" /></div>
+            <div class="u-text" style="margin-top:25px;">
+
+              <p class="text-muted">{{user.email}}</p></div>
           </div>
         </li>
         <li role="separator" class="divider"></li>
-        <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-        <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-        <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+        <li><a (click)="userDetail()"><i class="fa fa-user-circle"></i> Profile</a></li>
+
+        <li ><a (click)="open(content)"><i class="fa fa-power-off"></i> Changer mot de passe</a></li>
         <li role="separator" class="divider"></li>
         <li ><a (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+
       </ul>
     </div>
   </li>
 </ul>
+
+<div class="col-md-12">
+  <ng-template #content let-c="close" let-d="dismiss">
+
+    <div class="modal-body">
+      <div class="card card-outline-inverse">
+        <div class="card-header">
+          <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
+
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" >
+
+            <mat-form-field class="example-full-width">
+              <mat-label>ancien mot de passe</mat-label>
+              <input matInput [(ngModel)]="pass" name="pass">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>nouveau mot de passe</mat-label>
+              <input matInput [(ngModel)]="newpassword" name="newpassword">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width">
+              <mat-label>confirmmer mot de passe</mat-label>
+              <input matInput [(ngModel)]="confpassword" name="confpassword">
+            </mat-form-field>
+
+
+            <button type="submit" (click)="changepasse()" class="btn btn-primary">{{'agent.button' | translate }}</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
+    </div>
+  </ng-template>
+</div>

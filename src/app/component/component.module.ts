@@ -45,6 +45,8 @@ import { DepartementComponent } from './departement/departement.component';
 import {DepartementService} from "../services/departement.service";
 import { MatiereComponent } from './matiere/matiere.component';
 import {MatiereService} from "../services/matiere.service";
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import {UploadFileService} from '../services/upload-file.service';
 import { EnseignantComponent } from './enseignant/enseignant.component';
 import {EnseignantService} from "../services/enseignant.service";
 import { AgenttirageComponent } from './agenttirage/agenttirage.component';
@@ -113,6 +115,8 @@ import {EnseignementService} from "../services/enseignement.service";
     HistoriqueComponent,
     DepartementComponent,
     MatiereComponent,
+    UserprofileComponent,
+
     EnseignantComponent,
     AgenttirageComponent,
     GroupeComponent,
@@ -125,6 +129,7 @@ import {EnseignementService} from "../services/enseignement.service";
 
   ],
   providers: [
+   UploadFileService,AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService,
     AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,
     DepartementService,MatiereService,EnseignantService,AgenttirageService, GroupeService,
   PapierService,PhotocopieurService,AncreService,RechargeService,DiversService,EnseignementService]

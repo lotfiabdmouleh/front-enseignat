@@ -15,18 +15,23 @@ import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/mate
   styleUrls: ['./historique.component.css']
 })
 export class HistoriqueComponent implements OnInit {
-  displayedColumns: string[] = ['id','user', 'action', 'date'];
+  displayedColumns: string[] = ['id','user', 'action', 'date','actions'];
   dataSource: MatTableDataSource<any>;
+  dataSourcedetail:MatTableDataSource<any>;
+  displayedColumnsdetail:string[] = ['user','nom','prenom', 'date'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatPaginator) paginatordetail: MatPaginator;
+  @ViewChild(MatSort) sortdetail: MatSort;
   Historique:any;
   listhistory: any;
+  listDetail:any;
   info: any;
 
   constructor(private route: Router, private http: HttpClient, private token: TokenStorageService,
-              private historiqueService: HistoriqueService) {
+              private historiqueService: HistoriqueService,private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -50,6 +55,7 @@ export class HistoriqueComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.listhistory);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        console.log(res);
       }, err => {
         console.log(err);
       });
@@ -61,4 +67,27 @@ export class HistoriqueComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }}
+
+  applyFilterdetail(filterValue: string) {
+    this.dataSourcedetail.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourcedetail.paginator) {
+      this.dataSourcedetail.paginator.firstPage();
+    }}
+  historyDetail(id:any){
+    console.log(id);
+    this.historiqueService.getHistoryDetail(id).subscribe((res:any) => {
+      this.listDetail = res ;
+      this.dataSourcedetail = new MatTableDataSource(this.listDetail);
+      this.dataSourcedetail.paginator = this.paginatordetail;
+      this.dataSourcedetail.sort = this.sortdetail;
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
+  }
+  openVerticallydetail(contentdetail,id){
+    this.historyDetail(id);
+    this.modalService.open(contentdetail);
+}
 }

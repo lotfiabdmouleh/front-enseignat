@@ -49,7 +49,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),

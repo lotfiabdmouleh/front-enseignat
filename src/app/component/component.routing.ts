@@ -8,6 +8,7 @@ import {RoleComponent} from "./role/role.component";
 import {HistoriqueComponent} from "./historique/historique.component";
 import {DepartementComponent} from "./departement/departement.component";
 import {MatiereComponent} from "./matiere/matiere.component";
+import {UserprofileComponent} from './userprofile/userprofile.component';
 import {EnseignantComponent} from "./enseignant/enseignant.component";
 import {AgenttirageComponent} from "./agenttirage/agenttirage.component";
 import {GroupeComponent} from "./groupe/groupe.component";
@@ -84,6 +85,10 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'role',
     component: RoleComponent
+  },
+  {
+    path: 'userdetail',
+    component: UserprofileComponent
   },
 
 ];

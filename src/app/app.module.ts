@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import {Injector, NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
@@ -34,6 +34,10 @@ import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
 import {DiversService} from "./services/divers.service";
 import {httpFactory} from "@angular/http/src/http_module";
 import {RoleService} from "./services/role.service";
+import {UserprofileComponent} from './component/userprofile/userprofile.component';
+import {AgentService} from './services/agent.service';
+import {UploadFileService} from './services/upload-file.service';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -89,11 +93,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    },RoleService
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http,);
+  return new TranslateHttpLoader(http);
 }
