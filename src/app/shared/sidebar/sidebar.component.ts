@@ -9,6 +9,14 @@ declare var $: any;
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent implements OnInit {
+  ngOnInit() {
+    this.ref();
+
+  }
+
+  constructor(private router:Router,private translate:TranslateService){
+
+  }
   config = {
     paddingAtStart: true,
     classname: 'my-custom-class',
@@ -128,6 +136,12 @@ export class SidebarComponent implements OnInit {
           label: 'Historique',
           icon: 'history',
           items: [
+
+            {
+              label: 'Historique Générales',
+              link: '/full/component/allhistory',
+              icon: 'history'
+            },
             {
               label: 'Agent',
               link: '/full/component/historique',
@@ -150,9 +164,7 @@ export class SidebarComponent implements OnInit {
     },
     ];
 
-this.ref();
-    // this.translate.stream("agent.nom").subscribe(res=>this.appitems[0].label=res)
-  }
+
   selectedItem($event){
     this.router.navigate([$event.link]);
   }

@@ -12,7 +12,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./historiquegeneral.component.css']
 })
 export class HistoriquegeneralComponent implements OnInit {
-  displayedColumns: string[] = ['id','user', 'action', 'date','actions'];
+  displayedColumns: string[] = ['user', 'action', 'date','actions'];
   dataSource: MatTableDataSource<any>;
   dataSourcedetail:MatTableDataSource<any>;
   displayedColumnsdetail:string[] = ['user','nom','prenom', 'date'];
