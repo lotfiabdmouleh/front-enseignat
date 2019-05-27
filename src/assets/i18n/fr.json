@@ -1,19 +1,195 @@
 {
+  "button": {
+    "btnenr":"Enregistrer",
+    "supprimer":"Supprimer",
+    "btnfermer":"fermer",
+    "btnmodifier": "Modifier",
+    "upload": "Téléverser",
+    "para": "Paramétrages"
+  },
+"groupe": {
+  "grp":"Groupe",
+  "addgrp":"Ajouter Groupe",
+  "modgrp": "Modifier Groupe",
+  "delgrp": "Supprimer Groupe",
+  "niveau": "Niveau",
+  "filiere": "Filière",
+  "nbetd": "Nombre d'étudiants"
+},
+  "departement": {
+  "dep":"Département",
+  "adddep":"Ajouter Département",
+  "moddep": "Modifier Département",
+  "deldep": "Supprimer Département"
+},
+  "semestre": {
+  "sem":"Semestre",
+  "addsem":"Ajouter Semestre",
+  "modsem": "Modifier Semestre",
+  "delsem": "Supprimer Semestre"
+},
+  "annee": {
+  "annee":"Année universitaire",
+  "addannee":"Ajouter Année universitaire",
+  "modannee": "Modifier Année universitaire",
+  "delannee": "Supprimer Année universitaire"
+},
+  "papier": {
+  "papier":"Papier",
+  "addpapier":"Ajouter Papier",
+  "modpapier": "Modifier Papier",
+  "delpapier": "Supprimer Papier",
+   "format": "Format",
+   "nbr": "Nombre de feuilles",
+    "sel": "Sélectionner papier"
+  },
+  "matiere": {
+  "mat":"Matière",
+  "addmat":"Ajouter Matière",
+  "modmat": "Modifier Matière",
+  "delmat": "Supprimer Matière"
+
+},"photocopieur": {
+  "ph":"Photocopieur",
+  "addph":"Ajouter Photocopieur",
+  "modph": "Modifier Photocopieur",
+  "delph": "Supprimer Photocopieur",
+  "ref": "Référence Photocopieur",
+  "des": "Désignation Photocopieur"
+},
+
+  "recharge": {
+  "rech":"Recharge",
+  "addrech":"Recharger",
+  "modrech": "Modifier Recharge",
+  "delrech": "Supprimer Recharge",
+  "daterech": "Date de Recharge",
+  "datemod": "Date de modificaton de recharge",
+  "rechan":"Les recharges d'ancre",
+  "rechph":"Les recharges de photocopieur",
+  "ph":"Photocopiuer utilisé ",
+  "an":"Ancre utilisé "
+},
+  "intervention": {
+  "inter":"Intervention",
+    "interph":"Les interventions du photocopieur",
+  "addinter":"Ajouter Intervention",
+  "modinter": "Modifier Intervention",
+  "delinter": "Supprimer Intervention",
+  "nominter": "Nom de société",
+  "dateinter": "Date d'intervention",
+    "ph": "Sélectionner la Photocopieuse",
+    "an": "Sélectionner l'ancre"
+},
+  "historique": {
+  "hist":"Historique",
+  "dateactionhist":"Date d'action",
+    "op": "Opération",
+    "class": "Table",
+    "h": "Historique de modification"
+},
+  "tirage": {
+  "tirage":"Tirage",
+  "nbrcopie":"Nombre de copies"
+},
+  "demande": {
+    "dem": "Demande de tirage",
+    "adddem":"Ajouter une demande  ",
+    "moddem": "Modifier la demande",
+    "deldem": "Supprimer la demande",
+    "file": "Document",
+    "copy": "Nombre de copies",
+    "etat": "État du document",
+    "n": "Nouvelle Demande",
+    "list": "Liste des demandes de tirage"
+
+  },
+  "enseignement": {
+  "ens":"Enseignement",
+  "addens":"Ajouter Enseignement",
+  "modens": "Modifier Enseignement",
+  "delens": "Supprimer Enseignement",
+  "dateens": "Date d'enseignement",
+  "selectdep": "Sélectionner la département",
+  "selectens": "Sélectionner l' enseignant",
+  "selectmat": "Sélectionner la matière",
+  "selectgrp": "Sélectionner le groupe" ,
+  "selectanne": "Sélectionner l'année universitaire",
+  "selectsem": "Sélectionner la semestre"
+},
+  "user": {
+  "user":"Utilisateur",
+    "users":"Utilisateurs ",
+  "adduser":"Ajouter Utilisateur",
+  "deluser": "Supprimer Utilisateur",
+  "nomuser": "Nom et prénom",
+    "loginuser": "Nom d'utilisateur",
+    "passeuser": "Mot de passe",
+    "mailuser": "Email",
+    "teluser": "Télèphone",
+    "role": "Rôle",
+    "telerror": "Le mot de passe doit être au moins de 8 caractères",
+    "pass": "Le mot de passe estobligatoire",
+    "nom": "Le nom est obligatoire ",
+    "username": "Le nom d'utilisateur est obligatoire ",
+    "mail": "L'email est obligatoire ",
+    "mailerror": "L'email doit être une adresse email valide",
+    "passerror": "Le mot de passe doit être au moins de 6 caractères",
+    "tel": "Le télèphone est obligatoire",
+    "failed": "L'inscription a échoué",
+    "modpass": "Modifier mot de passe",
+    "new": "Nouveau mot de passe",
+    "a": "Ancien mot de passe",
+    "c": "Confirmer mot de passe",
+    "log": "se déconnecter"
+  },
+  "enseignant": {
+  "ens":"Enseignant",
+  "addens":"Ajouter Enseignant",
+  "delens": "Supprimer Enseignant" ,
+    "modens": "Modifier Enseignant"
+  },
+  "agenttirage": {
+  "agt":"Agent de tirage",
+  "addag":"Ajouter Agent de tirage",
+  "delag": "Supprimer Agent de tirage",
+    "modag": "Modifier Agent de tirage"
+  },
+  "consommable": {
+    "cons": "Consommable",
+    "divers": "Divers",
+  "ancre":"Ancre",
+  "add":"Ajouter Ancre",
+  "del": "Supprimer Ancre",
+  "mod": "Modifier Ancre",
+    "seuil": "Seuil maximal",
+    "des": "Désignation Ancre",
+    "adddiv":"Ajouter Divers",
+  "deldiv": "Supprimer Divers",
+  "moddiv": "Modifier Divers",
+    "desdiv": "Désignation Divers",
+    "seuil": "Seuil maximal",
+    "des": "Désignation Ancre",
+    "qte": "Quantité en stock"
+  },
   "agent": {
     "nom": "Nom",
     "prenom":"Prenom",
     "datem":"Date de modification",
     "dateaj":"Date d 'ajout",
     "actions":"Actions",
-    "button":"Enregistre",
+    "mod":"Modifier l'agent",
     "id":"ID",
+    "des": "Etes vous sûr de vouloir supprimer?",
+    "selectrole": "selectioner un role",
+    "filter": "Filtrer",
     "agent":"Agent",
-    "groupe":"Groupe",
+    "agnetcr":"Agent de création",
+    "agentmod":"Agent de modification",
+    "affrole": "Affecter role",
     "aj":"Ajouter un agent",
-    "bt":"fermé",
     "titre": "Acceuil",
-    "modifier": "Modifier",
-    "role": "Ajouter role"
+    "profil": "Profil"
 
   }
 }

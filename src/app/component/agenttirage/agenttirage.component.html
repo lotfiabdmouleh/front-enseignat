@@ -6,11 +6,11 @@
     <div class="mat-card-header">
       <mat-icon>person</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Agent de tirage</div>
+      {{'agenttirage.agt' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,27 +18,27 @@
 
             <!-- Nom Column -->
             <ng-container matColumnDef="nom">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'user.nomuser' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.name}} </td>
             </ng-container>
             <!-- ID Column -->
             <ng-container matColumnDef="login">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Login </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'user.loginuser' | translate }}  </th>
               <td mat-cell *matCellDef="let row"> {{row.username}} </td>
             </ng-container>
             <!-- ID Column -->
             <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'user.mailuser' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.email}} </td>
             </ng-container>
             <!-- ID Column -->
             <ng-container matColumnDef="telephone">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Télèphone </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'user.teluser' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.tel}} </td>
             </ng-container>
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
@@ -86,7 +86,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Ajouter un agent de dirage</h4>
+            <h4 class="m-b-0 titre">{{'agenttirage.addag' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -96,56 +96,55 @@
               <div *ngIf="f.submitted && f.valid"  >
                 <div class="alert alert-dismissible alert-success">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="name">Your name</label>
+                <label for="name">{{'user.nomuser' | translate }}</label>
                 <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
                 <div *ngIf="f.submitted && name.invalid">
-                  <div *ngIf="name.errors.required">Name is required</div>
+                  <div *ngIf="name.errors.required">{{'user.nom' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">{{'user.loginuser' | translate }}</label>
                 <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
                        required />
                 <div *ngIf="f.submitted && username.invalid">
-                  <div *ngIf="username.errors.required">Username is required</div>
+                  <div *ngIf="username.errors.required">{{'user.username' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">{{'user.mailuser' | translate }}</label>
                 <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
                 <div *ngIf="f.submitted && email.invalid">
-                  <div *ngIf="email.errors.required">Email is required</div>
-                  <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                  <div *ngIf="email.errors.required">{{'user.mail' | translate }}</div>
+                  <div *ngIf="email.errors.email">{{'user.mailerror' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{{'user.passeuser' | translate }}</label>
                 <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
                        required minlength="6" />
                 <div *ngIf="f.submitted && password.invalid">
-                  <div *ngIf="password.errors.required">Password is required</div>
-                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                  <div *ngIf="password.errors.required">{{'user.pass' | translate }}</div>
+                  <div *ngIf="password.errors.minlength">{{'user.passerror' | translate }}</div>
                 </div>
               </div>
               <div class="form-group">
-                <label for="telephone">Telephone</label>
+                <label for="telephone">{{'user.teluser' | translate }}</label>
                 <input type="text" class="form-control" name="tel" [(ngModel)]="form.tel" #tel="ngModel"
                        required minlength="6" />
                 <div *ngIf="f.submitted && tel.invalid">
-                  <div *ngIf="tel.errors.required">teleohone is required</div>
-                  <div *ngIf="tel.errors.minlength">telephone must be at least 8 characters</div>
+                  <div *ngIf="tel.errors.required">{{'user.tel' | translate }}</div>
+                  <div *ngIf="tel.errors.minlength">{{'user.telerror' | translate }}</div>
                 </div>
               </div>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" >{{'agent.button' | translate }}</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" >{{'button.btnenr' | translate }}</button>
               <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-                Signup failed!<br/>{{errorMessage}}
+                {{'user.failed' | translate }}<br/>{{errorMessage}}
               </div>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -161,7 +160,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier un Enseignant</h4>
+            <h4 class="m-b-0 titre">{{'agenttirage.modag' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -170,27 +169,27 @@
             <form #f="ngForm" >
 
               <mat-form-field class="example-full-width">
-                <mat-label>Nom</mat-label>
-                <input matInput [(ngModel)]="agentTirage.name" name="nom" >
+                <mat-label>{{'user.nomuser' | translate }}</mat-label>
+                <input matInput [(ngModel)]="agentTirage.name" name="{{'user.nomuser' | translate }}" >
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Login</mat-label>
-                <input matInput [(ngModel)]="agentTirage.username" name="username" >
+                <mat-label>{{'user.loginuser' | translate }}</mat-label>
+                <input matInput [(ngModel)]="agentTirage.username" name="{{'user.loginuser' | translate }}" >
               </mat-form-field>
 
               <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="agentTirage.email" name="mail" >
+                <mat-label>{{'user.mailuser' | translate }}</mat-label>
+                <input matInput [(ngModel)]="agentTirage.email" name="{{'user.mailuser' | translate }}" >
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                <mat-label>Télèphone</mat-label>
-                <input matInput [(ngModel)]="agentTirage.tel" name="tel" >
+                <mat-label>{{'user.teluser' | translate }}</mat-label>
+                <input matInput [(ngModel)]="agentTirage.tel" name="{{'user.teluser' | translate }}" >
               </mat-form-field>
               <br>
 
 
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editAgentTirage()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editAgentTirage()" >{{'button.btnmodifier' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -206,7 +205,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4 >{{'agent.des' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -216,9 +215,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteAgentTirage()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteAgentTirage()" class="btn btn-danger">{{'button.supprimer' | translate }}</button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()">{{'button.btnfermer' | translate }}</button>
       </div>
     </ng-template>
   </div>

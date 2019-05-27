@@ -6,11 +6,11 @@
     <div class="mat-card-header">
 <mat-icon>account_balance</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Departement</div>
+      {{'departement.dep' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,13 +18,13 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="departement">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Departement </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'departement.dep' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.nom_dep}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
@@ -76,7 +76,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter une département</h4>
+            <h4 class="m-b-0 titre">{{'departement.adddep' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -85,12 +85,12 @@
             <form #f="ngForm" (ngSubmit)="f.form.valid && addDepartement()" >
 
               <mat-form-field>
-                <mat-label>{{'agent.nom'| translate }}</mat-label>
-                <input matInput [(ngModel)]="departement.nom_dep" name="nom_dep" required>
+                <mat-label>{{'departement.dep' | translate }}</mat-label>
+                <input matInput [(ngModel)]="departement.nom_dep" name="{{'departement.dep' | translate }}" required>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -107,7 +107,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier une département</h4>
+            <h4 class="m-b-0 titre">{{'departement.moddep' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -116,14 +116,14 @@
             <form #f="ngForm" >
 
               <mat-form-field class="example-full-width">
-                <mat-label>{{'agent.nom' | translate }}</mat-label>
-                <input matInput [(ngModel)]="departement.nom_dep" name="nom">
+                <mat-label>{{'departement.dep' | translate }}</mat-label>
+                <input matInput [(ngModel)]="departement.nom_dep" name="{{'departement.dep' | translate }}">
               </mat-form-field>
               <br>
 
 
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDepartement()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDepartement()" >{{'button.btnmodifier' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -139,7 +139,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4 >{{'agent.des' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -149,9 +149,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteDepartement()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteDepartement()" class="btn btn-danger">{{'button.supprimer' | translate }}</button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()">{{'button.btnfermer' | translate }}</button>
       </div>
     </ng-template>
   </div>

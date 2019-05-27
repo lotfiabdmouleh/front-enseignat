@@ -56,11 +56,12 @@ export class AncreComponent implements OnInit {
   }
 
   openVertically(content,id){
-    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;console.log(this.ancre);});
-    this.listrech=this.ancre.recharges as Recharge[];
-    this.dataSourceaff = new MatTableDataSource(this.listrech);
-    this.dataSourceaff.paginator = this.paginator;
-    this.dataSourceaff.sort = this.sort;
+    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;console.log(this.ancre);
+      this.listrech=this.ancre.recharges as Recharge[];
+      this.dataSourceaff = new MatTableDataSource(this.listrech);
+      this.dataSourceaff.paginator = this.paginator;
+      this.dataSourceaff.sort = this.sort;});
+
     this.modalService.open(content, { centered: true });
 }
 

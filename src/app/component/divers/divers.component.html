@@ -6,11 +6,11 @@
     <div class="mat-card-header">
       <mat-icon>attach_file</mat-icon>
       <span style="float: right" > <button ngbAutofocus (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Divers</div>
+      {{'consommable.divers' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,20 +18,20 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="des">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Désignation </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'consommable.desdiv' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.des}} </td>
             </ng-container>
             <ng-container matColumnDef="qte">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantité en stock </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'consommable.qte' | translate }}  </th>
               <td mat-cell *matCellDef="let row"> {{row.qte_stck}} </td>
             </ng-container>  <ng-container matColumnDef="seuil">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Seuil maximal </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'consommable.seuil' | translate }}  </th>
             <td mat-cell *matCellDef="let row"> {{row.seuil_max}} </td>
           </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
@@ -83,7 +83,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter divers</h4>
+            <h4 class="m-b-0 titre">{{'consommable.adddiv' | translate }} </h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -92,21 +92,21 @@
             <form #f="ngForm" (ngSubmit)="f.form.valid && addDivers()" >
 
               <mat-form-field >
-                <mat-label>Désignation</mat-label>
-                <input matInput [(ngModel)]="divers.des" name="des" required>
+                <mat-label>{{'consommable.desdiv' | translate }} </mat-label>
+                <input matInput [(ngModel)]="divers.des" name="{{'consommable.desdiv' | translate }} " required>
               </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Quantité en stock</mat-label>
-              <input matInput [(ngModel)]="divers.qte_stck" name="qte" required>
+              <mat-label>{{'consommable.qte' | translate }} </mat-label>
+              <input matInput [(ngModel)]="divers.qte_stck" name="{{'consommable.qte' | translate }} " required>
             </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label>Seuil maximal</mat-label>
-                <input matInput [(ngModel)]="divers.seuil_max" name="seuil" required>
+                <mat-label>{{'consommable.seuil' | translate }} </mat-label>
+                <input matInput [(ngModel)]="divers.seuil_max" name="{{'consommable.seuil' | translate }} " required>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }} </button>
             </form>
           </div>
         </div>
@@ -123,7 +123,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier divers</h4>
+            <h4 class="m-b-0 titre">{{'consommable.moddiv' | translate }} </h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -131,21 +131,21 @@
           <div class="card-body">
             <form #f="ngForm" >
               <mat-form-field>
-                <mat-label>Désignation</mat-label>
-                <input matInput [(ngModel)]="divers.des" name="des" required>
+                <mat-label>{{'consommable.desdiv' | translate }} </mat-label>
+                <input matInput [(ngModel)]="divers.des" name="{{'consommable.desdiv' | translate }} " required>
               </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Quantité en stock</mat-label>
-              <input matInput [(ngModel)]="divers.qte_stck" name="qte" required>
+              <mat-label>Q{{'consommable.qte' | translate }} </mat-label>
+              <input matInput [(ngModel)]="divers.qte_stck" name="{{'consommable.qte' | translate }} " required>
             </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label>Seuil maximal</mat-label>
-                <input matInput [(ngModel)]="divers.seuil_max" name="seuil" required>
+                <mat-label>{{'cosommable.seuil' | translate }} </mat-label>
+                <input matInput [(ngModel)]="divers.seuil_max" name="{{'cosommable.seuil' | translate }} " required>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDivers()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editDivers()" >{{'button.btnmodifier' | translate }} </button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }} </button>
             </form>
           </div>
         </div>
@@ -161,7 +161,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4 >{{'agent.des' | translate }} </h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -171,9 +171,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteDivers()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteDivers()" class="btn btn-danger">{{'button.supprimer' | translate }} </button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()">{{'button.btnfermer' | translate }} </button>
       </div>
     </ng-template>
   </div>

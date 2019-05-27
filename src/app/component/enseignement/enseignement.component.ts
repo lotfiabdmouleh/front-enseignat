@@ -16,6 +16,10 @@ import {Departement} from "../../models/departement";
 import {Enseignant} from "../../models/enseignant";
 import {Matiere} from "../../models/matiere";
 import {Groupe} from "../../models/groupe";
+import {SemestreService} from "../../services/semestre.service";
+import {AnneeService} from "../../services/annee.service";
+import {Annee} from "../../models/annee";
+import {Semester} from "../../models/semestre";
 
 @Component({
   selector: 'app-enseignement',
@@ -25,7 +29,7 @@ import {Groupe} from "../../models/groupe";
 export class EnseignementComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['date','departement','enseignant','groupe','matiere','actions'];
+  displayedColumns: string[] = ['date','departement','enseignant','groupe','matiere','sem','annee','actions'];
   dataSource: MatTableDataSource<Enseignemant>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,6 +40,8 @@ export class EnseignementComponent implements OnInit {
   listEnseignant:Enseignant[];
   listMatiere:Matiere[];
   listGroupe:Groupe[];
+  listAnnee:Annee[];
+  listSemestre:Semester[];
 
   enseignemant:Enseignemant=new Enseignemant();
   info:any;
@@ -43,12 +49,14 @@ export class EnseignementComponent implements OnInit {
   selecteddep:Departement;
   selectedmat:Matiere;
   selectedgrp:Groupe;
+  selectedsem:Semester;
+  selectedann:Annee;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private depService:DepartementService,private modalService: NgbModal,
               private matiereService:MatiereService,private enseignantService:EnseignantService,
-              private  groupeService:GroupeService
-              ,private enseignementService:EnseignementService
+              private  groupeService:GroupeService,private semService:SemestreService,private anneeService:AnneeService,
+              private enseignementService:EnseignementService
   ) {
     this.getAllEnseignemants();
 
@@ -82,6 +90,16 @@ export class EnseignementComponent implements OnInit {
           err => {
         console.log(err);
       });
+    this.anneeService.getAllAnnee()
+      .subscribe(res => {this.listAnnee = res as Annee[];},
+          err => {
+        console.log(err);
+      });
+    this.semService.getAllsemestre()
+      .subscribe(res => {this.listSemestre = res as Semester[];},
+          err => {
+        console.log(err);
+      });
  this.enseignantService.getAllenseignants()
       .subscribe(res => {this.listEnseignant = res as Enseignant[];},
           err => {
@@ -93,7 +111,7 @@ export class EnseignementComponent implements OnInit {
 
   addEnseignemant() {
 
-    this.enseignementService.addenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat);
+    this.enseignementService.addenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat,this.selectedsem,this.selectedann);
     this.c();
     this.getAllEnseignemants();
   }
@@ -112,7 +130,7 @@ export class EnseignementComponent implements OnInit {
 
 
   editEnseignemant(){
-    this.enseignementService.updateenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat).subscribe(res=>{this.ngOnInit()});
+    this.enseignementService.updateenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat,this.selectedsem,this.selectedann).subscribe(res=>{this.ngOnInit()});
     this.c();
   }
 
@@ -123,6 +141,36 @@ export class EnseignementComponent implements OnInit {
         this.listEnseignemant = res as Enseignemant[];
 
         this.dataSource = new MatTableDataSource(this.listEnseignemant);
+        this.dataSource.filterPredicate = (data, filter) => {
+          let valid = false;
+
+          const transformedFilter = filter.trim().toLowerCase();
+
+          Object.keys(data).map(key => {
+            if (
+              key === 'departement' &&
+              (data.departement.nom_dep.toLowerCase().includes(transformedFilter) )||
+              key === 'groupe' &&
+              (data.groupe.nom_grp.toLowerCase().includes(transformedFilter) )||
+              key === 'matiere' &&
+              (data.matiere.nom_mat.toLowerCase().includes(transformedFilter) )||
+              key === 'enseignant' &&
+              (data.enseignant.name.toLowerCase().includes(transformedFilter) )||
+              key === 'semestre' &&
+              (data.semestre.semestre.toString().toLowerCase().includes(transformedFilter) )||
+              key === 'annee' &&
+              (data.annee.annee.toLowerCase().includes(transformedFilter) )
+            ) {
+              valid = true;
+            } else {
+              if (('' + data[key]).toLowerCase().includes(transformedFilter)) {
+                valid = true;
+              }
+            }
+          });
+
+          return valid;
+        }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {

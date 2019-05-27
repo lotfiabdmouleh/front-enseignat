@@ -20,7 +20,7 @@ import {User} from "../../models/user";
 })
 export class AgentComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'nom','prenom','dateAjout','dateModification','createdBy','lastModifiedBy','actions'];
+  displayedColumns: string[] = ['nom','prenom','dateAjout','dateModification','createdBy','lastModifiedBy','actions'];
   dataSource: MatTableDataSource<Agent>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

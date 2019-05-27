@@ -46,8 +46,6 @@ export class UserprofileComponent implements OnInit {
     };
     if(this.info.token!=null){
     this.getUserByName(this.token.getUsername());
-    //  this.uploadService.getFiles().subscribe(res=>{this.fileUploads=res as Observable<string[]>;console.log(res)});
-
     }else {
       this.route.navigate(['login'])
     }

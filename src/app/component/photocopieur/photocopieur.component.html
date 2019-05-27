@@ -6,11 +6,11 @@
     <div class="mat-card-header">
       <mat-icon>print</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Photocopieur</div>
+      {{'photocopieur.ph' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,23 +18,23 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="reference">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Reference </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'photocopieur.ref' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.reference}} </td>
             </ng-container>
             <ng-container matColumnDef="des">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Désignation </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'photocopieur.des' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.des}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
-                <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
-                  delete_forever </mat-icon>
+                <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">delete_forever </mat-icon>
                 <mat-icon class=" edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
                 <mat-icon class=" edit" (click)="openVertically(contentAff,row.id)" >menu</mat-icon>
+                <mat-icon class=" edit" (click)="openVerticallyinter(contentinter,row.id)" >menu</mat-icon>
 
               </td>
 
@@ -61,14 +61,6 @@
 
 
 
-
-
-
-
-
-
-
-
   <!-- affichage Modal-->
   <div class="col-md-12">
     <ng-template #contentAff let-c="close" let-d="dismiss">
@@ -78,7 +70,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Les recharges de photocopieur</h4>
+            <h4 class="m-b-0 titre">{{'recharge.rechph' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -89,15 +81,69 @@
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Recharge </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'recharge.daterech' | translate }}</th>
                   <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}}  </td>
                 </ng-container>
                 <ng-container matColumnDef="photocopieur">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Ancre utilisé </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'recharge.an' | translate }}</th>
                   <td mat-cell *matCellDef="let row"> {{row.ancre.des}}</td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsaff"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsaff;">
+                </tr>
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
+              <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ng-template>
+  </div>
+
+
+
+
+
+
+
+
+  <!-- inter Modal-->
+  <div class="col-md-12">
+    <ng-template #contentinter let-c="close" let-d="dismiss">
+
+      <div class="modal-body">
+        <div class="card card-outline-inverse">
+          <div class="card-header">
+            <i class="fa fa-user-circle titre"></i>
+
+            <h4 class="m-b-0 titre">{{'intervention.interph' | translate }}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body ">
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSourceinter" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="date">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'recharge.daterech' | translate }}</th>
+                  <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}}  </td>
+                </ng-container>
+                <ng-container matColumnDef="intervention">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'intervention.inter' | translate }} </th>
+                  <td mat-cell *matCellDef="let row"> {{row.nom_Societe}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsinter"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsinter;">
                 </tr>
               </table>
 
@@ -128,7 +174,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter photocopieur</h4>
+            <h4 class="m-b-0 titre">{{'photocopieur.addph' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -137,16 +183,16 @@
             <form #f="ngForm" (ngSubmit)="f.form.valid && addPhotocopieur()" >
 
               <mat-form-field>
-                <mat-label>Réference</mat-label>
-                <input matInput [(ngModel)]="photocopieur.reference" name="reference" required >
+                <mat-label>{{'photocopieur.ref' | translate }}</mat-label>
+                <input matInput [(ngModel)]="photocopieur.reference" name="{{'photocopieur.ref' | translate }}" required >
               </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Désignation</mat-label>
-              <input matInput [(ngModel)]="photocopieur.des" name="nbf" required>
+              <mat-label>{{'photocopieur.des' | translate }}</mat-label>
+              <input matInput [(ngModel)]="photocopieur.des" name="{{'photocopieur.des' | translate }}" required>
             </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -163,7 +209,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier Photocopieur</h4>
+            <h4 class="m-b-0 titre">{{'photocopieur.modph' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -172,16 +218,16 @@
             <form #f="ngForm" >
 
               <mat-form-field>
-                <mat-label>Réference</mat-label>
-                <input matInput [(ngModel)]="photocopieur.reference" name="reference" required>
+                <mat-label>{{'photocopieur.ref' | translate }}</mat-label>
+                <input matInput [(ngModel)]="photocopieur.reference" name="{{'photocopieur.ref' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Désignation</mat-label>
-              <input matInput [(ngModel)]="photocopieur.des" name="nbf" required>
+              <mat-label>{{'photocopieur.des' | translate }}</mat-label>
+              <input matInput [(ngModel)]="photocopieur.des" name="{{'photocopieur.des' | translate }}" required>
             </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editPhotocopieur()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editPhotocopieur()" >{{'button.btnmodifier' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -197,7 +243,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4> {{'agent.des' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -207,9 +253,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deletePhotocopieur()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deletePhotocopieur()" class="btn btn-danger">{{'button.supprimer' | translate }}</button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()">{{'button.btnfermer' | translate }}</button>
       </div>
     </ng-template>
   </div>

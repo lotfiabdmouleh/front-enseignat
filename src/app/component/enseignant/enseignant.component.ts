@@ -7,6 +7,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {EnseignantService} from "../../services/enseignant.service";
 import {Enseignant} from "../../models/enseignant";
 import {SignUpInfo} from "../../auth/signup-info";
+import {DemandeTirage} from "../../models/demandeTirage";
+import {Enseignemant} from "../../models/enseignemant";
 
 @Component({
   selector: 'app-enseignant',
@@ -14,7 +16,8 @@ import {SignUpInfo} from "../../auth/signup-info";
   styleUrls: ['./enseignant.component.css']
 })
 export class EnseignantComponent implements OnInit {
-
+  displayedColumnsdemande: string[] = ['date', 'file', 'nbgrp'];
+  dataSourcedemande: MatTableDataSource<DemandeTirage>;
 
   displayedColumns: string[] = ['nom','login','email','telephone','actions'];
   dataSource: MatTableDataSource<Enseignant>;
@@ -30,7 +33,8 @@ export class EnseignantComponent implements OnInit {
   fileInput: ElementRef;
   listEnseignant:Enseignant[];
   enseignant:Enseignant=new Enseignant();
-
+  enseignement:Enseignemant=new Enseignemant();
+  listDemande:DemandeTirage[];
   info:any;
 
   data:any;
@@ -87,7 +91,18 @@ export class EnseignantComponent implements OnInit {
       });
 
   }
+  openVerticallyCenteredMenu(contentMenu,id){
+    this.enseignantService.getEnseignant(id).subscribe(res=>{
+      this.enseignant=res as Enseignant;
 
+      this.listDemande=this.enseignant.demandeTirages as DemandeTirage[];
+            this.dataSourcedemande=new MatTableDataSource(this.listDemande);
+      this.dataSourcedemande.paginator=this.paginator;
+      this.dataSourcedemande.sort=this.sort;
+    }      ,err=>{console.log(err)});
+    this.modalService.open(contentMenu,{centered:true});
+
+}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

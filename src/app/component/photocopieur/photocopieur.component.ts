@@ -10,6 +10,8 @@ import {Photocopieur} from "../../models/photocopieur";
 import {PhotocopieurService} from "../../services/photocopieur.service";
 import {Ancre} from "../../models/ancre";
 import {Recharge} from "../../models/recharge";
+import {Intervention} from "../../models/intervention";
+import {InterventionService} from "../../services/intervention.service";
 
 @Component({
   selector: 'app-photocopieur',
@@ -20,6 +22,8 @@ export class PhotocopieurComponent implements OnInit {
 
   displayedColumns: string[] = ['reference','des','actions'];
   dataSource: MatTableDataSource<Photocopieur>;
+  displayedColumnsinter: string[] = ['date','intervention'];
+  dataSourceinter: MatTableDataSource<Intervention>;
   displayedColumnsaff: string[] = ['date','photocopieur'];
   dataSourceaff : MatTableDataSource<Recharge>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -29,10 +33,11 @@ export class PhotocopieurComponent implements OnInit {
   photocopieur:Photocopieur=new Photocopieur();
   info:any;
   listrech:Recharge[];
+  listinter:Intervention[];
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private photocopieurService:PhotocopieurService,private modalService: NgbModal,
+              private photocopieurService:PhotocopieurService,private modalService: NgbModal
   ) {
     this.getAllPhotocopieurs();
 
@@ -104,12 +109,23 @@ this.modalService.dismissAll();
   Imprimer(){
     this.photocopieurService.impression().subscribe(res=>{this.ngOnInit()});
   }
+  openVerticallyinter(contentinter,id){
+    this.photocopieurService.getphotocopieur(id).subscribe(res =>{this.photocopieur=res as Photocopieur;console.log(this.photocopieur);
+      this.listinter=this.photocopieur.interventions as Intervention[];
+      this.dataSourceinter = new MatTableDataSource(this.listinter);
+      this.dataSourceinter.paginator = this.paginator;
+      this.dataSourceinter.sort = this.sort;});
+
+
+    this.modalService.open(contentinter, { centered: true });
+  }
   openVertically(content,id){
-    this.photocopieurService.getphotocopieur(id).subscribe(res =>{this.photocopieur=res as Photocopieur;console.log(this.photocopieur);});
-    this.listrech=this.photocopieur.recharges as Recharge[];
-    this.dataSourceaff = new MatTableDataSource(this.listrech);
-    this.dataSourceaff.paginator = this.paginator;
-    this.dataSourceaff.sort = this.sort;
+    this.photocopieurService.getphotocopieur(id).subscribe(res =>{this.photocopieur=res as Photocopieur;console.log(this.photocopieur);
+      this.listrech=this.photocopieur.recharges as Recharge[];
+      this.dataSourceaff = new MatTableDataSource(this.listrech);
+      this.dataSourceaff.paginator = this.paginator;
+      this.dataSourceaff.sort = this.sort;});
+
     this.modalService.open(content, { centered: true });
   }
   c(){

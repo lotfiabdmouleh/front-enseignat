@@ -49,11 +49,11 @@
           </div>
         </li>
         <li role="separator" class="divider"></li>
-        <li><a (click)="userDetail()"><i class="fa fa-user-circle"></i> Profile</a></li>
+        <li><a (click)="userDetail()"><i class="fa fa-user-circle"></i> {{'agent.profil' | translate }}</a></li>
 
-        <li ><a (click)="open(content)"><i class="fa fa-power-off"></i> Changer mot de passe</a></li>
+        <li ><a (click)="open(content)"><i class="fa fa-key"></i> {{'user.modpass' | translate }}</a></li>
         <li role="separator" class="divider"></li>
-        <li ><a (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+        <li ><a (click)="logout()"><i class="fa fa-power-off"></i> {{'user.log' | translate }}</a></li>
 
       </ul>
     </div>
@@ -66,36 +66,38 @@
     <div class="modal-body">
       <div class="card card-outline-inverse">
         <div class="card-header">
-          <h4 class="m-b-0 text-white">{{'agent.modifier' | translate }}</h4>
-
+          <h4 class="m-b-0 titre">{{'user.modpass' | translate }}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="card-body">
           <form #f="ngForm" >
 
             <mat-form-field class="example-full-width">
-              <mat-label>ancien mot de passe</mat-label>
-              <input matInput [(ngModel)]="pass" name="pass">
+              <mat-label>{{'user.a' | translate }}</mat-label>
+              <input matInput type="password" [(ngModel)]="pass" name="pass">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-              <mat-label>nouveau mot de passe</mat-label>
-              <input matInput [(ngModel)]="newpassword" name="newpassword">
+              <mat-label>{{'user.new' | translate }}</mat-label>
+              <input matInput  type="password" [(ngModel)]="newpassword" name="newpassword">
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width">
-              <mat-label>confirmmer mot de passe</mat-label>
-              <input matInput [(ngModel)]="confpassword" name="confpassword">
+              <mat-label>{{'user.c' | translate }}</mat-label>
+              <input matInput  type="password" [(ngModel)]="confpassword" name="confpassword">
             </mat-form-field>
 
 
-            <button type="submit" (click)="changepasse()" class="btn btn-primary">{{'agent.button' | translate }}</button>
+            <button type="submit" (click)="changepasse()" class="btn btn-primary">{{'button.btnenr' | translate }}</button>
+            <button type="button" class="btn btn-light" (click)="c('Close click')">{{'button.btnfermer' | translate }}</button>
+
           </form>
         </div>
       </div>
 
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="c('Close click')">{{'agent.bt' | translate }}</button>
-    </div>
+
   </ng-template>
 </div>

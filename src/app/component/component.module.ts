@@ -65,6 +65,17 @@ import { DiversComponent } from './divers/divers.component';
 import {DiversService} from "../services/divers.service";
 import { EnseignementComponent } from './enseignement/enseignement.component';
 import {EnseignementService} from "../services/enseignement.service";
+import { SemestreComponent } from './semestre/semestre.component';
+import { AnneeComponent } from './annee/annee.component';
+import {AnneeService} from "../services/annee.service";
+import {SemestreService} from "../services/semestre.service";
+import { InterventionComponent } from './intervention/intervention.component';
+import {InterventionService} from "../services/intervention.service";
+import { DemandeTirageComponent } from './demande-tirage/demande-tirage.component';
+import {DemandetirageService} from "../services/demandetirage.service";
+import { TirageComponent } from './tirage/tirage.component';
+import {TirageService} from "../services/tirage.service";
+import { AjoutDemandeComponent } from './ajout-demande/ajout-demande.component';
 
 
 
@@ -126,13 +137,19 @@ import {EnseignementService} from "../services/enseignement.service";
     AncreComponent,
     DiversComponent,
     EnseignementComponent,
+    SemestreComponent,
+    AnneeComponent,
+    InterventionComponent,
+    DemandeTirageComponent,
+    TirageComponent,
+    AjoutDemandeComponent,
 
   ],
   providers: [
    UploadFileService,AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,DepartementService,MatiereService,
-    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,
-    DepartementService,MatiereService,EnseignantService,AgenttirageService, GroupeService,
-  PapierService,PhotocopieurService,AncreService,RechargeService,DiversService,EnseignementService]
+    AgentService,RoleService,httpInterceptorProviders,UserService,HistoriqueService,AnneeService,SemestreService,
+    DepartementService,MatiereService,EnseignantService,AgenttirageService, GroupeService,InterventionService,DemandetirageService,
+  PapierService,PhotocopieurService,AncreService,RechargeService,DiversService,EnseignementService,TirageService]
 
 })
 export class ComponentsModule {}

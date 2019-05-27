@@ -22,7 +22,7 @@ td, th {
 }
 
 td:last-child {
-  width: 10%;
+  width: 20%;
 }
 
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
@@ -42,7 +42,7 @@ td:last-child {
   height: auto;
   margin-top: 3px;
   padding-top: 2px;
-  width: 30% !important;
+  width: 20% !important;
 
 }
 .print{
@@ -118,7 +118,7 @@ td:last-child {
   height: auto;
   margin-top: 3px;
   padding-top: 2px;
-  width: 30% !important;
+  width: 20% !important;
 
 }
 

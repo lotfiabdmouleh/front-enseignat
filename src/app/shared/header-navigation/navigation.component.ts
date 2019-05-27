@@ -137,15 +137,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
 
   img(image:string){
-    console.log("bbbbbbbbbbbb"+this.user);
     this.uploadService.getimage(image).subscribe((data: any) => {
       this.file = this.sanitizer.bypassSecurityTrustUrl(this.imageType + data.content);
-      console.log("aaaaaaa"+data.content);
     });
   }
   ngAfterViewInit() {
 
-    // this.uploadService.getimage(this.token.getUsername()).subscribe(res=>this.fileUploads=res as Observable<string>);
   }
 
   logout() {
@@ -162,17 +159,22 @@ export class NavigationComponent implements OnInit, AfterViewInit {
     this.modalService.open(content);
 
   }
-
+c(){
+    this.pass='';
+    this.newpassword='';
+    this.confpassword='';
+    this.modalService.dismissAll();
+}
   changepasse() {
     if (this.newpassword === this.confpassword) {
-      console.log(this.token.getUsername());
       this.userService.getUserByName(this.token.getUsername()).subscribe(res => {
         this.user = res as User;
-        console.log(res)
+
       });
       this.user.password = this.pass;
       this.userService.updatepassword(this.user, this.newpassword).subscribe(res => console.log(res));
-
+    this.c();
+    this. logout();
     }
 
   }

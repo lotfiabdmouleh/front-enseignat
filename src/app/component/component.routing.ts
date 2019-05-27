@@ -19,6 +19,13 @@ import {AncreComponent} from "./ancre/ancre.component";
 import {DiversService} from "../services/divers.service";
 import {DiversComponent} from "./divers/divers.component";
 import {EnseignementComponent} from "./enseignement/enseignement.component";
+import {AnneeComponent} from "./annee/annee.component";
+import {SemestreComponent} from "./semestre/semestre.component";
+import {InterventionComponent} from "./intervention/intervention.component";
+import {DemandeTirage} from "../models/demandeTirage";
+import {DemandeTirageComponent} from "./demande-tirage/demande-tirage.component";
+import {TirageComponent} from "./tirage/tirage.component";
+import {AjoutDemandeComponent} from "./ajout-demande/ajout-demande.component";
 
 export const ComponentsRoutes: Routes = [
 
@@ -40,7 +47,32 @@ export const ComponentsRoutes: Routes = [
   },{
     path: 'ancre',
     component: AncreComponent
-  },{
+  },
+  {
+    path: 'demande',
+    component: DemandeTirageComponent
+  },
+  {
+    path: 'adddemandetirage',
+    component: AjoutDemandeComponent
+  },
+  {
+    path: 'tirage',
+    component: TirageComponent
+  },
+  {
+    path: 'annee',
+    component: AnneeComponent
+  },
+  {
+    path: 'intervention',
+    component: InterventionComponent
+  },
+  {
+    path: 'semestre',
+    component: SemestreComponent
+  },
+  {
     path: 'divers',
     component: DiversComponent
   },{

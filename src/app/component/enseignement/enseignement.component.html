@@ -4,13 +4,13 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon>filter_frames</mat-icon>
+      <mat-icon>school</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Enseignement</div>
+      {{'enseignement.ens' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder=" {{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,29 +18,37 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'enseignement </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'enseignement.dateens' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}} </td>
             </ng-container>
             <ng-container matColumnDef="departement">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Departement </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'departement.dep' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.departement.nom_dep}} </td>
             </ng-container>
             <ng-container matColumnDef="enseignant">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Enseignant </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'enseignant.ens' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.enseignant.name}} </td>
             </ng-container>
             <ng-container matColumnDef="groupe">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Groupe </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'groupe.grp' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.groupe.nom_grp}} </td>
             </ng-container>
             <ng-container matColumnDef="matiere">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Matière </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'matiere.mat' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.matiere.nom_mat}} </td>
+            </ng-container>
+            <ng-container matColumnDef="sem">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'semestre.sem' | translate }} </th>
+              <td mat-cell *matCellDef="let row"> {{row.semestre.semestre}} </td>
+            </ng-container>
+            <ng-container matColumnDef="annee">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'annee.annee' | translate }} </th>
+              <td mat-cell *matCellDef="let row"> {{row.annee.annee}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef > {{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
@@ -92,7 +100,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter Enseignement</h4>
+            <h4 class="m-b-0 titre"> {{'enseignement.addens' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -100,7 +108,7 @@
           <div class="card-body">
             <form #f="ngForm" (ngSubmit)="f.form.valid && addEnseignemant()" >
               <mat-form-field>
-                <mat-label> Sélectioner la Département</mat-label>
+                <mat-label>  {{'enseignement.selectdep' | translate }}</mat-label>
                 <mat-select [(value)]="selecteddep"  >
 
                   <mat-option  *ngFor="let a of listDepartement"  value="{{a.id}}">{{a.nom_dep}}</mat-option>
@@ -108,7 +116,7 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner l'Enseignant</mat-label>
+                <mat-label>  {{'enseignement.selectens' | translate }}</mat-label>
                 <mat-select [(value)]="selectedens"  >
 
                   <mat-option *ngFor="let a of listEnseignant"  value="{{a.id}}">{{a.name}}</mat-option>
@@ -116,7 +124,7 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner la Matiere</mat-label>
+                <mat-label>  {{'enseignement.selectmat' | translate }}</mat-label>
                 <mat-select [(value)]="selectedmat"  >
 
                   <mat-option *ngFor="let a of listMatiere"  value="{{a.id}}">{{a.nom_mat}}</mat-option>
@@ -124,15 +132,31 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner le Groupe</mat-label>
+                <mat-label>  {{'enseignement.selectgrp' | translate }}</mat-label>
                 <mat-select [(value)]="selectedgrp"  >
 
                   <mat-option *ngFor="let a of listGroupe"  value="{{a.id}}">{{a.nom_grp}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]=" f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <mat-form-field>
+                <mat-label>  {{'enseignement.selectsem' | translate }}</mat-label>
+                <mat-select [(value)]="selectedsem"  >
+
+                  <mat-option *ngFor="let a of listSemestre"  value="{{a.id}}">{{a.semestre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>  {{'enseignement.selectanne' | translate }}</mat-label>
+                <mat-select [(value)]="selectedann"  >
+
+                  <mat-option *ngFor="let a of listAnnee"  value="{{a.id}}">{{a.annee}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]=" f.form.invalid">{{'button.btnenr' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()"> {{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -147,7 +171,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier Enseignement</h4>
+            <h4 class="m-b-0 titre"> {{'enseignement.modens' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -155,7 +179,7 @@
           <div class="card-body">
             <form #f="ngForm" >
               <mat-form-field>
-                <mat-label> Sélectioner la Département</mat-label>
+                <mat-label>  {{'enseignement.selectdep' | translate }}</mat-label>
                 <mat-select [(value)]="selecteddep"  >
 
                   <mat-option  *ngFor="let a of listDepartement"  value="{{a.id}}">{{a.nom_dep}}</mat-option>
@@ -163,7 +187,7 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner l'Enseignant</mat-label>
+                <mat-label>  {{'enseignement.selectens' | translate }}</mat-label>
                 <mat-select [(value)]="selectedens"  >
 
                   <mat-option *ngFor="let a of listEnseignant"  value="{{a.id}}">{{a.name}}</mat-option>
@@ -171,7 +195,7 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner la Matiere</mat-label>
+                <mat-label>  {{'enseignement.selectmat' | translate }}</mat-label>
                 <mat-select [(value)]="selectedmat"  >
 
                   <mat-option *ngFor="let a of listMatiere"  value="{{a.id}}">{{a.nom_mat}}</mat-option>
@@ -179,15 +203,31 @@
               </mat-form-field>
               <br>
               <mat-form-field>
-                <mat-label> Sélectioner le Groupe</mat-label>
+                <mat-label>  {{'enseignement.selectgrp' | translate }}</mat-label>
                 <mat-select [(value)]="selectedgrp"  >
 
                   <mat-option *ngFor="let a of listGroupe"  value="{{a.id}}">{{a.nom_grp}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editEnseignemant()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <mat-form-field>
+                <mat-label>  {{'enseignement.selectsem' | translate }}</mat-label>
+                <mat-select [(value)]="selectedsem"  >
+
+                  <mat-option *ngFor="let a of listSemestre"  value="{{a.id}}">{{a.semestre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>  {{'enseignement.selectanne' | translate }}</mat-label>
+                <mat-select [(value)]="selectedann"  >
+
+                  <mat-option *ngFor="let a of listAnnee"  value="{{a.id}}">{{a.annee}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editEnseignemant()" > {{'button.btnmodifier' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()"> {{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -203,7 +243,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4 > {{'agent.des' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -213,9 +253,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteEnseignemant()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteEnseignemant()" class="btn btn-danger"> {{'button.supprimer' | translate }}</button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()"> {{'button.btnfermer' | translate }}</button>
       </div>
     </ng-template>
   </div>

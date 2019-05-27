@@ -1,3 +1,5 @@
+import {DemandeTirage} from "./demandeTirage";
+
 export class Enseignant {
   public id: number;
   public username: string;
@@ -5,7 +7,7 @@ export class Enseignant {
   public name: string;
   public email: string;
   public tel: number;
-
+public demandeTirages:DemandeTirage[];
   constructor(
   ) { }
 }

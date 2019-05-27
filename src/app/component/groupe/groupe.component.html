@@ -6,11 +6,11 @@
     <div class="mat-card-header">
       <mat-icon>school</mat-icon>
       <span style="float: right" > <button (click)="openVerticallyCentered(content)"class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
-      Departement</div>
+      {{'groupe.grp' | translate }}</div>
     <div class="card-body">
       <div class="">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder=" {{'agent.filter' | translate }}">
         </mat-form-field>
 
         <div class="mat-elevation-z8">
@@ -18,25 +18,25 @@
 
             <!-- ID Column -->
             <ng-container matColumnDef="groupe">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Groupe </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'groupe.grp' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.nom_grp}} </td>
             </ng-container>
             <ng-container matColumnDef="nbetd">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre d'étudiants </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'groupe.nbetd' | translate }}</th>
               <td mat-cell *matCellDef="let row"> {{row.nb_etd}} </td>
             </ng-container>
             <ng-container matColumnDef="niveau">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Niveau </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'groupe.niveau' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.niveau}} </td>
             </ng-container>
             <ng-container matColumnDef="filiere">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Filière </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'groupe.filiere' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.filiere}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="actions" >
-              <th mat-header-cell *matHeaderCellDef >actions  </th>
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">
@@ -88,7 +88,7 @@
           <div class="card-header">
             <i class="fa fa-user-circle titre"></i>
 
-            <h4 class="m-b-0 titre">Ajouter un groupe</h4>
+            <h4 class="m-b-0 titre">{{'groupe.addgrp' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -97,24 +97,24 @@
             <form #f="ngForm" (ngSubmit)="f.form.valid && addGroupe()" >
 
               <mat-form-field>
-                <mat-label>Nom du groupe</mat-label>
-                <input matInput [(ngModel)]="groupe.nom_grp" name="nom_grp" required>
+                <mat-label>{{'groupe.grp' | translate }}</mat-label>
+                <input matInput [(ngModel)]="groupe.nom_grp" name="{{'groupe.grp' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
-                <mat-label>Nombre d'étudiants</mat-label>
-                <input matInput [(ngModel)]="groupe.nb_etd" name="nbetd" required>
+                <mat-label>{{'groupe.nbetd' | translate }}</mat-label>
+                <input matInput [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
-                <mat-label>Niveau</mat-label>
-                <input matInput [(ngModel)]="groupe.niveau" name="niv" required>
+                <mat-label>{{'groupe.niveau' | translate }}</mat-label>
+                <input matInput [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
-                <mat-label>Filière</mat-label>
-                <input matInput [(ngModel)]="groupe.filiere" name="fil" required>
+                <mat-label>{{'groupe.filiere' | translate }}</mat-label>
+                <input matInput [(ngModel)]="groupe.filiere" name="{{'groupe.filiere' | translate }}" required>
               </mat-form-field>
               <br>
-              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'agent.button' | translate }}</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -131,7 +131,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div class="card-header">
-            <h4 class="m-b-0 titre">Modifier un groupe</h4>
+            <h4 class="m-b-0 titre">{{'groupe.modgrp' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="c()">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -139,26 +139,28 @@
           <div class="card-body">
             <form #f="ngForm" >
 
+
               <mat-form-field>
-                <mat-label>Nom du groupe</mat-label>
-                <input matInput [(ngModel)]="groupe.nom_grp" name="nom_grp" required>
+                <mat-label>{{'groupe.grp' | translate }}</mat-label>
+                <input matInput [(ngModel)]="groupe.nom_grp" name="{{'groupe.grp' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Nombre d'étudiants</mat-label>
-              <input matInput [(ngModel)]="groupe.nb_etd" name="nbetd" required>
+              <mat-label>{{'groupe.nbetd' | translate }}</mat-label>
+              <input matInput [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
             </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Niveau</mat-label>
-              <input matInput [(ngModel)]="groupe.niveau" name="niv" required>
+              <mat-label>{{'groupe.niveau' | translate }}</mat-label>
+              <input matInput [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
             </mat-form-field>
               <br><mat-form-field>
-              <mat-label>Filière</mat-label>
-              <input matInput [(ngModel)]="groupe.filiere" name="fil" required>
+              <mat-label>{{'groupe.filiere' | translate }}</mat-label>
+              <input matInput [(ngModel)]="groupe.filiere" name="{{'groupe.filiere' | translate }}" required>
             </mat-form-field>
+              <br>
 
 
-              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editGroupe()" >Modifier</button>
-              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">Annuler</button>
+              <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editGroupe()" >{{'button.btnmodifier' | translate }}</button>
+              <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
           </div>
         </div>
@@ -174,7 +176,7 @@
       <div class="modal-body">
         <div class="card card-outline-inverse">
           <div >
-            <h4 >Etes vous sûr de vouloir supprimer?</h4>
+            <h4 >{{'agent.des' | translate }}</h4>
 
           </div>
         </div>
@@ -182,9 +184,9 @@
       </div>
       <div class="modal-footer">
         <form name="form" #f="ngForm">
-          <button type="submit" (click)="deleteGroupe()" class="btn btn-danger">Supprimer</button>
+          <button type="submit" (click)="deleteGroupe()" class="btn btn-danger">{{'button.supprimer' | translate }}</button>
         </form>
-        <button type="button" class="btn btn-light" (click)="c()">Annuler</button>
+        <button type="button" class="btn btn-light" (click)="c()">{{'button.btnfermer' | translate }}</button>
       </div>
     </ng-template>
   </div>
