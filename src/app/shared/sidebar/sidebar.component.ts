@@ -1,6 +1,8 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {forEach} from '@angular/router/src/utils/collection';
 declare var $: any;
 @Component({
   selector: 'app-sidebar',
@@ -148,16 +150,13 @@ export class SidebarComponent implements OnInit {
     },
     ];
 
-  
-  constructor(
-    private modalService: NgbModal,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
-  // End open close
-  ngOnInit() {
+this.ref();
+    // this.translate.stream("agent.nom").subscribe(res=>this.appitems[0].label=res)
   }
   selectedItem($event){
     this.router.navigate([$event.link]);
   }
+ref(){
+  this.translate.stream("agent.nom").subscribe(res=>{this.appitems[0].label=res;});
+}
 }

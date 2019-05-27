@@ -1,0 +1,27 @@
+.edit:hover{
+  color: #06d79c !important;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+.edit {
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+
+}
+.mp{
+  color: red;
+}
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
+.dark-modal .close {
+  color: white;
+}
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+
+

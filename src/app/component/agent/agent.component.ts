@@ -10,6 +10,7 @@ import {TokenStorageService} from '../../auth/token-storage.service';
 import {RoleService} from "../../services/role.service";
 import {Role} from "../../models/role";
 import {User} from "../../models/user";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-agent',
@@ -32,9 +33,12 @@ export class AgentComponent implements OnInit {
   listRole:any;
   selected:any;
   data:any;
+  test:any;
+
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private agentService: AgentService,private modalService: NgbModal,private roleService:RoleService,
-              private changed:ChangeDetectorRef) {
+              private changed:ChangeDetectorRef, private translate: TranslateService) {
+    this.test=this.translate.stream("agent.nom").subscribe(res=>console.log(res));
     this.getAllAgents();
 
   }

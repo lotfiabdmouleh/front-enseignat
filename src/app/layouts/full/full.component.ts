@@ -2,8 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {SidebarComponent} from '../../shared/sidebar/sidebar.component';
 
 @Component({
+  providers:[SidebarComponent],
   selector: 'app-full-layout',
   templateUrl: './full.component.html',
   styleUrls: ['./full.component.scss']
@@ -18,7 +20,7 @@ export class FullComponent implements OnInit {
 
   public config: PerfectScrollbarConfigInterface = {};
 
-  constructor(public router: Router,private translate:TranslateService,) {
+  constructor(public router: Router,private translate:TranslateService,private sidebar:SidebarComponent) {
     translate.setDefaultLang('fr');}
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class FullComponent implements OnInit {
   useLanguage(language: string) {
     localStorage.setItem("lang", language);
     this.translate.use(language);
+
 
 
   }

@@ -65,6 +65,7 @@ import { DiversComponent } from './divers/divers.component';
 import {DiversService} from "../services/divers.service";
 import { EnseignementComponent } from './enseignement/enseignement.component';
 import {EnseignementService} from "../services/enseignement.service";
+import { HistoriquegeneralComponent } from './historiquegeneral/historiquegeneral.component';
 import { SemestreComponent } from './semestre/semestre.component';
 import { AnneeComponent } from './annee/annee.component';
 import {AnneeService} from "../services/annee.service";
@@ -137,6 +138,7 @@ import { AjoutDemandeComponent } from './ajout-demande/ajout-demande.component';
     AncreComponent,
     DiversComponent,
     EnseignementComponent,
+    HistoriquegeneralComponent,
     SemestreComponent,
     AnneeComponent,
     InterventionComponent,

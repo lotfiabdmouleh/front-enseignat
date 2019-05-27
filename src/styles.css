@@ -14,3 +14,9 @@
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
   z-index: 99999 !important;
 }
+.dark-modal .close {
+  color: white;
+}
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}

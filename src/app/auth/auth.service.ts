@@ -28,4 +28,8 @@ export class AuthService {
 
     return this.http.post<string>(this.signupUrl, info, httpOptions);
   }
+  send(username){
+    const url = 'http://127.0.0.1:8080/mail/send/'+username;
+    return this.http.get(url);
+  }
 }

@@ -19,6 +19,7 @@ import {AncreComponent} from "./ancre/ancre.component";
 import {DiversService} from "../services/divers.service";
 import {DiversComponent} from "./divers/divers.component";
 import {EnseignementComponent} from "./enseignement/enseignement.component";
+import {HistoriquegeneralComponent} from './historiquegeneral/historiquegeneral.component';
 import {AnneeComponent} from "./annee/annee.component";
 import {SemestreComponent} from "./semestre/semestre.component";
 import {InterventionComponent} from "./intervention/intervention.component";
@@ -121,6 +122,10 @@ export const ComponentsRoutes: Routes = [
   {
     path: 'userdetail',
     component: UserprofileComponent
+  },
+  {
+    path: 'allhistory',
+    component: HistoriquegeneralComponent
   },
 
 ];

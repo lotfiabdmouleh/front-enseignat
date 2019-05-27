@@ -3,6 +3,8 @@ import {AuthLoginInfo} from '../auth/login-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {Router} from '@angular/router';
+import {Agent} from '../models/agent';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +18,12 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  test=false;
+  x=false;
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,public router: Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,public router: Router,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -57,5 +62,19 @@ export class LoginComponent implements OnInit {
   reloadPage() {
     window.location.reload();
   }
+
+  send(username:any,contentdelete){
+  if(username){
+    this.authService.send(username).subscribe(res=>{console.log(res);});
+    this.x=true;
+  }else{
+    this.test=true;
+    this.x=false;
+  }
+
+
+  }
+
+
 
 }

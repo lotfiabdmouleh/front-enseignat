@@ -32,7 +32,7 @@ export class EnseignementComponent implements OnInit {
   displayedColumns: string[] = ['date','departement','enseignant','groupe','matiere','sem','annee','actions'];
   dataSource: MatTableDataSource<Enseignemant>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+ @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
   listEnseignemant:Enseignemant[];
@@ -59,6 +59,7 @@ export class EnseignementComponent implements OnInit {
               private enseignementService:EnseignementService
   ) {
     this.getAllEnseignemants();
+
 
   }
 
@@ -185,7 +186,8 @@ export class EnseignementComponent implements OnInit {
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }}
+    }
+    }
 
   Imprimer(){
     this.enseignantService.impression().subscribe(res=>{this.ngOnInit()});

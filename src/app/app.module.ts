@@ -31,12 +31,7 @@ import {RoleComponent} from "./component/role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {CalendarModule} from "angular-calendar";
 import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
-import {DiversService} from "./services/divers.service";
-import {httpFactory} from "@angular/http/src/http_module";
-import {RoleService} from "./services/role.service";
-import {UserprofileComponent} from './component/userprofile/userprofile.component';
-import {AgentService} from './services/agent.service';
-import {UploadFileService} from './services/upload-file.service';
+import {AlertModule} from 'ngx-bootstrap';
 
 
 
@@ -74,6 +69,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatIconModule,
     AngularFontAwesomeModule,
     NgMaterialMultilevelMenuModule,
+    AlertModule.forRoot(),
 
     TranslateModule.forRoot({
       loader: {

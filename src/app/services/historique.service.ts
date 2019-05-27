@@ -15,4 +15,9 @@ export class HistoriqueService {
     const url = 'http://127.0.0.1:8080/agent/historyDetail/' + id;
     return this.http.get(url);
   }
+  getAllHistory(){
+    const url = 'http://127.0.0.1:8080/historique/all/';
+    return this.http.get(url);
+  }
+
 }
