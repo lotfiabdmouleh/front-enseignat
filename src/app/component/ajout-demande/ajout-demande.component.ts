@@ -18,11 +18,12 @@ import {GroupeService} from "../../services/groupe.service";
 import {SemestreService} from "../../services/semestre.service";
 import {AnneeService} from "../../services/annee.service";
 import {EnseignementService} from "../../services/enseignement.service";
-import {Observable} from "rxjs";
 import {UploadFileService} from "../../services/upload-file.service";
 import {DemandetirageService} from "../../services/demandetirage.service";
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-ajout-demande',
@@ -50,15 +51,9 @@ export class AjoutDemandeComponent implements OnInit {
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
   fichier:any;
-  fileUploads: Observable<any>;
   enseignemant:Enseignemant=new Enseignemant();
   info:any;
-  selectedens:Enseignant;
-  selecteddep:Departement;
-  selectedmat:Matiere;
-  selectedgrp:Groupe;
-  selectedsem:Semester;
-  selectedann:Annee;
+
   user:User=new  User();
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
@@ -66,13 +61,15 @@ export class AjoutDemandeComponent implements OnInit {
               private matiereService:MatiereService,private enseignantService:EnseignantService,private uploadService: UploadFileService,
               private  groupeService:GroupeService,private semService:SemestreService,private anneeService:AnneeService,
               private userService:UserService,
-              private enseignementService:EnseignementService
+              private enseignementService:EnseignementService,private title:Title,private translate: TranslateService
   ) {
 
 
   }
 
   ngOnInit() {
+    this.translate.stream("demande.n").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -86,34 +83,34 @@ export class AjoutDemandeComponent implements OnInit {
     this.depService.getAlldepartement()
       .subscribe(res => {this.listDepartement = res as Departement[];},
         err => {
-          console.log(err);
+
         });
 
     this.groupeService.getAllgroupe()
       .subscribe(res => {this.listGroupe = res as Groupe[];},
         err => {
-          console.log(err);
+
         });
 
     this.matiereService.getAllmatiere()
       .subscribe(res => {this.listMatiere = res as Matiere[];},
         err => {
-          console.log(err);
+
         });
     this.anneeService.getAllAnnee()
       .subscribe(res => {this.listAnnee = res as Annee[];},
         err => {
-          console.log(err);
+
         });
     this.semService.getAllsemestre()
       .subscribe(res => {this.listSemestre = res as Semester[];},
         err => {
-          console.log(err);
+
         });
     this.enseignantService.getAllenseignants()
       .subscribe(res => {this.listEnseignant = res as Enseignant[];},
         err => {
-          console.log(err);
+
         });
     this.userService.getUserByName(this.token.getUsername()).subscribe(res=>this.user=res as User);
 
@@ -124,25 +121,28 @@ export class AjoutDemandeComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant;console.log(this.enseignemant);});
+    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant; });
 
     this.modalService.open(content, { centered: true });
   }
 
   addDemande(){
-    this.demandeService.adddemandeTirage(this.enseignemant,this.fichier);
-    this.c();
-    this.route.navigate(['full/component/demande']);
+    this.demandeService.adddemandeTirage(this.enseignemant,this.fichier).subscribe(res =>{
+      this.c();
+      this.route.navigate(['full/component/demande']);
+    });
+
 
   }
 
   getAllEnseignemants(){
     this.enseignementService.getenseignementbyuser(this.token.getUsername())
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res ;
         this.listEnseignemant = res as Enseignemant[];
 
         this.dataSource = new MatTableDataSource(this.listEnseignemant);
+
         this.dataSource.filterPredicate = (data, filter) => {
           let valid = false;
 
@@ -176,7 +176,7 @@ export class AjoutDemandeComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -193,7 +193,7 @@ export class AjoutDemandeComponent implements OnInit {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
-        console.log(event.body);
+
         this.fichier=event.body;
       }
     });
@@ -208,14 +208,14 @@ export class AjoutDemandeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.enseignantService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
 
     this.modalService.dismissAll();
   }
+
+
 
 
 

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {DemandeTirage} from "../models/demandeTirage";
 import {Enseignemant} from "../models/enseignemant";
 
@@ -18,12 +18,9 @@ export class DemandetirageService {
     const uri = 'http://127.0.0.1:8080/demandeTirage/'+file;
 
 
-    this.http.post(uri, enseignement).subscribe(res => console.log('done'));
+   return this.http.post(uri, enseignement);
   }
 
-  getAlldemandeTirage() {
-    return this.http.get('http://127.0.0.1:8080/demandeTirage');
-  }
 
 
   deletedemandeTirage(id) {
@@ -38,32 +35,75 @@ export class DemandetirageService {
     const url = 'http://127.0.0.1:8080/demandeTirage/' + id;
     return this.http.get(url);
   }
+  getNbCopieParDep(id) {
+    const url = 'http://127.0.0.1:8080/demandeTirage/nbrcopie/' + id;
+    return this.http.get(url);
+  }
+  getNbCopieDep() {
+    const url = 'http://127.0.0.1:8080/demandeTirage/nbrcopiedep' ;
+    return this.http.get(url);
+  }
+
+  getNbCopieEns() {
+    const url = 'http://127.0.0.1:8080/demandeTirage/nbrcopieens' ;
+    return this.http.get(url);
+  }
+  getNbCopieEnsParDate(dated:string,datefin:string) {
+    let params = new HttpParams().set("paramName",dated).set("paramName2", datefin); //Create new HttpParams
+
+    const url = 'http://127.0.0.1:8080/demandeTirage/date' ;
+    return this.http.get(url,{params:params});
+  }
+
+  getNbCopieDepParDate(dated:string,datefin:string) {
+    let params = new HttpParams().set("paramName",dated).set("paramName2", datefin); //Create new HttpParams
+
+    const url = 'http://127.0.0.1:8080/demandeTirage/date/dep' ;
+    return this.http.get(url,{params:params});
+  }
+  getNbCopieMatParDate(dated:string,datefin:string) {
+    let params = new HttpParams().set("paramName",dated).set("paramName2", datefin); //Create new HttpParams
+
+    const url = 'http://127.0.0.1:8080/demandeTirage/date/mat' ;
+    return this.http.get(url,{params:params});
+  }
+  ImpRapEnsDate(dated:string,datefin:string,rap) {
+    let params = new HttpParams().set("paramName",dated).set("paramName2", datefin); //Create new HttpParams
+
+    const url = 'http://127.0.0.1:8080/Liste/'+rap ;
+
+    return this.http.get(url,{responseType:'blob' ,params:params})
+      .map((blob:Blob)=>{
+         var file=new Blob([blob],{type:'application/pdf'});
+        var fileUrl=URL.createObjectURL(file);
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = fileUrl;
+        document.body.appendChild(iframe);
+        iframe.contentWindow.print();
+
+      });
+
+  }
+
+
+
+
+  getNbCopieMat() {
+    const url = 'http://127.0.0.1:8080/demandeTirage/nbrcopiemat' ;
+    return this.http.get(url);
+  }
 
   impressiondemandeTirage(){
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 
 
       });
-  }
-  getHistorydemandeTirage(){
-    return this.http.get('http://127.0.0.1:8080/demandeTirage/history');
-
-  }
-
-
-  getensdemande(ann:any,sem:any,username:any){
-    return this.http.get('http://127.0.0.1:8080/demandeTirage/enseignement/'+ann+'/'+sem+'/'+username);
-
-  }
- getgroup(mat:any){
-    return this.http.get('http://127.0.0.1:8080/demandeTirage/matiere/'+mat);
-
   }
 
 

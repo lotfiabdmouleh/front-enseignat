@@ -1,11 +1,139 @@
-<div >
-  <h5 class="text-primary">Your Information</h5>
-  <p>
-    <strong>Username:</strong> {{info.username}}<br/>
-    <strong>Roles:</strong> {{info.authorities}}<br />
-    <strong >{{msg}}</strong>
-  </p>
+
+<div class="mat-card-header">
+    <mat-icon >print</mat-icon>
+    {{'photocopieur.ph' | translate }} </div>
+<div class="row">
+
+  <div class="col-4 m-t-30" *ngFor="let i of lst ">
+
+    <div class="card text-center" >
+      <div class="card-body">
+        <h4 class="card-title">{{i.reference}}</h4> <p class="card-text">Intervention : {{i.interventions.length}}</p>
+        <p class="card-text">Recharge : {{i.recharges.length}}</p>
+        <p class="card-text" >Nombre de copies : {{i.nb_copie}} </p>
+
+
+        <a  (click)="ph(content,i.id)" class="btn btn-info "  style="color: white">
+          Détails >> </a>
+      </div>
+
+    </div>
+    <!-- Card -->
+
+
+</div>
+
+</div>
+
+<div class="mat-card-header">
+    <mat-icon >account_balance</mat-icon>
+    {{'departement.dep' | translate }} </div>
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="card text-center" >
+
+        <div >
+          <canvas id="barChart" height="80"></canvas>
+
+        </div>
+
+      <a  (click)="dep()" class="btn btn-info "  style=" width: 20% ; color: white; display: block; margin-left: auto; margin-right: auto ">
+        Détails >> </a>
+
+
+    </div>
+    <!-- Card -->
+
 
 </div>
 
 
+
+</div>
+
+<div class="mat-card-header">
+    <mat-icon >person</mat-icon>
+    {{'enseignant.ens' | translate }} </div>
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="card text-center" >
+
+        <div >
+          <canvas id="ens" height="80"></canvas>
+
+        </div>
+
+       <a  (click)="go()" class="btn btn-info "  style=" width: 20% ; color: white; display: block; margin-left: auto; margin-right: auto ">
+         Détails >> </a>
+
+
+    </div>
+    <!-- Card -->
+
+
+</div>
+
+
+
+</div>
+
+<div class="mat-card-header">
+    <mat-icon >book</mat-icon>
+    {{'matiere.mat' | translate }} </div>
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="card text-center" >
+
+        <div >
+          <canvas id="mat" height="80"></canvas>
+
+        </div>
+
+      <a  (click)="mat()" class="btn btn-info "  style=" width: 20% ; color: white; display: block; margin-left: auto; margin-right: auto ">
+        Détails >> </a>
+
+    </div>
+    <!-- Card -->
+
+
+</div>
+
+
+
+</div>
+
+<span style="visibility: hidden"><p>kk</p><p>kk</p><p>kk</p></span>
+<!-- Edit Modal-->
+<div class="col-md-12">
+  <ng-template #content >
+
+    <div class="modal-body">
+      <div class="card card-outline-inverse">
+        <div class="card-header">
+          <h4 class="m-b-0 titre">{{'photocopieur.ph' | translate }}</h4>
+          <button type="button" class="close" aria-label="Close" (click)="c()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="card-body">
+          <div >
+            <canvas baseChart
+             [data]="datapie"
+             [labels]="labelspie"
+              [chartType]="pie"
+            ></canvas>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+</div>

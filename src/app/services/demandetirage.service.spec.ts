@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DemandetirageService } from './demandetirage.service';
+import {DemandetirageService} from './demandetirage.service';
 
 describe('DemandetirageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

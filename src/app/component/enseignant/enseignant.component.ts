@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef,  OnInit,  ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
@@ -9,6 +9,9 @@ import {Enseignant} from "../../models/enseignant";
 import {SignUpInfo} from "../../auth/signup-info";
 import {DemandeTirage} from "../../models/demandeTirage";
 import {Enseignemant} from "../../models/enseignemant";
+import {AuthService} from "../../auth/auth.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-enseignant',
@@ -18,6 +21,7 @@ import {Enseignemant} from "../../models/enseignemant";
 export class EnseignantComponent implements OnInit {
   displayedColumnsdemande: string[] = ['date', 'file', 'nbgrp'];
   dataSourcedemande: MatTableDataSource<DemandeTirage>;
+  telnumber=false;
 
   displayedColumns: string[] = ['nom','login','email','telephone','actions'];
   dataSource: MatTableDataSource<Enseignant>;
@@ -39,13 +43,15 @@ export class EnseignantComponent implements OnInit {
 
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private enseignantService:EnseignantService,private modalService: NgbModal,
-              private changed:ChangeDetectorRef) {
+              private enseignantService:EnseignantService,private modalService: NgbModal,private authService:AuthService,
+              private changed:ChangeDetectorRef  ,private title:Title,private translate: TranslateService) {
     this.getAllEnseignants();
 
   }
 
   ngOnInit() {
+    this.translate.stream("enseignant.ens").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -68,7 +74,7 @@ export class EnseignantComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;console.log(this.enseignant);});
+    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -80,14 +86,14 @@ export class EnseignantComponent implements OnInit {
   getAllEnseignants(){
     this.enseignantService.getAllenseignants()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listEnseignant = res as Enseignant[];
 
         this.dataSource = new MatTableDataSource(this.listEnseignant);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -99,7 +105,7 @@ export class EnseignantComponent implements OnInit {
             this.dataSourcedemande=new MatTableDataSource(this.listDemande);
       this.dataSourcedemande.paginator=this.paginator;
       this.dataSourcedemande.sort=this.sort;
-    }      ,err=>{console.log(err)});
+    }      ,err=>{});
     this.modalService.open(contentMenu,{centered:true});
 
 }
@@ -111,9 +117,7 @@ export class EnseignantComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.enseignantService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
     this.form.name='';
@@ -125,41 +129,48 @@ export class EnseignantComponent implements OnInit {
   }
 
   deleteEnseignant(){
-    this.enseignantService.deleteenseignant(this.enseignant.id).subscribe(res => {console.log('deleted') });
+    this.enseignantService.deleteenseignant(this.enseignant.id).subscribe(res => {
     this.modalService.dismissAll(this.enseignant);
     this.getAllEnseignants();
-
+  });
 
   }
   openVerticallydelete(contentdelete,id){
-    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;console.log(this.enseignant);});
+    this.enseignantService.getEnseignant(id).subscribe(res =>{this.enseignant=res as Enseignant;});
     this.modalService.open(contentdelete);
   }
   onSubmit() {
-    console.log(this.form);
+    if(isNaN(this.form.tel) ){
+      this.telnumber=true;
+    }
+    else{
+      this.signupInfo = new SignUpInfo(
+        this.form.name,
+        this.form.username,
+        this.form.email,
+        this.form.tel,);
 
-    this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password,
-      this.form.tel,);
+      this.enseignantService.signUp(this.signupInfo).subscribe(
+        data => {
 
-    this.enseignantService.signUp(this.signupInfo).subscribe(
-      data => {
-        console.log(data);
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
 
-        this.c();
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
 
-        this.getAllEnseignants();
-      },
-      error => {
-        console.log(error);
-        this.errorMessage = error.error.message;
-        this.isSignUpFailed = true;
-      }
-    );
+          this.c();
+
+          this.getAllEnseignants();
+
+
+        },
+        error => {
+
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    }
+
+
   }
 }

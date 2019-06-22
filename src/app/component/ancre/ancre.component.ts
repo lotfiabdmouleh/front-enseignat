@@ -7,6 +7,8 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Ancre} from "../../models/ancre";
 import {AncreService} from "../../services/ancre.service";
 import {Recharge} from "../../models/recharge";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-ancre',
@@ -23,17 +25,23 @@ export class AncreComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
   listAncre:Ancre[];
+  qtestckbool=false;
+  seuilbool=false;
   ancre:Ancre=new Ancre();
   listrech:Recharge[];
   info:any;
   selected:any;
   data:any;
+  test:boolean=true;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private ancreService:AncreService,private modalService: NgbModal) {
+              private ancreService:AncreService,private modalService: NgbModal
+              ,private title:Title,private translate: TranslateService) {
     this.getAllAncres();
   }
 
   ngOnInit() {
+    this.translate.stream("consommable.ancre").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -46,17 +54,37 @@ export class AncreComponent implements OnInit {
     }}
 
   addAncre() {
-    this.ancreService.addAncre(this.ancre);
-    this.c();
-    this.getAllAncres();
+    if(isNaN(this.ancre.qte_stck)){
+      this.qtestckbool=true;
+    }else
+    if(isNaN(this.ancre.seuil_max)){
+      this.seuilbool=true
+      }
+    else{
+      this.seuilbool=false;
+      this.qtestckbool=false;
+      if(this.ancre.qte_stck>this.ancre.seuil_max){
+        this.test=false}
+        else{
+    this.ancreService.addAncre(this.ancre).subscribe(res=>{
+
+
+
+        this.test=true;
+        this.c();
+        this.getAllAncres();
+
+
+    });
   }
+  }}
 
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
 
   openVertically(content,id){
-    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;console.log(this.ancre);
+    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;
       this.listrech=this.ancre.recharges as Recharge[];
       this.dataSourceaff = new MatTableDataSource(this.listrech);
       this.dataSourceaff.paginator = this.paginator;
@@ -66,25 +94,46 @@ export class AncreComponent implements OnInit {
 }
 
 openVerticallyCenteredEdit(content,id) {
-    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;console.log(this.ancre);});
+    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre; });
     this.modalService.open(content, { centered: true });
   }
 
   editAncre(){
-    this.ancreService.updateAncre(this.ancre).subscribe(res=>{this.ngOnInit()});
-    this.c();
+    if(isNaN(this.ancre.qte_stck)){
+      this.qtestckbool=true;
+    }else
+    if(isNaN(this.ancre.seuil_max)){
+      this.seuilbool=true
+    }
+    else{
+      this.seuilbool=false;
+      this.qtestckbool=false;
+      if(this.ancre.qte_stck>this.ancre.seuil_max){
+        this.test=false
+      }
+      else {
+        this.ancreService.updateAncre(this.ancre).subscribe(res => {
+
+
+          this.test = true;
+          this.c();
+          this.getAllAncres();
+
+
+        });
+      }}
   }
 
   getAllAncres(){
     this.ancreService.getAllAncre()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listAncre = res as Ancre[];
         this.dataSource = new MatTableDataSource(this.listAncre);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
   }
 
@@ -100,17 +149,15 @@ openVerticallyCenteredEdit(content,id) {
   }
 
   deleteAncre(){
-    this.ancreService.deleteAncre(this.ancre.id).subscribe(res => {console.log('deleted') });
+    this.ancreService.deleteAncre(this.ancre.id).subscribe(res => {
     this.modalService.dismissAll(this.ancre);
-    this.getAllAncres();
+    this.getAllAncres();});
   }
 
   openVerticallydelete(contentdelete,id){
-    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre;console.log(this.ancre);});
+    this.ancreService.getAncre(id).subscribe(res =>{this.ancre=res as Ancre; });
     this.modalService.open(contentdelete);
 
   }
-  Imprimer(){
-    this.ancreService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 }

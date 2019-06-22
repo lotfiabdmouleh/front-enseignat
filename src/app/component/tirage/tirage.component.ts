@@ -3,7 +3,7 @@ import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/mate
 import {DemandeTirage} from "../../models/demandeTirage";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
-import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {MatiereService} from "../../services/matiere.service";
@@ -16,6 +16,9 @@ import {PhotocopieurService} from "../../services/photocopieur.service";
 import {Photocopieur} from "../../models/photocopieur";
 import {Papier} from "../../models/papier";
 import {TirageService} from "../../services/tirage.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
+
 
 @Component({
   selector: 'app-tirage',
@@ -25,21 +28,20 @@ import {TirageService} from "../../services/tirage.service";
 export class TirageComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['date',  'ens', 'file', 'nbgrp','actions'];
+  displayedColumns: string[] = ['dateAjout',  'ens', 'file', 'nbgrp','actions'];
   dataSource: MatTableDataSource<DemandeTirage>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
   id:any;
 
-
-
+  papier:Papier=new Papier();
   listPh: Photocopieur[]=[];
   listPapier: Papier[]=[];
   listdemande: DemandeTirage[]=[];
   demande: DemandeTirage = new DemandeTirage();
   info: any;
-
+  b=true;
   selectedph: Photocopieur;
   selectedpapier: Papier;
   data: any;
@@ -48,13 +50,15 @@ export class TirageComponent implements OnInit {
            private modalService: NgbModal,private phService:PhotocopieurService,
               private matiereService: MatiereService, private enseignantService: EnseignantService,private tirageService:TirageService,
               private userService : UserService,private papierService:PapierService,
-              private demandeService: DemandetirageService
+              private demandeService: DemandetirageService,private title:Title,private translate: TranslateService
   ) {
 
 
   }
 
   ngOnInit() {
+    this.translate.stream("tirage.tirage").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -72,22 +76,23 @@ export class TirageComponent implements OnInit {
           this.listPh = res as Photocopieur[];
         },
         err => {
-          console.log(err);
+
         });
     this.papierService.getAllpapier()
       .subscribe(res => {
           this.listPapier = res as Papier[];
         },
         err => {
-          console.log(err);
+
         });
     this.userService.getUserByName(this.token.getUsername()).subscribe(res=>this.user=res as User);
+
   }
 
   getAllDemandeTirage() {
-    this.tirageService.getdemande()
+    this.tirageService.getdemandevalider()
       .subscribe(res => {
-        this.data = res, console.log(this.data);
+        this.data = res;
         this.listdemande = res as DemandeTirage[];
         this.dataSource = new MatTableDataSource(this.listdemande);
         this.dataSource.filterPredicate = (data, filter) => {
@@ -115,16 +120,26 @@ export class TirageComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
 
   addTirage() {
-console.log(this.demande);
-    this.tirageService.addtirage(this.demande,  this.user.id, this.selectedpapier,this.selectedph);
-    this.getAllDemandeTirage();
-    this.c();
+    this.papierService.getpapier(this.selectedpapier).subscribe(res=>{
+      this.papier=res as Papier;
+      if(this.papier.nb_feuille>=this.demande.nb_copie){
+        this.b=true;
+        this.tirageService.impression(this.demande.file).subscribe(res=>{
+          this.tirageService.addtirage(this.demande,  this.user.id, this.selectedpapier,this.selectedph);
+          this.getAllDemandeTirage();
+          this.c();
+        });
+      }
+      else{
+        this.b=false;
+      }
+    });
   }
 
   openVerticallyCentered(content) {
@@ -137,7 +152,7 @@ console.log(this.demande);
 
     this.demandeService.getdemandeTirage(id).subscribe(res => {
       this.demande = res as DemandeTirage;
-      console.log(this.demande);
+
     });
 
     this.modalService.open(content, {centered: true});
@@ -172,24 +187,6 @@ console.log(this.demande);
     this.modalService.open(content);
   }
 
-  openVerticallyValid(id){
-    this.demandeService.getdemandeTirage(id).subscribe(res=>{
-      this.demande=res as DemandeTirage;
-      this.tirageService.modFile("Votre document est en cours d impression",id);
-      this.getAllDemandeTirage();
-    },err=>
-    {console.log(err);});
-}
-
-openVerticallyInvalid(id){
-    this.demandeService.getdemandeTirage(id).subscribe(res=>{
-      this.demande=res as DemandeTirage;
-      this.tirageService.modFile("Interdit d'imprimer un document cours",id);
-        this.getAllDemandeTirage();
-
-      },err=>{console.log(err);}
-    );
-}
 
 
 

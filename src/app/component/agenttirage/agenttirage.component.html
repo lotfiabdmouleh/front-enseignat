@@ -56,8 +56,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -93,12 +92,9 @@
           </div>
           <div class="card-body">
             <form name="form" (ngSubmit)="f.form.valid && onSubmit()"  #f="ngForm" novalidate>
-              <div *ngIf="f.submitted && f.valid"  >
-                <div class="alert alert-dismissible alert-success">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                </div>
-              </div>
-
+              <div *ngIf="telnumber==true">
+    <alert class="danger" >numéro de télèphone doit être numérique</alert>
+          </div>
               <div class="form-group">
                 <label for="name">{{'user.nomuser' | translate }}</label>
                 <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
@@ -122,22 +118,14 @@
                   <div *ngIf="email.errors.email">{{'user.mailerror' | translate }}</div>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="password">{{'user.passeuser' | translate }}</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-                       required minlength="6" />
-                <div *ngIf="f.submitted && password.invalid">
-                  <div *ngIf="password.errors.required">{{'user.pass' | translate }}</div>
-                  <div *ngIf="password.errors.minlength">{{'user.passerror' | translate }}</div>
-                </div>
-              </div>
+
               <div class="form-group">
                 <label for="telephone">{{'user.teluser' | translate }}</label>
-                <input type="text" class="form-control" name="tel" [(ngModel)]="form.tel" #tel="ngModel"
-                       required minlength="6" />
+                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="8" class="form-control" name="tel" [(ngModel)]="form.tel" #tel="ngModel"
+                       required minlength="8" />
                 <div *ngIf="f.submitted && tel.invalid">
-                  <div *ngIf="tel.errors.required">{{'user.tel' | translate }}</div>
-                  <div *ngIf="tel.errors.minlength">{{'user.telerror' | translate }}</div>
+
+
                 </div>
               </div>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid" >{{'button.btnenr' | translate }}</button>

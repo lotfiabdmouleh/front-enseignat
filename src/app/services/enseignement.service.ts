@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 import {Enseignemant} from "../models/enseignemant";
@@ -16,7 +16,7 @@ export class EnseignementService {
     const uri = 'http://127.0.0.1:8080/enseignemant/'+dep+'/'+ens+'/'+grp+'/'+mat+'/'+sem+'/'+annee;
 
 
-    this.http.post(uri, enseignemant).subscribe(res => console.log('done'));
+   return this.http.post(uri, enseignemant);
   }
 
   getAllenseignemant() {
@@ -44,8 +44,7 @@ export class EnseignementService {
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 

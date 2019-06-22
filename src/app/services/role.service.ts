@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Role} from "../models/role";
 import {HttpClient} from "@angular/common/http";
 
@@ -14,7 +14,7 @@ export class RoleService {
     const uri = 'http://127.0.0.1:8080/role';
 
 
-    this.http.post(uri, role).subscribe(res => console.log('done'));
+  return  this.http.post(uri, role);
   }
 
   getAllRole() {

@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TirageService } from './tirage.service';
+import {TirageService} from './tirage.service';
 
 describe('TirageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

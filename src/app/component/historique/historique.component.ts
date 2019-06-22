@@ -1,12 +1,9 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {AgentService} from "../../services/agent.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RoleService} from "../../services/role.service";
 import {HistoriqueService} from "../../services/historique.service";
-import {Agent} from "../../models/agent";
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
 
 @Component({
@@ -55,9 +52,9 @@ export class HistoriqueComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.listhistory);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(res);
+
       }, err => {
-        console.log(err);
+
       });
   }
 
@@ -75,15 +72,15 @@ export class HistoriqueComponent implements OnInit {
       this.dataSourcedetail.paginator.firstPage();
     }}
   historyDetail(id:any){
-    console.log(id);
+
     this.historiqueService.getHistoryDetail(id).subscribe((res:any) => {
       this.listDetail = res ;
       this.dataSourcedetail = new MatTableDataSource(this.listDetail);
       this.dataSourcedetail.paginator = this.paginatordetail;
       this.dataSourcedetail.sort = this.sortdetail;
-      console.log(res);
+
     }, err => {
-      console.log(err);
+
     });
   }
   openVerticallydetail(contentdetail,id){

@@ -1,0 +1,64 @@
+<div class="mat-card-header">
+  <mat-icon>book</mat-icon>
+  {{'matiere.mat' | translate }} </div>
+<div class="row">
+
+
+  <form #f="ngForm" (ngSubmit)="f.form.valid && filtrerpardate()" >
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field>
+          <input #input matInput [matDatepicker]="picker" placeholder="date début" (dateChange)="datedebut( $event.target.value)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+        </mat-form-field></div>
+      <div class="col-md-4">
+        <mat-form-field>
+          <input [min]="min" #inputf matInput [matDatepicker]="picker1" placeholder="date fin" (dateChange)="datefin( $event.target.value)" >
+          <mat-datepicker-toggle matSuffix [for]="picker1" [disabled]="disabled"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        </mat-form-field></div>
+
+
+      <div class="col-md-2">
+        <button type="submit"  class="btn btn-success" style="float:right;" [disabled]=" f.form.invalid">{{'agent.filter' | translate }}</button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()"> Annuler</button>
+      </div>
+    </div>
+  </form>
+</div>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)"  placeholder="{{'agent.filter' | translate }}">
+</mat-form-field>
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="matiere">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Enseignant </th>
+    <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="nb_copie">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de copies </th>
+    <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<button style="visibility: hidden"><mat-icon class="print"  >print</mat-icon></button>
+<mat-icon class="print" (click)="imprimer()"  >print</mat-icon>
+</div>
+<span style="visibility: hidden"><p>kk</p><p>kk</p><p>kk</p></span>

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AjoutDemandeComponent } from './ajout-demande.component';
+import {AjoutDemandeComponent} from './ajout-demande.component';
 
 describe('AjoutDemandeComponent', () => {
   let component: AjoutDemandeComponent;

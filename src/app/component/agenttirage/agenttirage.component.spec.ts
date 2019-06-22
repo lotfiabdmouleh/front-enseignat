@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AgenttirageComponent } from './agenttirage.component';
+import {AgenttirageComponent} from './agenttirage.component';
 
 describe('AgenttirageComponent', () => {
   let component: AgenttirageComponent;

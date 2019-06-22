@@ -1,17 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Recharge} from "../../models/recharge";
-import {Ancre} from "../../models/ancre";
+
 import {Photocopieur} from "../../models/photocopieur";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {RechargeService} from "../../services/recharge.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {AncreService} from "../../services/ancre.service";
 import {PhotocopieurService} from "../../services/photocopieur.service";
 import {Intervention} from "../../models/intervention";
 import {InterventionService} from "../../services/intervention.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-intervention',
@@ -20,7 +20,7 @@ import {InterventionService} from "../../services/intervention.service";
 })
 export class InterventionComponent implements OnInit {
 
-  displayedColumns: string[] = ['date','soc','photocopieur','actions'];
+  displayedColumns: string[] = ['date','soc','disc','photocopieur','actions'];
   dataSource: MatTableDataSource<Intervention>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,12 +37,15 @@ export class InterventionComponent implements OnInit {
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private rechargeservice:RechargeService,private modalService: NgbModal,
               private interService:InterventionService,private photService:PhotocopieurService
+    ,private title:Title,private translate: TranslateService
   ) {
     this.getAllInterventions();
 
   }
 
   ngOnInit() {
+    this.translate.stream("intervention.inter").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -59,7 +62,7 @@ export class InterventionComponent implements OnInit {
         this.listPhotocopieur = res as Photocopieur[];
 
       }, err => {
-        console.log(err);
+
       });
 
 
@@ -67,9 +70,12 @@ export class InterventionComponent implements OnInit {
 
   addIntervention() {
 
-    this.interService.addinter(this.inter,this.selectedph);
-    this.c();
-    this.getAllInterventions();
+    this.interService.addinter(this.inter,this.selectedph).subscribe(res=>{
+      this.c();
+
+      this.getAllInterventions();
+    });
+
   }
   openVerticallyCentered(content) {
 
@@ -79,7 +85,7 @@ export class InterventionComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.interService.getInter(id).subscribe(res =>{this.inter=res as Intervention;console.log(this.inter);});
+    this.interService.getInter(id).subscribe(res =>{this.inter=res as Intervention;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -93,14 +99,14 @@ export class InterventionComponent implements OnInit {
   getAllInterventions(){
     this.interService.getAllinterventions()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listIntervention = res as Intervention[];
 
         this.dataSource = new MatTableDataSource(this.listIntervention);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -113,25 +119,25 @@ export class InterventionComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.interService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
-
+    this.selectedph=null;
+    this.inter.nom_Societe='';
+    this.inter.disc='';
     this.modalService.dismissAll();
   }
 
   deleteinter(){
-    this.interService.deleteInter(this.inter.id).subscribe(res => {console.log('deleted') });
+    this.interService.deleteInter(this.inter.id).subscribe(res => {
     this.c();
     this.getAllInterventions();
-
+  });
 
   }
 
   openVerticallydelete(contentdelete,id){
-    this.interService.getInter(id).subscribe(res =>{this.inter=res as Intervention;console.log(this.inter);});
+    this.interService.getInter(id).subscribe(res =>{this.inter=res as Intervention;});
     this.modalService.open(contentdelete);
   }
 

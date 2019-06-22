@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { MatiereService } from './matiere.service';
+import {MatiereService} from './matiere.service';
 
 describe('MatiereService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

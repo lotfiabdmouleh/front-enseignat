@@ -1,0 +1,70 @@
+
+
+<!-- Page level plugin CSS-->
+<div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
+  <div class="card-default">
+    <div class="mat-card-header">
+      <mat-icon>add_shopping_cart</mat-icon>
+      {{'approvisionnement.app' | translate }}</div>
+    <div class="card-body">
+      <div class="">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'agent.filter' | translate }}">
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="dateAjout">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agent.dateaj' | translate }} </th>
+              <td mat-cell *matCellDef="let row">  {{row.dateAjout |date:"MMM dd yyyy H:m:s"}}</td>
+            </ng-container>
+            <ng-container matColumnDef="agenttirage">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'agenttirage.agt' | translate }} </th>
+              <td mat-cell *matCellDef="let row"> {{row.createdBy}} </td>
+            </ng-container>  <ng-container matColumnDef="message">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'approvisionnement.message' | translate }}  </th>
+            <td mat-cell *matCellDef="let row"> {{row.message}} </td>
+          </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="actions" >
+              <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}   </th>
+
+              <td  mat-cell *matCellDef="let row">
+                <mat-icon class=" edit" (click)="changeEtat(row.id)"  >
+                  check </mat-icon>
+              </td>
+
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          <button style="visibility: hidden"><mat-icon class="print"  >print</mat-icon></button>
+          <mat-icon class="print"  >print</mat-icon>
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+</div>

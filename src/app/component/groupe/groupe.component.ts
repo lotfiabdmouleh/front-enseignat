@@ -1,13 +1,13 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Departement} from "../../models/departement";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {DepartementService} from "../../services/departement.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Groupe} from "../../models/groupe";
 import {GroupeService} from "../../services/groupe.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-groupe',
@@ -30,12 +30,14 @@ export class GroupeComponent implements OnInit {
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private groupeService:GroupeService,private modalService: NgbModal,
-              private changed:ChangeDetectorRef) {
+              private changed:ChangeDetectorRef,private title:Title,private translate: TranslateService) {
     this.getAllGroupes();
 
   }
 
   ngOnInit() {
+    this.translate.stream("groupe.grp").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -48,9 +50,12 @@ export class GroupeComponent implements OnInit {
     }}
 
   addGroupe() {
-    this.groupeService.addgroupe(this.groupe);
-    this.c();
-    this.getAllGroupes();
+    this.groupeService.addgroupe(this.groupe).subscribe(res=>{
+      this.c();
+
+      this.getAllGroupes();
+    });
+
   }
   openVerticallyCentered(content) {
 
@@ -60,7 +65,7 @@ export class GroupeComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.groupeService.getgroupe(id).subscribe(res =>{this.groupe=res as Groupe;console.log(this.groupe);});
+    this.groupeService.getgroupe(id).subscribe(res =>{this.groupe=res as Groupe; });
 
     this.modalService.open(content, { centered: true });
   }
@@ -73,14 +78,14 @@ export class GroupeComponent implements OnInit {
   getAllGroupes(){
     this.groupeService.getAllgroupe()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listGroupe = res as Groupe[];
 
         this.dataSource = new MatTableDataSource(this.listGroupe);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -93,9 +98,6 @@ export class GroupeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.groupeService.impression().subscribe(res=>{this.ngOnInit()});
-  }
 
   c(){
     this.groupe.filiere='';this.groupe.niveau=null;this.groupe.nb_etd=null;this.groupe.nom_grp='';
@@ -104,15 +106,15 @@ export class GroupeComponent implements OnInit {
   }
 
   deleteGroupe(){
-    this.groupeService.deletegroupe(this.groupe.id).subscribe(res => {console.log('deleted') });
+    this.groupeService.deletegroupe(this.groupe.id).subscribe(res => {
     this.modalService.dismissAll(this.groupe);
 
     this.getAllGroupes();
-
+  });
 
   }
   openVerticallydelete(contentdelete,id){
-    this.groupeService.getgroupe(id).subscribe(res =>{this.groupe=res as Groupe;console.log(this.groupe);});
+    this.groupeService.getgroupe(id).subscribe(res =>{this.groupe=res as Groupe;});
     this.modalService.open(contentdelete);
   }
 

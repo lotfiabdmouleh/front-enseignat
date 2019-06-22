@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Tirage} from "../models/tirage";
-import {Enseignant} from "../models/enseignant";
 import {DemandeTirage} from "../models/demandeTirage";
 
 @Injectable({
@@ -16,16 +15,19 @@ export class TirageService {
     const uri = 'http://127.0.0.1:8080/tirage/'+agent+'/'+papier+'/'+ph;
 
 
-    this.http.post(uri, tirage).subscribe(res => console.log('done'));
+    this.http.post(uri, tirage);
   }
   modFile(file:string,id:any){
     const uri = 'http://127.0.0.1:8080/tirage/file/'+id;
 
 
-    this.http.post(uri, file).subscribe(res => console.log('done'));
+    this.http.post(uri, file).subscribe();
   }
   getdemande(){
     return this.http.get('http://127.0.0.1:8080/tirage/demande');
+  }
+  getdemandevalider(){
+    return this.http.get('http://127.0.0.1:8080/tirage/demandevalider');
   }
   getAlltirage() {
     return this.http.get('http://127.0.0.1:8080/tirage');
@@ -48,15 +50,18 @@ export class TirageService {
     return this.http.get('http://127.0.0.1:8080/tirage/history');
 
   }
-  impression(){
 
-    return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
+  impression(file:any){
+
+    return this.http.get('http://127.0.0.1:8080/post/print/'+file,{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
-        window.open(fileUrl);
-
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = fileUrl;
+        document.body.appendChild(iframe);
+        iframe.contentWindow.print();
 
       });
   }

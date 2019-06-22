@@ -1,0 +1,148 @@
+.dark-modal .modal-content {
+  background-color: #009efb;
+  color: white;
+}
+.dark-modal .close {
+  color: white;
+}
+.light-blue-backdrop {
+  background-color: #5cb3fd;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: auto;
+}
+
+td:last-child {
+  width: 10%;
+}
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+.edit {
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+  padding: 0 0;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  width: auto;
+  min-height: auto;
+  height: auto;
+  margin-top: 3px;
+  padding-top: 2px;
+  width: 30% !important;
+
+}
+
+.titre{
+  display: block;
+  position: relative;
+  float: left;
+  text-align: left;
+  margin-left: 15px;
+  color:#67757c !important;
+}
+
+
+
+.edit:hover{
+  color: #06d79c;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+
+.no-pad-bot{
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.supp:hover{
+  color: red;
+  transition: all .3s ease-in-out;
+  font-weigh:700;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+
+.supp {
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+  padding: 0 0;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  width: auto;
+  min-height: auto;
+  height: auto;
+  margin-top: 3px;
+  padding-top: 2px;
+  width: 30% !important;
+
+}
+
+.view:hover{
+  color: blue;
+  transition: all .3s ease-in-out;
+  font-weigh:700;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+.view {
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+  padding: 0 0;
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  width: auto;
+  min-height: auto;
+  height: auto;
+  margin-top: 3px;
+  padding-top: 2px;
+  width: 30% !important;
+
+}
+
+.print{
+  float: right;
+  margin-right: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+}
+.print:hover{
+  color: #8f1ed8;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}
+.hist{
+  float: left;
+  margin-left: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  color: grey;
+  background: transparent;
+}
+.hist:hover{
+  color: #00acc1;
+  transition: all .3s ease-in-out;
+  text-shadow: 2px 0px 4px #C7C7C7;
+
+}

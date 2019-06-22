@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {User} from "../models/user";
 
 @Injectable({
@@ -26,8 +26,7 @@ affecterRole(id, users:User[]){
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 
@@ -68,7 +67,7 @@ update(user:User){
   return  this.http.put(url,user);
 
 }
-updatepassword(user:User,password:any){
+updatepassword(user:any,password:any){
   const url = 'http://127.0.0.1:8080/users/password/'+user.id+'/'+user.password;
   return  this.http.put(url,password);
 }

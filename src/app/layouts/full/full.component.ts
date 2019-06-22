@@ -1,7 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {SidebarComponent} from '../../shared/sidebar/sidebar.component';
 
 @Component({

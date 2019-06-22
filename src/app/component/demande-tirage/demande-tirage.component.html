@@ -4,7 +4,7 @@
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon>school</mat-icon>
+      <mat-icon>picture_as_pdf</mat-icon>
       <span style="float: right" > <button (click)="aller()" class=" btn btn-circle btn-lg btn-success"><i class="mdi mdi-plus"></i></button></span>
 
       {{'demande.dem' | translate }}</div>
@@ -18,16 +18,16 @@
           <table mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'enseignement.dateens' | translate }} </th>
+
+
+            <ng-container matColumnDef="dateModification">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'demande.dateimp' | translate }} </th>
+              <td mat-cell *matCellDef="let row">  {{row.dateModification|date:"MMM dd yyyy H:m:s"}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dateAjout">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'demande.date' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}} </td>
             </ng-container>
-
-            <ng-container matColumnDef="ens">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'enseignant.ens' | translate }} </th>
-              <td mat-cell *matCellDef="let row"> {{row.enseignement.enseignant.name}} </td>
-            </ng-container>
-
            <ng-container matColumnDef="file">
              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'demande.file' | translate }} </th>
              <td mat-cell *matCellDef="let row"> {{row.file}} </td>
@@ -110,6 +110,7 @@
       </div>
     </ng-template>
   </div>
+
 
 
 </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Photocopieur} from "../models/photocopieur";
 
@@ -15,10 +15,11 @@ export class PhotocopieurService {
     const uri = 'http://127.0.0.1:8080/photocopieur';
 
 
-    this.http.post(uri, photocopieur).subscribe(res => console.log('done'));
+   return this.http.post(uri, photocopieur);
   }
 
-  getAllphotocopieur() {
+
+   getAllphotocopieur() {
     return this.http.get('http://127.0.0.1:8080/photocopieur');
   }
 
@@ -35,13 +36,21 @@ export class PhotocopieurService {
     const url = 'http://127.0.0.1:8080/photocopieur/' + id;
     return this.http.get(url);
   }
+  getnb(id) {
+    const url = 'http://127.0.0.1:8080/photocopieur/getnb/' + id;
+    return this.http.get(url);
+  }
+
+  getPhLine(id) {
+    const url = 'http://127.0.0.1:8080/photocopieur/getphline/' + id;
+    return this.http.get(url);
+  }
 
   impression(){
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 

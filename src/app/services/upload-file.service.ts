@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -42,4 +42,5 @@ const url='http://127.0.0.1:8080/post/uploadFile';
 
     return this.http.get(url) ;
   }
+
 }

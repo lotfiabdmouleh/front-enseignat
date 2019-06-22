@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PapierService} from "../../services/papier.service";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-papier',
@@ -27,13 +29,15 @@ export class PapierComponent implements OnInit {
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private papierService:PapierService,private modalService: NgbModal,
+              private papierService:PapierService,private modalService: NgbModal  ,private title:Title,private translate: TranslateService
              ) {
     this.getAllPapiers();
 
   }
 
   ngOnInit() {
+    this.translate.stream("papier.papier").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -46,10 +50,13 @@ export class PapierComponent implements OnInit {
     }}
 
   addPapier() {
-    this.papierService.addpapier(this.papier);
+    this.papierService.addpapier(this.papier).subscribe(res=>{
+      this.c();
 
-    this.c();
-    this.getAllPapiers();
+      this.getAllPapiers();
+    });
+
+
   }
   openVerticallyCentered(content) {
 
@@ -59,7 +66,7 @@ export class PapierComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.papierService.getpapier(id).subscribe(res =>{this.papier=res as Papier;console.log(this.papier);});
+    this.papierService.getpapier(id).subscribe(res =>{this.papier=res as Papier;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -73,14 +80,14 @@ export class PapierComponent implements OnInit {
   getAllPapiers(){
     this.papierService.getAllpapier()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listPapier = res as Papier[];
 
         this.dataSource = new MatTableDataSource(this.listPapier);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -93,25 +100,24 @@ export class PapierComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.papierService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
-
+    this.papier.format='';
+    this.papier.nb_feuille=null;
     this.modalService.dismissAll();
   }
 
   deletePapier(){
-    this.papierService.deletepapier(this.papier.id).subscribe(res => {console.log('deleted') });
+    this.papierService.deletepapier(this.papier.id).subscribe(res => {
     this.modalService.dismissAll(this.papier);
 
     this.getAllPapiers();
 
-
+  });
   }
   openVerticallydelete(contentdelete,id){
-    this.papierService.getpapier(id).subscribe(res =>{this.papier=res as Papier;console.log(this.papier);});
+    this.papierService.getpapier(id).subscribe(res =>{this.papier=res as Papier;});
     this.modalService.open(contentdelete);
   }
 

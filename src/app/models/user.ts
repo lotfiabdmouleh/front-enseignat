@@ -9,6 +9,8 @@ export class User {
   public image:string;
   public roles:Role[];
   public dType:string;
+  public  etat:boolean;
+  public tel:number;
   constructor(
   ) { }
 }

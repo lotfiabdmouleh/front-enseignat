@@ -1,13 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Departement} from "../../models/departement";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {DepartementService} from "../../services/departement.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Matiere} from "../../models/matiere";
 import {MatiereService} from "../../services/matiere.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-matiere',
@@ -29,13 +29,14 @@ export class MatiereComponent implements OnInit {
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private matiereService:MatiereService,private modalService: NgbModal,
-              private changed:ChangeDetectorRef) {
+              private matiereService:MatiereService,private modalService: NgbModal ,private title:Title,private translate: TranslateService) {
     this.getAllMatieres();
 
   }
 
   ngOnInit() {
+    this.translate.stream("matiere.mat").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -48,9 +49,11 @@ export class MatiereComponent implements OnInit {
     }}
 
   addMatiere() {
-    this.matiereService.addmatiere(this.matiere);
-    this.c();
-    this.getAllMatieres();
+    this.matiereService.addmatiere(this.matiere).subscribe(res=>{
+      this.c();
+      this.getAllMatieres();
+    });
+
   }
   openVerticallyCentered(content) {
 
@@ -60,7 +63,7 @@ export class MatiereComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.matiereService.getmatiere(id).subscribe(res =>{this.matiere=res as Matiere;console.log(this.matiere);});
+    this.matiereService.getmatiere(id).subscribe(res =>{this.matiere=res as Matiere;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -73,14 +76,14 @@ export class MatiereComponent implements OnInit {
   getAllMatieres(){
     this.matiereService.getAllmatiere()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listMatiere = res as Matiere[];
 
         this.dataSource = new MatTableDataSource(this.listMatiere);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -93,9 +96,7 @@ export class MatiereComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.matiereService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
   this.matiere.nom_mat='';
@@ -104,14 +105,14 @@ export class MatiereComponent implements OnInit {
   }
 
   deleteMatiere(){
-    this.matiereService.deletematiere(this.matiere.id).subscribe(res => {console.log('deleted') });
+    this.matiereService.deletematiere(this.matiere.id).subscribe(res => {
     this.modalService.dismissAll(this.matiere);
     this.getAllMatieres();
 
-
+  });
   }
   openVerticallydelete(contentdelete,id){
-    this.matiereService.getmatiere(id).subscribe(res =>{this.matiere=res as Matiere;console.log(this.matiere);});
+    this.matiereService.getmatiere(id).subscribe(res =>{this.matiere=res as Matiere;});
     this.modalService.open(contentdelete);
   }
 

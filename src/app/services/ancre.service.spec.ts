@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AncreService } from './ancre.service';
+import {AncreService} from './ancre.service';
 
 describe('AncreService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

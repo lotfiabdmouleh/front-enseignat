@@ -4,20 +4,17 @@
 <ul class="navbar-nav mr-auto float-left">
   <li (click)="toggleSidebar.emit()" class="nav-item "> <a class="nav-link sidebartoggler text-muted waves-effect waves-dark test" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
 <li> <div class="navbar-header">
-  <a class="navbar-brand" href="index.html">
+  <a class="navbar-brand">
     <!-- Logo icon --><b>
     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
     <!-- Dark Logo icon -->
-    <img src="assets/images/iset_logo.png" alt="homepage" class="dark-logo" />
-
+    <img src="assets/images/iset_logo.png" alt="homepage" class="dark-logo"  style="height: 50px"/>
     <!-- Light Logo icon -->
 
   </b>
     <span>
-
-                        <img src="assets/images/header_logo.png" alt="homepage" class="dark-logo" />
-
-                  </span>
+    <img src="assets/images/erpis.gif"  alt="homepage" class="dark-logo" style="height: 68px; width: 180px" />
+  </span>
     <!--End Logo icon -->
     <!-- Logo text --> </a>
 </div></li>
@@ -72,26 +69,34 @@
           </button>
         </div>
         <div class="card-body">
-          <form #f="ngForm" >
-
-            <mat-form-field class="example-full-width">
-              <mat-label>{{'user.a' | translate }}</mat-label>
-              <input matInput type="password" [(ngModel)]="pass" name="pass">
-            </mat-form-field>
-            <br>
-            <mat-form-field class="example-full-width">
+          <form #f="ngForm" (ngSubmit)="f.form.valid && changepasse()">
+            <div  *ngIf="x==true" >
+              <alert type="danger" >
+                <span>mot de passe non correcte</span>
+              </alert>
+            </div>
+            <mat-form-field class="col-md-6">
               <mat-label>{{'user.new' | translate }}</mat-label>
-              <input matInput  type="password" [(ngModel)]="newpassword" name="newpassword">
+              <input matInput  type="password" [(ngModel)]="newpassword" name="newpassword" #password="ngModel"
+                     required minlength="6">
+              <div *ngIf="f.submitted && password.invalid">
+                <div *ngIf="password.errors.required">{{'user.pass' | translate }}</div>
+                <div *ngIf="password.errors.minlength">{{'user.passerror' | translate }}</div>
+              </div>
             </mat-form-field>
             <br>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="col-md-6">
               <mat-label>{{'user.c' | translate }}</mat-label>
-              <input matInput  type="password" [(ngModel)]="confpassword" name="confpassword">
+              <input matInput  type="password" [(ngModel)]="confpassword" name="confpassword" #password1="ngModel"
+                     required minlength="6">
+              <div *ngIf="f.submitted && password1.invalid">
+                <div *ngIf="password1.errors.required">{{'user.pass' | translate }}</div>
+                <div *ngIf="password1.errors.minlength">{{'user.passerror' | translate }}</div>
+              </div>
             </mat-form-field>
 
-
-            <button type="submit" (click)="changepasse()" class="btn btn-primary">{{'button.btnenr' | translate }}</button>
-            <button type="button" class="btn btn-light" (click)="c('Close click')">{{'button.btnfermer' | translate }}</button>
+            <br>
+            <button type="submit"  class="btn btn-primary">{{'button.btnenr' | translate }}</button>
 
           </form>
         </div>

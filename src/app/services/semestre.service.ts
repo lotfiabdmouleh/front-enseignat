@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Annee} from "../models/annee";
 import {Semester} from "../models/semestre";
 
 @Injectable({
@@ -15,7 +14,7 @@ export class SemestreService {
     const uri = 'http://127.0.0.1:8080/semestre';
 
 
-    this.http.post(uri, semestre).subscribe(res => console.log('done'));
+    return this.http.post(uri, semestre);
   }
 
   getAllsemestre() {
@@ -40,8 +39,7 @@ export class SemestreService {
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 

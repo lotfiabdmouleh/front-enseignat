@@ -5,7 +5,8 @@
     "btnfermer":"fermer",
     "btnmodifier": "Modifier",
     "upload": "Téléverser",
-    "para": "Paramétrages"
+    "para": "Paramétrages",
+    "login": "ERPIS - Connexion"
   },
 "groupe": {
   "grp":"Groupe",
@@ -65,10 +66,10 @@
   "delrech": "Supprimer Recharge",
   "daterech": "Date de Recharge",
   "datemod": "Date de modificaton de recharge",
-  "rechan":"Les recharges d'ancre",
+  "rechan":"Les recharges d'encre",
   "rechph":"Les recharges de photocopieur",
   "ph":"Photocopiuer utilisé ",
-  "an":"Ancre utilisé "
+  "an":"Encre utilisé "
 },
   "intervention": {
   "inter":"Intervention",
@@ -79,14 +80,16 @@
   "nominter": "Nom de société",
   "dateinter": "Date d'intervention",
     "ph": "Sélectionner la Photocopieuse",
-    "an": "Sélectionner l'ancre"
+    "an": "Sélectionner l'Encre",
+    "disc": "description"
 },
   "historique": {
   "hist":"Historique",
   "dateactionhist":"Date d'action",
     "op": "Opération",
     "class": "Table",
-    "h": "Historique de modification"
+    "h": "Historique de modification",
+    "hd": "Historique Générale"
 },
   "tirage": {
   "tirage":"Tirage",
@@ -101,7 +104,10 @@
     "copy": "Nombre de copies",
     "etat": "État du document",
     "n": "Nouvelle Demande",
-    "list": "Liste des demandes de tirage"
+    "list": "Liste des demandes de tirage",
+    "date": "Date demande tirage",
+    "dateimp": "Date d'impression",
+    "gest": "Gérer les demandes de tirage"
 
   },
   "enseignement": {
@@ -141,6 +147,7 @@
     "new": "Nouveau mot de passe",
     "a": "Ancien mot de passe",
     "c": "Confirmer mot de passe",
+    "ch": "Changer mot de passe",
     "log": "se déconnecter"
   },
   "enseignant": {
@@ -155,21 +162,29 @@
   "delag": "Supprimer Agent de tirage",
     "modag": "Modifier Agent de tirage"
   },
+
+  "approvisionnement": {
+  "app":"Approvisionnement",
+  "add":"Ajouter Approvisionnement",
+  "del": "Supprimer Approvisionnement",
+    "mod": "Modifier Approvisionnement",
+    "message": "Message"
+  },
   "consommable": {
     "cons": "Consommable",
     "divers": "Divers",
-  "ancre":"Ancre",
-  "add":"Ajouter Ancre",
-  "del": "Supprimer Ancre",
-  "mod": "Modifier Ancre",
+  "ancre":"Encre",
+  "add":"Ajouter Encre",
+  "del": "Supprimer Encre",
+  "mod": "Modifier Encre",
     "seuil": "Seuil maximal",
-    "des": "Désignation Ancre",
+    "des": "Désignation Encre",
     "adddiv":"Ajouter Divers",
   "deldiv": "Supprimer Divers",
   "moddiv": "Modifier Divers",
     "desdiv": "Désignation Divers",
     "seuil": "Seuil maximal",
-    "des": "Désignation Ancre",
+    "des": "Désignation Encre",
     "qte": "Quantité en stock"
   },
   "agent": {
@@ -189,7 +204,9 @@
     "affrole": "Affecter role",
     "aj":"Ajouter un agent",
     "titre": "Acceuil",
-    "profil": "Profil"
+    "profil": "Profil",
+    "accueil": "Accueil"
+
 
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Ancre} from "../models/ancre";
 
@@ -14,7 +14,7 @@ export class AncreService {
     const uri = 'http://127.0.0.1:8080/ancre';
 
 
-    this.http.post(uri, ancre).subscribe(res => console.log('done'));
+   return this.http.post(uri, ancre);
   }
 
   getAllAncre() {
@@ -39,7 +39,7 @@ export class AncreService {
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
+
         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);

@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SemestreService} from "../../services/semestre.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-semestre',
@@ -27,11 +29,13 @@ export class SemestreComponent implements OnInit {
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private semestreService:SemestreService,private modalService: NgbModal) {
+              private semestreService:SemestreService,private modalService: NgbModal,private title:Title,private translate: TranslateService) {
     this.getAllSemestres();
   }
 
   ngOnInit() {
+    this.translate.stream("semestre.sem").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -44,9 +48,12 @@ export class SemestreComponent implements OnInit {
     }}
 
   addSemestre() {
-    this.semestreService.addsemestre(this.semstre);
-    this.c();
-    this.getAllSemestres();
+    this.semestreService.addsemestre(this.semstre).subscribe(res=>{
+      this.c();
+
+      this.getAllSemestres();
+    });
+
   }
 
   openVerticallyCentered(content) {
@@ -54,7 +61,7 @@ export class SemestreComponent implements OnInit {
   }
 
   openVerticallyCenteredEdit(content,id) {
-    this.semestreService.getSemestre(id).subscribe(res =>{this.semstre=res as Semester;console.log(this.semstre);});
+    this.semestreService.getSemestre(id).subscribe(res =>{this.semstre=res as Semester});
     this.modalService.open(content, { centered: true });
   }
 
@@ -66,13 +73,13 @@ export class SemestreComponent implements OnInit {
   getAllSemestres(){
     this.semestreService.getAllsemestre()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listSemester = res as Semester[];
         this.dataSource = new MatTableDataSource(this.listSemester);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
   }
 
@@ -88,17 +95,15 @@ export class SemestreComponent implements OnInit {
   }
 
   deleteSemestre(){
-    this.semestreService.deleteSemestre(this.semstre.id).subscribe(res => {console.log('deleted') });
+    this.semestreService.deleteSemestre(this.semstre.id).subscribe(res => {
     this.modalService.dismissAll(this.semstre);
-    this.getAllSemestres();
+    this.getAllSemestres();});
   }
 
   openVerticallydelete(contentdelete,id){
-    this.semestreService.getSemestre(id).subscribe(res =>{this.semstre=res as Semester;console.log(this.semstre);});
+    this.semestreService.getSemestre(id).subscribe(res =>{this.semstre=res as Semester});
     this.modalService.open(contentdelete);
 
   }
-  Imprimer(){
-    this.semestreService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 }

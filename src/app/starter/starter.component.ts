@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
+
 @Component({
   templateUrl: './starter.component.html'
 })

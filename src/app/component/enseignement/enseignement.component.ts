@@ -1,7 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Ancre} from "../../models/ancre";
-import {Photocopieur} from "../../models/photocopieur";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
@@ -20,6 +18,8 @@ import {SemestreService} from "../../services/semestre.service";
 import {AnneeService} from "../../services/annee.service";
 import {Annee} from "../../models/annee";
 import {Semester} from "../../models/semestre";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-enseignement',
@@ -29,7 +29,7 @@ import {Semester} from "../../models/semestre";
 export class EnseignementComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['date','departement','enseignant','groupe','matiere','sem','annee','actions'];
+  displayedColumns: string[] = ['dateAjout','departement','enseignant','groupe','matiere','sem','annee','actions'];
   dataSource: MatTableDataSource<Enseignemant>;
 
  @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -56,7 +56,7 @@ export class EnseignementComponent implements OnInit {
               private depService:DepartementService,private modalService: NgbModal,
               private matiereService:MatiereService,private enseignantService:EnseignantService,
               private  groupeService:GroupeService,private semService:SemestreService,private anneeService:AnneeService,
-              private enseignementService:EnseignementService
+              private enseignementService:EnseignementService ,private title:Title,private translate: TranslateService
   ) {
     this.getAllEnseignemants();
 
@@ -64,6 +64,8 @@ export class EnseignementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.translate.stream("enseignement.ens").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -77,34 +79,34 @@ export class EnseignementComponent implements OnInit {
     this.depService.getAlldepartement()
       .subscribe(res => {this.listDepartement = res as Departement[];},
           err => {
-        console.log(err);
+
       });
 
     this.groupeService.getAllgroupe()
       .subscribe(res => {this.listGroupe = res as Groupe[];},
           err => {
-        console.log(err);
+
       });
 
     this.matiereService.getAllmatiere()
       .subscribe(res => {this.listMatiere = res as Matiere[];},
           err => {
-        console.log(err);
+
       });
     this.anneeService.getAllAnnee()
       .subscribe(res => {this.listAnnee = res as Annee[];},
           err => {
-        console.log(err);
+
       });
     this.semService.getAllsemestre()
       .subscribe(res => {this.listSemestre = res as Semester[];},
           err => {
-        console.log(err);
+
       });
  this.enseignantService.getAllenseignants()
       .subscribe(res => {this.listEnseignant = res as Enseignant[];},
           err => {
-        console.log(err);
+
       });
 
 
@@ -112,9 +114,12 @@ export class EnseignementComponent implements OnInit {
 
   addEnseignemant() {
 
-    this.enseignementService.addenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat,this.selectedsem,this.selectedann);
-    this.c();
-    this.getAllEnseignemants();
+    this.enseignementService.addenseignemant(this.enseignemant,this.selecteddep,this.selectedens,this.selectedgrp,this.selectedmat,this.selectedsem,this.selectedann).subscribe(res=>{
+      this.c();
+
+      this.getAllEnseignemants();
+    });
+
   }
   openVerticallyCentered(content) {
 
@@ -124,9 +129,11 @@ export class EnseignementComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant;console.log(this.enseignemant);});
+    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant;
+      this.modalService.open(content, { centered: true });
+    });
 
-    this.modalService.open(content, { centered: true });
+
   }
 
 
@@ -138,7 +145,7 @@ export class EnseignementComponent implements OnInit {
   getAllEnseignemants(){
     this.enseignementService.getAllenseignemant()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listEnseignemant = res as Enseignemant[];
 
         this.dataSource = new MatTableDataSource(this.listEnseignemant);
@@ -175,7 +182,7 @@ export class EnseignementComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -189,25 +196,28 @@ export class EnseignementComponent implements OnInit {
     }
     }
 
-  Imprimer(){
-    this.enseignantService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
-
+    this.selectedmat=null;
+    this.selecteddep=null;
+    this.selectedgrp=null;
+    this.selectedens=null;
+    this.selectedann=null;
+    this.selectedsem=null;
     this.modalService.dismissAll();
   }
 
   deleteEnseignemant(){
-    this.enseignementService.deleteenseignemant(this.enseignemant.id).subscribe(res => {console.log('deleted') });
+    this.enseignementService.deleteenseignemant(this.enseignemant.id).subscribe(res => {
     this.c();
     this.getAllEnseignemants();
-
+  });
 
   }
 
   openVerticallydelete(contentdelete,id){
-    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant;console.log(this.enseignemant);});
+    this.enseignementService.getdenseignemant(id).subscribe(res =>{this.enseignemant=res as Enseignemant;});
     this.modalService.open(contentdelete);
   }
 

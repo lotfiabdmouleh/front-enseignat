@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AgentTirage} from "../models/agentTirage";
 import {SignUpInfo} from "../auth/signup-info";
 import {Observable} from "rxjs";
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -33,14 +34,17 @@ export class AgenttirageService {
     return this.http.get(url);
   }
 
-  impression(){
+  impression(file:any){
 
-    return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
+    return this.http.get('http://127.0.0.1:8080/Liste/'+file,{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
-        window.open(fileUrl);
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = fileUrl;
+        document.body.appendChild(iframe);
+        iframe.contentWindow.print();
 
 
       });

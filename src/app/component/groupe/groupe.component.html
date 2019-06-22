@@ -54,8 +54,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -102,11 +101,11 @@
               </mat-form-field>
               <br><mat-form-field>
                 <mat-label>{{'groupe.nbetd' | translate }}</mat-label>
-                <input matInput [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
+                <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
                 <mat-label>{{'groupe.niveau' | translate }}</mat-label>
-                <input matInput [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
+                <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
               </mat-form-field>
               <br><mat-form-field>
                 <mat-label>{{'groupe.filiere' | translate }}</mat-label>
@@ -146,11 +145,11 @@
               </mat-form-field>
               <br><mat-form-field>
               <mat-label>{{'groupe.nbetd' | translate }}</mat-label>
-              <input matInput [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
+              <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="groupe.nb_etd" name="{{'groupe.nbetd' | translate }}" required>
             </mat-form-field>
               <br><mat-form-field>
               <mat-label>{{'groupe.niveau' | translate }}</mat-label>
-              <input matInput [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
+              <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="groupe.niveau" name="{{'groupe.niveau' | translate }}" required>
             </mat-form-field>
               <br><mat-form-field>
               <mat-label>{{'groupe.filiere' | translate }}</mat-label>

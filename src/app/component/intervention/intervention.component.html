@@ -25,6 +25,10 @@
               <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'intervention.nominter' | translate }}</th>
               <td mat-cell *matCellDef="let row"> {{row.nom_Societe}} </td>
             </ng-container>
+            <ng-container matColumnDef="disc">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'intervention.disc' | translate }}</th>
+              <td mat-cell *matCellDef="let row"> {{row.disc}} </td>
+            </ng-container>
             <ng-container matColumnDef="photocopieur">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>   {{'photocopieur.ph' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.photocopieur.reference}} </td>
@@ -49,8 +53,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -96,6 +99,14 @@
 
               </mat-form-field>
               <br>
+              <mat-form-field>
+                <mat-label> {{'intervention.disc' | translate }}</mat-label>
+
+
+                  <input matInput [(ngModel)]="inter.disc" name="{{'intervention.disc' | translate }}" required>
+
+              </mat-form-field>
+              <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]=" f.form.invalid">{{'button.btnenr' | translate }}</button>
               <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
             </form>
@@ -135,6 +146,14 @@
 
 
                 <input matInput [(ngModel)]="inter.nom_Societe" name="{{'intervention.nominter' | translate }}" required>
+
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label> {{'intervention.disc' | translate }}</mat-label>
+
+
+                <input matInput [(ngModel)]="inter.disc" name="{{'intervention.disc' | translate }}" required>
 
               </mat-form-field>
               <br>

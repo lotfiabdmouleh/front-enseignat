@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PhotocopieurService } from './photocopieur.service';
+import {PhotocopieurService} from './photocopieur.service';
 
 describe('PhotocopieurService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

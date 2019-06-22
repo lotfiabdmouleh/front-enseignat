@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 import {Papier} from "../models/papier";
@@ -15,7 +15,7 @@ export class PapierService {
     const uri = 'http://127.0.0.1:8080/papier';
 
 
-    this.http.post(uri, papier).subscribe(res => console.log('done'));
+   return this.http.post(uri, papier);
   }
 
   getAllpapier() {
@@ -40,8 +40,7 @@ export class PapierService {
 
     return this.http.get('http://127.0.0.1:8080/Liste',{responseType:'blob' })
       .map((blob:Blob)=>{
-        console.log('report is downloaded');
-        var file=new Blob([blob],{type:'application/pdf'});
+         var file=new Blob([blob],{type:'application/pdf'});
         var fileUrl=URL.createObjectURL(file);
         window.open(fileUrl);
 

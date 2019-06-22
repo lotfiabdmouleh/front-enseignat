@@ -1,10 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Papier} from "../../models/papier";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {PapierService} from "../../services/papier.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Recharge} from "../../models/recharge";
 import {RechargeService} from "../../services/recharge.service";
@@ -12,6 +10,8 @@ import {Ancre} from "../../models/ancre";
 import {Photocopieur} from "../../models/photocopieur";
 import {AncreService} from "../../services/ancre.service";
 import {PhotocopieurService} from "../../services/photocopieur.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-recharge',
@@ -36,13 +36,15 @@ export class RechargeComponent implements OnInit {
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private rechargeservice:RechargeService,private modalService: NgbModal,
-              private ancreService:AncreService,private photService:PhotocopieurService
+              private ancreService:AncreService,private photService:PhotocopieurService,private title:Title,private translate: TranslateService
   ) {
     this.getAllRecharges();
 
   }
 
   ngOnInit() {
+    this.translate.stream("recharge.rech").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -59,7 +61,7 @@ export class RechargeComponent implements OnInit {
         this.listAncre = res as Ancre[];
 
       }, err => {
-        console.log(err);
+
       });
 
     this.photService.getAllphotocopieur()
@@ -67,16 +69,19 @@ export class RechargeComponent implements OnInit {
         this.listPhotocopieur = res as Photocopieur[];
 
       }, err => {
-        console.log(err);
+
       });
 
   }
 
   addRecharge() {
 
-      this.rechargeservice.addrecharge(this.recharge,this.selectedph,this.selectedan);
-this.c();
-this.getAllRecharges();
+      this.rechargeservice.addrecharge(this.recharge,this.selectedph,this.selectedan).subscribe(res=>{
+        this.c();
+
+        this.getAllRecharges();
+      });
+
   }
   openVerticallyCentered(content) {
 
@@ -86,7 +91,7 @@ this.getAllRecharges();
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.rechargeservice.getrecharge(id).subscribe(res =>{this.recharge=res as Recharge;console.log(this.recharge);});
+    this.rechargeservice.getrecharge(id).subscribe(res =>{this.recharge=res as Recharge;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -100,14 +105,14 @@ this.getAllRecharges();
   getAllRecharges(){
     this.rechargeservice.getAllrecharge()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listRecharge = res as Recharge[];
 
         this.dataSource = new MatTableDataSource(this.listRecharge);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -120,25 +125,24 @@ this.getAllRecharges();
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.rechargeservice.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
-
+this.selectedph=null;
+this.selectedan=null;
     this.modalService.dismissAll();
   }
 
   deleteRecharge(){
-    this.rechargeservice.deleterecharge(this.recharge.id).subscribe(res => {console.log('deleted') });
+    this.rechargeservice.deleterecharge(this.recharge.id).subscribe(res => {
     this.c();
     this.getAllRecharges();
-
+  });
 
   }
 
   openVerticallydelete(contentdelete,id){
-    this.rechargeservice.getrecharge(id).subscribe(res =>{this.recharge=res as Recharge;console.log(this.recharge);});
+    this.rechargeservice.getrecharge(id).subscribe(res =>{this.recharge=res as Recharge });
     this.modalService.open(contentdelete);
   }
 

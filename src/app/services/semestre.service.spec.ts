@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SemestreService } from './semestre.service';
+import {SemestreService} from './semestre.service';
 
 describe('SemestreService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {TokenStorageService} from '../../auth/token-storage.service';
 import {HistoriqueService} from '../../services/historique.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-historiquegeneral',
@@ -12,10 +14,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./historiquegeneral.component.css']
 })
 export class HistoriquegeneralComponent implements OnInit {
-  displayedColumns: string[] = ['user', 'action', 'date','actions'];
+  displayedColumns: string[] = ['user', 'action', 'date'];
   dataSource: MatTableDataSource<any>;
-  dataSourcedetail:MatTableDataSource<any>;
-  displayedColumnsdetail:string[] = ['user','nom','prenom', 'date'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,10 +28,12 @@ export class HistoriquegeneralComponent implements OnInit {
   info: any;
 
   constructor(private route: Router, private http: HttpClient, private token: TokenStorageService,
-              private historiqueService: HistoriqueService,private modalService: NgbModal) {
+              private historiqueService: HistoriqueService,private modalService: NgbModal,private title:Title,private translate: TranslateService) {
   }
 
   ngOnInit() {
+    this.translate.stream("historique.hist").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -39,7 +41,7 @@ export class HistoriquegeneralComponent implements OnInit {
     };
     if (this.info.token != null) {
       this.getAllHistory();
-      this.historiqueService.getAllHistory().subscribe(res=>console.log(res))
+      this.historiqueService.getAllHistory().subscribe()
 
     } else {
       this.route.navigate(['login'])
@@ -53,9 +55,9 @@ export class HistoriquegeneralComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.listhistory);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(res);
+
       }, err => {
-        console.log(err);
+
       });
   }
 
@@ -66,26 +68,7 @@ export class HistoriquegeneralComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  applyFilterdetail(filterValue: string) {
-    this.dataSourcedetail.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSourcedetail.paginator) {
-      this.dataSourcedetail.paginator.firstPage();
-    }}
-  historyDetail(id:any){
-    console.log(id);
-    this.historiqueService.getHistoryDetail(id).subscribe((res:any) => {
-      this.listDetail = res ;
-      this.dataSourcedetail = new MatTableDataSource(this.listDetail);
-      this.dataSourcedetail.paginator = this.paginatordetail;
-      this.dataSourcedetail.sort = this.sortdetail;
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
-  }
-  openVerticallydetail(contentdetail,id){
-    this.historyDetail(id);
-    this.modalService.open(contentdetail);
-  }
+
+
 }

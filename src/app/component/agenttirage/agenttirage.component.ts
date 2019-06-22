@@ -1,13 +1,15 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
 import {AgentTirage} from "../../models/agentTirage";
 import {SignUpInfo} from "../../auth/signup-info";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {HttpClient} from "@angular/common/http";
-import {EnseignantService} from "../../services/enseignant.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {AgenttirageService} from "../../services/agenttirage.service";
+import {AuthService} from "../../auth/auth.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-agenttirage',
@@ -30,18 +32,21 @@ export class AgenttirageComponent implements OnInit {
   @ViewChild('fileInput')
   fileInput: ElementRef;
   listAgentTirage:AgentTirage[];
-
+  telnumber=false;
   info:any;
 
   data:any;
-  constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private agentTirageService:AgenttirageService,private modalService: NgbModal,
-              private changed:ChangeDetectorRef) {
+  constructor(private authService: AuthService, private route:Router,private http: HttpClient,private title:Title,
+              private token: TokenStorageService,
+              private agentTirageService:AgenttirageService,private modalService: NgbModal, private translate: TranslateService
+              ) {
     this.getAllAgentTirages();
 
   }
 
   ngOnInit() {
+    this.translate.stream('agenttirage.agt').subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -64,7 +69,7 @@ export class AgenttirageComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage;console.log(this.agentTirage);});
+    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage; });
 
     this.modalService.open(content, { centered: true });
   }
@@ -77,14 +82,14 @@ export class AgenttirageComponent implements OnInit {
   getAllAgentTirages(){
     this.agentTirageService.getAllAgentTirage()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res ;
         this.listAgentTirage = res as AgentTirage[];
 
         this.dataSource = new MatTableDataSource(this.listAgentTirage);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -97,9 +102,7 @@ export class AgenttirageComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
-  Imprimer(){
-    this.agentTirageService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 
   c(){
     this.form.name='';
@@ -111,41 +114,48 @@ export class AgenttirageComponent implements OnInit {
   }
 
   deleteAgentTirage(){
-    this.agentTirageService.deleteAgentTirage(this.agentTirage.id).subscribe(res => {console.log('deleted') });
+    this.agentTirageService.deleteAgentTirage(this.agentTirage.id).subscribe(res => {
     this.modalService.dismissAll(this.agentTirage);
     this.getAllAgentTirages();
-
+  });
 
   }
   openVerticallydelete(contentdelete,id){
-    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage;console.log(this.agentTirage);});
+    this.agentTirageService.getAgentTirage(id).subscribe(res =>{this.agentTirage=res as AgentTirage; });
     this.modalService.open(contentdelete);
   }
   onSubmit() {
-    console.log(this.form);
 
-    this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password,
-      this.form.tel,);
+    if(isNaN(this.form.tel) ){
+      this.telnumber=true;
+    }
+else{
+      this.telnumber=false;
+      this.signupInfo = new SignUpInfo(
+        this.form.name,
+        this.form.username,
+        this.form.email,
+        this.form.tel);
+      this.agentTirageService.signUp(this.signupInfo).subscribe(
+        data => {
 
-    this.agentTirageService.signUp(this.signupInfo).subscribe(
-      data => {
-        console.log(data);
-        this.isSignedUp = true;
-        this.isSignUpFailed = false;
-        this.c();
+          this.authService.send(this.form.username).subscribe(res=>{
+            this.isSignedUp = true;
+            this.isSignUpFailed = false;
+            this.c();
 
-        this.getAllAgentTirages();
-      },
-      error => {
-        console.log(error);
-        this.errorMessage = error.error.message;
-        this.isSignUpFailed = true;
-      }
-    );
+            this.getAllAgentTirages();
+          });
+
+        },
+        error => {
+
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    }
+
   }
 
 }

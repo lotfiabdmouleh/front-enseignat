@@ -7,6 +7,7 @@ export class Enseignant {
   public name: string;
   public email: string;
   public tel: number;
+  public etat:boolean;
 public demandeTirages:DemandeTirage[];
   constructor(
   ) { }

@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { EnseignementService } from './enseignement.service';
+import {EnseignementService} from './enseignement.service';
 
 describe('EnseignementService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

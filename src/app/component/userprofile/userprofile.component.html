@@ -13,19 +13,19 @@
     <div class="card-body">
       <form name="form" (ngSubmit)="f.form.valid "  #f="ngForm" novalidate>
         <div *ngIf="f.submitted && f.valid"  >
-
+<alert class="success">Valider avec succès</alert>
         </div>
         <div class="row">
 <div class="col-md-6">
         <div class="form-group">
-          <label for="name">{{'user.nomuser' | translate }}</label>
+          <label >{{'user.nomuser' | translate }}</label>
           <input type="text" class="form-control" name="{{'user.nomnuser' | translate }}" [(ngModel)]="user.name" #name="ngModel" required />
           <div *ngIf="f.submitted && name.invalid">
             <div *ngIf="name.errors.required">{{'user.nom' | translate }}</div>
           </div>
         </div>
         <div class="form-group">
-          <label for="username">{{'user.loginuser' | translate }}</label>
+          <label >{{'user.loginuser' | translate }}</label>
           <input type="text" class="form-control" name="{{'user.loginuser' | translate }}" [(ngModel)]="user.username" #username="ngModel"
                  required />
           <div *ngIf="f.submitted && username.invalid">
@@ -35,7 +35,7 @@
 </div>
         <div class="col-md-6">
         <div class="form-group">
-          <label for="email">{{'user.mailuser' | translate }}</label>
+          <label >{{'user.mailuser' | translate }}</label>
           <input type="text" class="form-control" name="{{'user.mailuser' | translate }}" [(ngModel)]="user.email" #email="ngModel" required email />
           <div *ngIf="f.submitted && email.invalid">
             <div *ngIf="email.errors.required">{{'user.mail' | translate }}</div>
@@ -44,7 +44,8 @@
         </div>
 
         </div>
-          <div *ngIf="currentFileUpload" class="progress">
+
+          <div  *ngIf="currentFileUpload" class="progress col-md-6">
             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
                  aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
               {{progress.percentage}}%</div>

@@ -1,39 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
-import { FullComponent } from './layouts/full/full.component';
+import {FullComponent} from './layouts/full/full.component';
 
-import { NavigationComponent } from './shared/header-navigation/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import {NavigationComponent} from './shared/header-navigation/navigation.component';
+import {SidebarComponent} from './shared/sidebar/sidebar.component';
+import {BreadcrumbComponent} from './shared/breadcrumb/breadcrumb.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 
-import { Approutes } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SpinnerComponent } from './shared/spinner.component';
+import {Approutes} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {SpinnerComponent} from './shared/spinner.component';
 import {MatDatepickerModule, MatInputModule, MatSortModule, MatTableModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 // import ngx-translate and the http loa, TranslateCompilerder
-import {TranslateLoader, TranslateModule, TranslateCompiler} from '@ngx-translate/core';
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateMessageFormatCompiler} from 'ngx-translate-messageformat-compiler';
-import {RoleComponent} from "./component/role/role.component";
 import {AngularFontAwesomeModule} from "angular-font-awesome";
 import {CalendarModule} from "angular-calendar";
 import {NgMaterialMultilevelMenuModule} from 'ng-material-multilevel-menu';
 import {AlertModule} from 'ngx-bootstrap';
-
-
+import {PasswordComponent} from "./password/password.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -51,7 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     LoginComponent,
     RegisterComponent,
-
+    PasswordComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +66,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AngularFontAwesomeModule,
     NgMaterialMultilevelMenuModule,
     AlertModule.forRoot(),
-
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

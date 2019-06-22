@@ -1,15 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTable, MatTableDataSource} from "@angular/material";
-import {Agent} from "../../models/agent";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
-import {AgentService} from "../../services/agent.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RoleService} from "../../services/role.service";
-import {Role} from "../../models/role";
 import {Departement} from "../../models/departement";
 import {DepartementService} from "../../services/departement.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-departement',
@@ -32,12 +30,14 @@ export class DepartementComponent implements OnInit  {
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
               private departementService:DepartementService,private modalService: NgbModal,
-              private changed:ChangeDetectorRef) {
+              private changed:ChangeDetectorRef ,private title:Title,private translate: TranslateService) {
     this.getAllDepartements();
 
   }
 
   ngOnInit() {
+    this.translate.stream("departement.dep").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -50,10 +50,13 @@ export class DepartementComponent implements OnInit  {
     }}
 
   addDepartement() {
-    this.departementService.adddepartement(this.departement);
+    this.departementService.adddepartement(this.departement).subscribe(res=>{
+      this.c();
 
-    this.c();
-    this.getAllDepartements();
+      this.getAllDepartements();
+    });
+
+
   }
   openVerticallyCentered(content) {
 
@@ -63,7 +66,7 @@ export class DepartementComponent implements OnInit  {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.departementService.getdepartement(id).subscribe(res =>{this.departement=res as Departement;console.log(this.departement);});
+    this.departementService.getdepartement(id).subscribe(res =>{this.departement=res as Departement;});
 
     this.modalService.open(content, { centered: true });
   }
@@ -77,14 +80,14 @@ export class DepartementComponent implements OnInit  {
   getAllDepartements(){
     this.departementService.getAlldepartement()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listDepartement = res as Departement[];
 
         this.dataSource = new MatTableDataSource(this.listDepartement);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -107,15 +110,15 @@ export class DepartementComponent implements OnInit  {
   }
 
   deleteDepartement(){
-    this.departementService.deletedepartement(this.departement.id).subscribe(res => {console.log('deleted') });
+    this.departementService.deletedepartement(this.departement.id).subscribe(res => {
     this.modalService.dismissAll(this.departement);
 
     this.getAllDepartements();
-
+  });
 
   }
   openVerticallydelete(contentdelete,id){
-    this.departementService.getdepartement(id).subscribe(res =>{this.departement=res as Departement;console.log(this.departement);});
+    this.departementService.getdepartement(id).subscribe(res =>{this.departement=res as Departement; });
     this.modalService.open(contentdelete);
   }
 

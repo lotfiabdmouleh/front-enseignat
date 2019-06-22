@@ -5,8 +5,9 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {AncreService} from "../../services/ancre.service";
 import {AnneeService} from "../../services/annee.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-annee',
@@ -28,11 +29,13 @@ export class AnneeComponent implements OnInit {
   selected:any;
   data:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private anneeService:AnneeService,private modalService: NgbModal) {
+              private anneeService:AnneeService,private modalService: NgbModal,private title:Title,private translate: TranslateService) {
     this.getAllAnnees();
   }
 
   ngOnInit() {
+    this.translate.stream("annee.annee").subscribe(res=>{this.title.setTitle(res);});
+
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
@@ -45,9 +48,11 @@ export class AnneeComponent implements OnInit {
     }}
 
   addAnnee() {
-    this.anneeService.addAnnee(this.annee);
-    this.c();
-    this.getAllAnnees();
+    this.anneeService.addAnnee(this.annee).subscribe(res=>{
+      this.c();
+      this.getAllAnnees();
+    });
+
   }
 
   openVerticallyCentered(content) {
@@ -55,7 +60,7 @@ export class AnneeComponent implements OnInit {
   }
 
   openVerticallyCenteredEdit(content,id) {
-    this.anneeService.getAnnee(id).subscribe(res =>{this.annee=res as Annee;console.log(this.annee);});
+    this.anneeService.getAnnee(id).subscribe(res =>{this.annee=res as Annee; });
     this.modalService.open(content, { centered: true });
   }
 
@@ -67,13 +72,13 @@ export class AnneeComponent implements OnInit {
   getAllAnnees(){
     this.anneeService.getAllAnnee()
       .subscribe(res => {
-        this.data=res,console.log(this.data);
+        this.data=res;
         this.listAnnee = res as Annee[];
         this.dataSource = new MatTableDataSource(this.listAnnee);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
   }
 
@@ -89,17 +94,15 @@ export class AnneeComponent implements OnInit {
   }
 
   deleteAnnee(){
-    this.anneeService.deleteAnnee(this.annee.id).subscribe(res => {console.log('deleted') });
+    this.anneeService.deleteAnnee(this.annee.id).subscribe(res => {
     this.modalService.dismissAll(this.annee);
-    this.getAllAnnees();
+    this.getAllAnnees();});
   }
 
   openVerticallydelete(contentdelete,id){
-    this.anneeService.getAnnee(id).subscribe(res =>{this.annee=res as Annee;console.log(this.annee);});
+    this.anneeService.getAnnee(id).subscribe(res =>{this.annee=res as Annee; });
     this.modalService.open(contentdelete);
 
   }
-  Imprimer(){
-    this.anneeService.impression().subscribe(res=>{this.ngOnInit()});
-  }
+
 }

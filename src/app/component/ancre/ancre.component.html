@@ -50,8 +50,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -105,11 +104,6 @@
               </table>
 
               <mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-              <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-              <mat-icon class="print"(click)="Imprimer()">print</mat-icon>
-
-
-
             </div>
           </div>
         </div>
@@ -145,12 +139,16 @@
               <br><mat-form-field>
               <mat-label>{{'consommable.qte' | translate }}</mat-label>
               <input matInput [(ngModel)]="ancre.qte_stck" name="{{'consommable.qte' | translate }}" required>
+              <span *ngIf="qtestckbool==true" style="color : red">la quantité doit être numérique</span>
             </mat-form-field>
               <br>
               <mat-form-field>
               <mat-label>{{'consommable.seuil' | translate }}</mat-label>
-              <input matInput [(ngModel)]="ancre.seuil_max" name="{{'consommable.seuil' | translate }}" required>
-            </mat-form-field>
+              <input matInput  [(ngModel)]="ancre.seuil_max" name="{{'consommable.seuil' | translate }}" required>
+                <span *ngIf="test==false" style="color: red">Seuil doit être séperieur à la quantité en stock</span>
+                <span *ngIf="qtestckbool==true" style="coler : red">le seuil doit être numérique</span>
+
+              </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
               <button type="button" class="btn btn-light" style="float: right; margin-right: 20px;" (click)="c()">{{'button.btnfermer' | translate }}</button>
@@ -184,11 +182,16 @@
               <br><mat-form-field>
               <mat-label>{{'consommable.qte' | translate }}</mat-label>
               <input matInput [(ngModel)]="ancre.qte_stck" name="{{'consommable.qte' | translate }}" required>
+              <span *ngIf="qtestckbool==true" style="color : red">la quantité doit être numérique</span>
+
             </mat-form-field>
               <br>
               <mat-form-field>
                 <mat-label>{{'consommable.seuil' | translate }}</mat-label>
                 <input matInput [(ngModel)]="ancre.seuil_max" name="{{'consommable.seuil' | translate }}" required>
+                <span *ngIf="test==false" style="color: red">Seuil doit être séperieur à la quantité en stock</span>
+                <span *ngIf="seuilbool==true" style="coler : red">le seuil doit être numérique</span>
+
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editAncre()" >{{'button.btnmodifier' | translate }}</button>

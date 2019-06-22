@@ -1,5 +1,4 @@
-import { RouteInfo } from './sidebar.metadata';
-import {HistoriqueComponent} from "../../component/historique/historique.component";
+import {RouteInfo} from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
 

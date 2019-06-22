@@ -46,8 +46,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -94,7 +93,7 @@
               </mat-form-field>
               <br><mat-form-field>
                 <mat-label>{{'papier.nbr' | translate }}</mat-label>
-                <input matInput [(ngModel)]="papier.nb_feuille" name="{{'papier.nbr' | translate }}" required>
+                <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="papier.nb_feuille" name="{{'papier.nbr' | translate }}" required>
               </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" [disabled]="f.form.pristine || f.form.invalid">{{'button.btnenr' | translate }}</button>
@@ -129,7 +128,7 @@
               </mat-form-field>
               <br><mat-form-field>
               <mat-label>{{'papier.nbr' | translate }}</mat-label>
-              <input matInput [(ngModel)]="papier.nb_feuille" name="{{'papier.nbr' | translate }}" required>
+              <input matInput onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="papier.nb_feuille" name="{{'papier.nbr' | translate }}" required>
             </mat-form-field>
               <br>
               <button type="submit"  class="btn btn-primary" style="float:right;" (click)="editPapier()" >{{'button.btnmodifier' | translate }}</button>

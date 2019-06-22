@@ -1,10 +1,9 @@
-
-
 <!-- Page level plugin CSS-->
+
 <div *ngIf="info.token; else loggedOut "xmlns="http://www.w3.org/1999/html">
   <div class="card-default">
     <div class="mat-card-header">
-      <mat-icon>school</mat-icon>
+      <mat-icon>print</mat-icon>
       {{'tirage.tirage' | translate }}</div>
     <div class="card-body">
       <div class="">
@@ -13,11 +12,11 @@
         </mat-form-field>
 
         <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort>
+          <table mat-table [dataSource]="dataSource"matSort>
 
             <!-- ID Column -->
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'enseignement.dateens' | translate }} </th>
+            <ng-container matColumnDef="dateAjout">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'demande.date' | translate }} </th>
               <td mat-cell *matCellDef="let row"> {{row.dateAjout|date:"MMM dd yyyy H:m:s"}} </td>
             </ng-container>
 
@@ -40,8 +39,7 @@
               <th mat-header-cell *matHeaderCellDef >{{'agent.actions' | translate }}  </th>
 
               <td  mat-cell *matCellDef="let row">
-                <mat-icon class=" edit" (click)="openVerticallyValid(row.id)"  aria-label="Valide">check </mat-icon>
-                  <mat-icon class=" supp" (click)="openVerticallyInvalid(row.id)"  aria-label="Invalide">close </mat-icon>
+
                   <mat-icon class=" p" (click)="openVertically(content,row.id)"  aria-label="Imprimer">print </mat-icon>
 
               </td>
@@ -94,6 +92,11 @@
           </div>
           <div class="card-body">
             <form #f="ngForm" (ngSubmit)="f.form.valid && addTirage()" >
+              <div  *ngIf="b==false" >
+                <alert type="warning" dismissOnTimeout="5000">
+                  <strong>Nombre de papier inférieur a nombre de copies</strong>
+                </alert>
+              </div>
               <mat-form-field>
                 <mat-label> {{'intervention.ph' | translate }}</mat-label>
                 <mat-select [(value)]="selectedph" >

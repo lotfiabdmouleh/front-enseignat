@@ -33,8 +33,8 @@
               <td  mat-cell *matCellDef="let row">
                 <mat-icon class=" supp" (click)="openVerticallydelete(contentdelete,row.id)"  aria-label="Delete">delete_forever </mat-icon>
                 <mat-icon class=" edit" (click)="openVerticallyCenteredEdit(contentEdit,row.id)" >edit</mat-icon>
-                <mat-icon class=" edit" (click)="openVertically(contentAff,row.id)" >menu</mat-icon>
-                <mat-icon class=" edit" (click)="openVerticallyinter(contentinter,row.id)" >menu</mat-icon>
+                <mat-icon class=" edit" (click)="openVertically(contentAff,row.id)" > local_printshop</mat-icon>
+                <mat-icon class=" edit" (click)="openVerticallyinter(contentinter,row.id)" >build</mat-icon>
 
               </td>
 
@@ -48,8 +48,7 @@
           </table>
 
           <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-          <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-          <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -94,8 +93,7 @@
               </table>
 
               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-              <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-              <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 
@@ -148,8 +146,7 @@
               </table>
 
               <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-              <button style="visibility: hidden"><mat-icon class="print"(click)="Imprimer()"  >print</mat-icon></button>
-              <mat-icon class="print"(click)="Imprimer()"  >print</mat-icon>
+
 
 
 

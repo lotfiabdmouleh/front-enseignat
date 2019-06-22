@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="163e75e4-9408-48ed-bcd2-f739a68f58db" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../assets/images/erpis.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../auth/signup-info.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../auth/signup-info.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/agent/agent.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/agent/agent.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/agent/agent.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/agent/agent.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/agenttirage/agenttirage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/agenttirage/agenttirage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/agenttirage/agenttirage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/agenttirage/agenttirage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/ajout-demande/ajout-demande.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/ajout-demande/ajout-demande.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/component.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/component.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/component.routing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/component.routing.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/demande-tirage/demande-tirage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/demande-tirage/demande-tirage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/demande-tirage/demande-tirage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/demande-tirage/demande-tirage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/enseignant/enseignant.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/enseignement/enseignement.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/enseignement/enseignement.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/enseignement/enseignement.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/enseignement/enseignement.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../component/home/home.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/intervention/intervention.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/intervention/intervention.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/intervention/intervention.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/intervention/intervention.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/tirage/tirage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/tirage/tirage.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/tirage/tirage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/tirage/tirage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/user/user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../component/user/user.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../component/user/user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../component/user/user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layouts/full/full.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../layouts/full/full.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/enseignant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/enseignant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/intervention.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/intervention.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/agent.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/agent.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/enseignant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/enseignant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/photocopieur.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/photocopieur.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/tirage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/tirage.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/upload-file.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/upload-file.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header-navigation/navigation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/header-navigation/navigation.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/header-navigation/navigation.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/header-navigation/navigation.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar/sidebar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar/sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spinner.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spinner.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/i18n/ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../assets/i18n/ar.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../assets/i18n/fr.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../assets/i18n/fr.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="27" />
+    <option name="y" value="242" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="shared" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Integrating-Chart-Js-in-Angular-7-master" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="163e75e4-9408-48ed-bcd2-f739a68f58db" name="Default Changelist" comment="" />
+      <created>1560274080656</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560274080656</updated>
+      <workItem from="1560274085206" duration="155000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="155000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <layout>
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

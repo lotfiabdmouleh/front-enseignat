@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { PapierService } from './papier.service';
+import {PapierService} from './papier.service';
 
 describe('PapierService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

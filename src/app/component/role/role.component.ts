@@ -6,8 +6,9 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {RoleService} from "../../services/role.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {Role} from "../../models/role";
-import {Departement} from "../../models/departement";
-import {UserService} from "../../services/user.service";
+import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
+
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -28,11 +29,12 @@ export class RoleComponent implements OnInit {
   board:any;
   errorMessage:any;
   constructor(private route:Router,private http: HttpClient,private token: TokenStorageService,
-              private roleService: RoleService,private modalService: NgbModal,private userService:UserService) {
+              private roleService: RoleService,private modalService: NgbModal,private title:Title,private translate: TranslateService) {
 
     this.getAllRole();
   }
   ngOnInit() {
+    this.translate.stream("user.role").subscribe(res=>{this.title.setTitle(res);});
 
     this.info = {
       token: this.token.getToken(),
@@ -48,10 +50,12 @@ export class RoleComponent implements OnInit {
 
   }
   addRole() {
-    this.roleService.addRole(this.role);
-    this.ngOnInit();
-  this.c();
-    this.ngOnInit();
+    this.roleService.addRole(this.role).subscribe(res=>{
+
+      this.c();
+      this.getAllRole();
+    });
+
   }
   openVerticallyCentered(content) {
 
@@ -61,7 +65,7 @@ export class RoleComponent implements OnInit {
 
   openVerticallyCenteredEdit(content,id) {
 
-    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role;console.log(this.role);});
+    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role});
 
     this.modalService.open(content, { centered: true });
 
@@ -79,7 +83,7 @@ export class RoleComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }, err => {
-        console.log(err);
+
       });
 
   }
@@ -97,15 +101,15 @@ export class RoleComponent implements OnInit {
   }
 
   deleteRole(){
-    this.roleService.deleteRole(this.role.id).subscribe(res => {console.log('deleted') });
+    this.roleService.deleteRole(this.role.id).subscribe(res => {
     this.modalService.dismissAll(this.role);
 
     this.getAllRole();
-
+  });
 
   }
   openVerticallydelete(contentdelete,id){
-    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role;console.log(this.role);});
+    this.roleService.getRole(id).subscribe(res =>{this.role=res as Role});
     this.modalService.open(contentdelete);
   }
 

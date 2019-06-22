@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TokenStorageService} from './auth/token-storage.service';
 import {TranslateService} from '@ngx-translate/core';
 
