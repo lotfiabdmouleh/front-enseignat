@@ -17,7 +17,7 @@ export class EnseignantstatistiqueComponent implements OnInit,OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
   displayedColumns: string[] = ['enseignant', 'nb_copie'];
-
+etat=false;
 
   dataSource: MatTableDataSource<any>;
   lstcop:any=[];
@@ -74,7 +74,12 @@ disabled=true;
     }}
 
   imprimer(){
+    if(this.dated!=null && this.datef!=null){
+      this.etat=false;
     this.demandeService.ImpRapEnsDate(this.dated,this.datef,"repp.jrxml").subscribe();
+  }else{
+      this.etat=true;
+    }
   }
 
   datedebut(event: Date) {

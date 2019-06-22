@@ -37,7 +37,9 @@
   <input matInput (keyup)="applyFilter($event.target.value)"   placeholder="{{'agent.filter' | translate }}">
 </mat-form-field>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource"  matSort>
+  <div *ngIf="etat==true"><alert class="success">Choisissez les deux dates</alert></div>
+
+  <table mat-table [dataSource]="dataSource"  matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

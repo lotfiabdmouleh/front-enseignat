@@ -16,6 +16,7 @@ export class MatierestatistiqueComponent implements OnInit {
   @ViewChild('input',{read:MatInput}) input :MatInput;
   @ViewChild('inputf',{read:MatInput}) inputf :MatInput;
   min=new Date(2019,6,1);
+  etat=false;
   disabled=true;
   dated: any;
   datef: any;
@@ -63,7 +64,12 @@ export class MatierestatistiqueComponent implements OnInit {
 
   }
   imprimer(){
-    this.demandeService.ImpRapEnsDate(this.dated,this.datef,"rappdep.jrxml").subscribe();
+    if(this.dated!=null && this.datef!=null){
+      this.etat=false;
+    this.demandeService.ImpRapEnsDate(this.dated,this.datef,"rappmat.jrxml").subscribe();
+  }else{
+      this.etat=true;
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -96,7 +102,7 @@ export class MatierestatistiqueComponent implements OnInit {
 
         Object.keys(data).map(key => {
           if (
-            key === 'enseignant' &&
+            key === 'matiere' &&
             (data.departement.nom_dep.toLowerCase().includes(transformedFilter) )||
             key === 'nb_copie' &&
             (data.groupe.nom_grp.toLowerCase().includes(transformedFilter) )) {

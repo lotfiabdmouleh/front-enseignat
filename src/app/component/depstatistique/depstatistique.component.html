@@ -34,6 +34,7 @@
 </mat-form-field>
 
 <div class="mat-elevation-z8" >
+  <div *ngIf="etat==true"><alert class="success">Choisissez les deux dates</alert></div>
 <table mat-table [dataSource]="dataSource" matSort>
 
   <!--- Note that these columns can be defined in any order.

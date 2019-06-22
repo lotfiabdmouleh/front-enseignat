@@ -12,6 +12,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./depstatistique.component.css']
 })
 export class DepstatistiqueComponent implements OnInit {
+  etat=false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table:MatTable<any>;
@@ -65,7 +66,13 @@ export class DepstatistiqueComponent implements OnInit {
 
   }
   imprimer(){
-    this.demService.ImpRapEnsDate(this.dated,this.datef,"rappdep.jrxml").subscribe();
+    if(this.dated!=null && this.datef!=null){
+      this.etat=false;
+      this.demService.ImpRapEnsDate(this.dated,this.datef,"rappdep.jrxml").subscribe();
+
+    }else{
+      this.etat=true;
+    }
   }
 
   applyFilter(filterValue: string) {
