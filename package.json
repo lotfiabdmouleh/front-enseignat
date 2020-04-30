@@ -37,7 +37,7 @@
     "detect-adblock": "0.0.2",
     "font-awesome": "^4.7.0",
     "jasmine": "^3.3.1",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "jquery-slimscroll": "^1.3.8",
     "material-design-icons": "^3.0.1",
     "messageformat": "^2.0.2",
