@@ -31,7 +31,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.3.1",
-    "chart.js": "^2.7.3",
+    "chart.js": "^2.9.4",
     "chartist": "^0.11.0",
     "core-js": "^2.6.5",
     "detect-adblock": "0.0.2",
